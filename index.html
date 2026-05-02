@@ -25,10 +25,8 @@
     html { scroll-behavior: smooth; }
     ::selection { background: #0D0D0D; color: #fff; }
     body {
-      background: var(--white);
-      color: var(--black);
-      font-family: var(--font);
-      -webkit-font-smoothing: antialiased;
+      background: var(--white); color: var(--black);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
@@ -37,96 +35,71 @@
     /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
       background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent; transition: border-color 0.3s;
     }
     nav.scrolled { border-color: var(--g5); }
     .nav-brand { display: flex; align-items: center; gap: 10px; }
-    .nav-avatar {
-      width: 30px; height: 30px; border-radius: 50%; overflow: hidden;
-      border: 1.5px solid var(--g4); flex-shrink: 0;
-    }
+    .nav-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--g4); flex-shrink: 0; }
     .nav-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .nav-name-wrap { display: flex; flex-direction: column; }
     .nav-name { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
     .nav-role { font-size: 10px; color: var(--g3); line-height: 1.2; }
     .nav-links { display: flex; gap: 4px; }
-    .nav-link {
-      font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px;
-      transition: background 0.15s, color 0.15s;
-    }
+    .nav-link { font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
     .nav-link:hover { background: var(--g5); color: var(--black); }
 
-    /* ─── HERO (full-width text) ─── */
+    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 120px 80px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .hero-greeting {
-      font-size: 14px; color: var(--g3); margin-bottom: 32px;
-      display: flex; align-items: center; gap: 8px;
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
     }
     .hero-h1 {
-      font-size: clamp(32px, 4.8vw, 68px);
-      font-weight: 400; line-height: 1.15; letter-spacing: -0.04em;
-      color: var(--black); margin-bottom: 36px;
-      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
-      max-width: 900px;
+      font-size: clamp(36px, 5.2vw, 72px);
+      font-weight: 400; line-height: 1.12; letter-spacing: -0.04em;
+      color: var(--black); margin-bottom: 20px;
+      max-width: 820px;
+      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.1s forwards;
     }
     .hero-h1 em { font-style: italic; font-weight: 300; color: var(--g2); }
-
-    /* SF location badge */
+    .hero-sub {
+      font-size: 16px; color: var(--g2); line-height: 1.65;
+      max-width: 480px; margin-bottom: 16px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.25s forwards;
+    }
     .hero-location {
       display: inline-flex; align-items: center; gap: 7px;
-      margin-bottom: 48px;
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.35s forwards;
+      margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.38s forwards;
     }
-    .loc-pin {
-      width: 20px; height: 20px; flex-shrink: 0;
-    }
-    .loc-text {
-      font-size: 14px; color: var(--g2);
-    }
+    .loc-pin { width: 18px; height: 18px; flex-shrink: 0; }
+    .loc-text { font-size: 13px; color: var(--g3); }
 
-    /* ── BUTTON with fill interaction ── */
-    .hero-btn-wrap {
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.5s forwards;
-    }
+    /* Button */
+    .hero-btn-wrap { opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.5s forwards; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
       position: relative; overflow: hidden;
       background: var(--black); color: var(--white);
       font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
       padding: 14px 28px; border-radius: 100px;
-      border: 1.5px solid var(--black);
-      cursor: pointer; transition: color 0.35s;
+      border: 1.5px solid var(--black); cursor: pointer; transition: color 0.35s;
     }
     .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--white);
-      border-radius: 100px;
-      transform: scaleX(0); transform-origin: left;
+      content: ''; position: absolute; inset: 0; background: var(--white);
+      border-radius: 100px; transform: scaleX(0); transform-origin: left;
       transition: transform 0.45s var(--ease-out);
     }
     .btn-primary:hover::before { transform: scaleX(1); }
     .btn-primary:hover { color: var(--black); }
     .btn-primary span { position: relative; z-index: 1; }
-    .btn-arrow {
-      position: relative; z-index: 1;
-      transition: transform 0.3s var(--ease-out);
-    }
+    .btn-arrow { position: relative; z-index: 1; transition: transform 0.3s var(--ease-out); }
     .btn-primary:hover .btn-arrow { transform: translateX(4px); }
 
     @keyframes fadeUp {
@@ -134,17 +107,13 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── TICKER STRIP ─── */
+    /* ─── TICKER ─── */
     .ticker-wrap {
-      border-top: 1px solid var(--g5);
-      border-bottom: 1px solid var(--g5);
-      overflow: hidden;
-      padding: 14px 0;
-      background: var(--white);
+      border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
+      overflow: hidden; padding: 14px 0; background: var(--white);
     }
     .ticker-track {
-      display: flex; gap: 0;
-      width: max-content;
+      display: flex; gap: 0; width: max-content;
       animation: ticker 32s linear infinite;
     }
     .ticker-track:hover { animation-play-state: paused; }
@@ -153,12 +122,7 @@
       padding: 0 36px; white-space: nowrap;
       font-size: 14px; color: var(--g2); letter-spacing: 0.01em;
     }
-    .ticker-sep {
-      color: var(--g3);
-      font-size: 18px;
-      line-height: 1;
-      margin: 0 2px;
-    }
+    .ticker-sep { color: var(--g3); font-size: 16px; margin: 0 2px; }
     .ticker-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--g6); border: 1px solid var(--g5);
@@ -176,113 +140,89 @@
       font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--g3); margin-bottom: 40px;
     }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
     .proj-card {
-      position: relative; overflow: hidden;
-      cursor: pointer; background: var(--g6);
-      display: block;
-      border-radius: 20px;
+      position: relative; overflow: hidden; cursor: pointer;
+      background: var(--g6); display: block; border-radius: 20px;
     }
-
-    /* Media */
     .proj-media {
-      position: relative;
-      width: 100%; overflow: hidden;
-      background: var(--g5);
-      border-radius: 20px 20px 0 0;
+      position: relative; width: 100%; overflow: hidden;
+      background: var(--g5); border-radius: 20px 20px 0 0;
     }
     .proj-media video {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
-      display: block;
-      aspect-ratio: 16/10;
-      transform: scale(1.01);
-      transition: transform 0.7s var(--ease-out);
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      display: block; aspect-ratio: 16/10;
+      transform: scale(1.01); transition: transform 0.7s var(--ease-out);
     }
     .proj-card:hover .proj-media video { transform: scale(1.05); }
 
-    /* TATA static mockup */
-    .proj-mockup {
-      width: 100%; aspect-ratio: 16/10;
+    /* TATA: mockup + video overlay */
+    .tata-media-wrap {
+      position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden;
+    }
+    .tata-mockup-bg {
+      position: absolute; inset: 0;
       background: #1A2B4A;
       display: flex; align-items: center; justify-content: center;
-      transform: scale(1.01);
-      transition: transform 0.7s var(--ease-out);
-      overflow: hidden;
-      position: relative;
+      transform: scale(1.01); transition: transform 0.7s var(--ease-out);
     }
-    .proj-card:hover .proj-mockup { transform: scale(1.05); }
+    .proj-card:hover .tata-mockup-bg { transform: scale(1.05); }
     .mockup-screen {
-      width: 88%; height: 82%;
-      background: #F4F6FA;
-      border-radius: 10px;
-      overflow: hidden;
+      width: 88%; height: 84%; background: #F4F6FA;
+      border-radius: 8px; overflow: hidden;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       display: flex; flex-direction: column;
     }
     .mockup-bar {
-      height: 36px; background: #003087;
-      display: flex; align-items: center; padding: 0 14px; gap: 8px;
-      flex-shrink: 0;
+      height: 32px; background: #003087;
+      display: flex; align-items: center; padding: 0 12px; flex-shrink: 0;
     }
-    .mockup-logo-text {
-      font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.04em;
-    }
-    .mockup-body { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .mockup-logo-text { font-size: 9px; font-weight: 700; color: #fff; letter-spacing: 0.06em; }
+    .mockup-body { flex: 1; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
     .mockup-search {
-      background: #fff; border-radius: 6px;
-      height: 30px; display: flex; align-items: center;
-      padding: 0 10px; gap: 6px;
+      background: #fff; border-radius: 5px; height: 24px;
+      display: flex; align-items: center; padding: 0 8px; gap: 5px;
       border: 1.5px solid #E0E4EC;
     }
-    .mockup-search-icon { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #9A9A9A; flex-shrink: 0; }
-    .mockup-search-text { font-size: 9px; color: #9A9A9A; }
-    .mockup-tabs { display: flex; gap: 6px; }
-    .mockup-tab {
-      font-size: 8px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
-      color: #fff; letter-spacing: 0.04em;
-    }
-    .mockup-tab.active { background: #003087; }
+    .mockup-search-icon { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #9A9A9A; flex-shrink: 0; }
+    .mockup-search-text { font-size: 8px; color: #9A9A9A; }
+    .mockup-tabs { display: flex; gap: 5px; }
+    .mockup-tab { font-size: 7px; font-weight: 600; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.03em; }
+    .mockup-tab.active { background: #003087; color: #fff; }
     .mockup-tab.inactive { background: #E0E4EC; color: #6B6B6B; }
-    .mockup-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
-    .mockup-card {
-      background: #fff; border-radius: 6px; padding: 8px;
-      display: flex; flex-direction: column; gap: 4px;
-      border: 1px solid #E0E4EC;
+    .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; flex: 1; }
+    .mockup-card-item {
+      background: #fff; border-radius: 5px; padding: 6px;
+      display: flex; flex-direction: column; gap: 3px; border: 1px solid #E0E4EC;
     }
-    .mockup-card-img {
-      height: 28px; border-radius: 4px; background: #E8EDF5;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .mockup-card-dot { width: 20px; height: 4px; border-radius: 2px; background: #003087; opacity: 0.3; }
-    .mockup-card-line { height: 4px; border-radius: 2px; background: #E0E4EC; }
-    .mockup-card-line.short { width: 60%; }
+    .mockup-card-thumb { height: 22px; border-radius: 3px; background: #E8EDF5; display: flex; align-items: center; justify-content: center; }
+    .mockup-card-stripe { width: 18px; height: 3px; border-radius: 2px; background: #003087; opacity: 0.35; }
+    .mockup-card-line { height: 3px; border-radius: 2px; background: #E0E4EC; margin-top: 2px; }
+    .mockup-card-line.s { width: 55%; }
 
-    /* overlay scrim on hover */
+    /* TATA video overlay — fades in on hover */
+    .tata-video-overlay {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      opacity: 0; transition: opacity 0.4s var(--ease-out);
+      transform: scale(1.01);
+    }
+    .proj-card.playing .tata-video-overlay { opacity: 1; transform: scale(1.05); }
+
     .proj-scrim {
       position: absolute; inset: 0;
-      background: rgba(13,13,13,0);
-      transition: background 0.4s;
+      background: rgba(13,13,13,0); transition: background 0.4s;
     }
     .proj-card:hover .proj-scrim { background: rgba(13,13,13,0.06); }
 
-    /* tags that appear on hover */
     .proj-hover-tags {
       position: absolute; top: 16px; left: 16px;
       display: flex; gap: 6px; flex-wrap: wrap;
     }
     .proj-hover-tag {
-      font-size: 11px; font-weight: 500;
-      padding: 4px 11px; border-radius: 100px;
-      background: rgba(255,255,255,0.92);
-      color: var(--black);
-      backdrop-filter: blur(8px);
+      font-size: 11px; font-weight: 500; padding: 4px 11px; border-radius: 100px;
+      background: rgba(255,255,255,0.92); color: var(--black); backdrop-filter: blur(8px);
       opacity: 0; transform: translateY(-6px);
       transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
     }
@@ -290,91 +230,63 @@
     .proj-hover-tag:nth-child(2) { transition-delay: 0.05s; }
     .proj-hover-tag:nth-child(3) { transition-delay: 0.10s; }
 
-    /* Info bar */
     .proj-info {
-      padding: 18px 22px 22px;
-      background: var(--white);
+      padding: 18px 22px 22px; background: var(--white);
       border-top: 1px solid var(--g5);
       display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
       border-radius: 0 0 20px 20px;
     }
     .proj-info-left { flex: 1; }
-    .proj-num-row {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 5px;
-    }
-    .proj-num {
-      font-size: 11px; font-weight: 500; color: var(--g3);
-      letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
-    }
+    .proj-num-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+    .proj-num { font-size: 11px; font-weight: 500; color: var(--g3); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
     .proj-year { font-size: 11px; color: var(--g3); }
     .proj-dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--g4); }
-    .proj-title {
-      font-size: 16px; font-weight: 500; letter-spacing: -0.02em;
-      color: var(--black); margin-bottom: 4px; line-height: 1.3;
-    }
+    .proj-title { font-size: 16px; font-weight: 500; letter-spacing: -0.02em; color: var(--black); margin-bottom: 4px; line-height: 1.3; }
     .proj-subtitle { font-size: 12px; color: var(--g2); line-height: 1.5; }
     .proj-link-icon {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid var(--g4);
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--g4);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-size: 14px;
       transition: background 0.2s, border-color 0.2s, transform 0.25s var(--ease-out);
     }
-    .proj-card:hover .proj-link-icon {
-      background: var(--black); border-color: var(--black); color: var(--white);
-      transform: rotate(-45deg);
-    }
+    .proj-card:hover .proj-link-icon { background: var(--black); border-color: var(--black); color: var(--white); transform: rotate(-45deg); }
 
-    /* ─── ABOUT ─── */
-    .about-wrap {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-      max-width: 1040px; margin: 0 auto;
+    /* ─── ABOUT — Emily style ─── */
+    .about-inner {
+      max-width: 640px; margin: 0 auto; text-align: center;
     }
-    .about-img-col { position: relative; }
-    .about-img {
-      width: 100%; aspect-ratio: 3/4; overflow: hidden;
-      border-radius: 10px; background: var(--g5);
+    .about-photo-wrap {
+      width: 100%; max-width: 380px; margin: 32px auto 40px;
+      border-radius: 16px; overflow: hidden;
+      aspect-ratio: 3/4; background: var(--g5);
     }
-    .about-img img {
+    .about-photo-wrap img {
       width: 100%; height: 100%; object-fit: cover; object-position: center top;
       transition: transform 0.6s var(--ease-out);
     }
-    .about-img-col:hover .about-img img { transform: scale(1.03); }
-    .about-badge {
-      position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
-      background: var(--white); border: 1px solid var(--g5);
-      padding: 8px 18px; border-radius: 100px;
-      font-size: 12px; font-weight: 500; white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.09);
-      display: flex; align-items: center; gap: 7px;
-    }
-    .pulse-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #4CAF7D; position: relative;
-    }
-    .pulse-dot::after {
-      content: ''; position: absolute; inset: -3px; border-radius: 50%;
-      background: rgba(76,175,125,0.3);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.8);opacity:0} }
+    .about-photo-wrap:hover img { transform: scale(1.03); }
 
-    .about-text-col { padding-top: 16px; }
-    .about-h2 {
-      font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; letter-spacing: -0.03em;
-      line-height: 1.2; margin-bottom: 18px;
+    .about-stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; margin-bottom: 32px;
+      border: 1px solid var(--g5); border-radius: 14px; overflow: hidden;
     }
-    .about-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
-    .about-p { font-size: 14px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
-    .about-stats { margin-top: 28px; display: flex; flex-direction: column; gap: 0; }
-    .stat-row {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px 0; border-bottom: 1px solid var(--g5);
+    .about-stat {
+      padding: 24px 28px; text-align: left;
+      border-right: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
     }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-    .stat-label { font-size: 14px; font-weight: 500; line-height: 1.4; }
-    .stat-sub { font-size: 12px; color: var(--g3); margin-top: 1px; }
+    .about-stat:nth-child(2n) { border-right: none; }
+    .about-stat:nth-child(3), .about-stat:nth-child(4) { border-bottom: none; }
+    .about-stat-icon { font-size: 18px; margin-bottom: 8px; }
+    .about-stat-val { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 4px; }
+    .about-stat-label { font-size: 12px; color: var(--g3); line-height: 1.4; }
+
+    .about-bio {
+      background: var(--g6); border-radius: 14px;
+      padding: 24px 28px; text-align: left;
+    }
+    .about-bio p { font-size: 14px; color: var(--g2); line-height: 1.8; margin-bottom: 12px; }
+    .about-bio p:last-child { margin-bottom: 0; }
 
     /* ─── DIVIDER ─── */
     .divider { border: none; border-top: 1px solid var(--g5); margin: 0 40px; }
@@ -394,8 +306,7 @@
     .footer-social { display: flex; gap: 8px; }
     .footer-soc-btn {
       font-size: 12px; font-weight: 500; padding: 7px 15px;
-      border-radius: 100px; border: 1px solid var(--g4); color: var(--g2);
-      transition: all 0.2s;
+      border-radius: 100px; border: 1px solid var(--g4); color: var(--g2); transition: all 0.2s;
     }
     .footer-soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
@@ -411,7 +322,9 @@
       .section { padding: 52px 20px; }
       .divider { margin: 0 20px; }
       .work-grid { grid-template-columns: 1fr; gap: 16px; }
-      .about-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .about-stats-grid { grid-template-columns: 1fr; }
+      .about-stat { border-right: none; }
+      .about-stat:nth-child(3) { border-bottom: 1px solid var(--g5); }
       .footer-right { align-items: flex-start; }
       footer { padding: 36px 20px; }
     }
@@ -419,7 +332,7 @@
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="/" class="nav-brand">
     <div class="nav-avatar"><img src="assets/hero/Profile pic.png" alt="Vyomika" /></div>
@@ -435,29 +348,24 @@
   </div>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-greeting">Hello! 👋</div>
-
   <h1 class="hero-h1">
-    This is Portfolio of Vyomika Parikh —<br>
-    <em>AI product designer</em> with 9 years of experience<br>
-    across consumer AI, enterprise SaaS, and automotive.
+    AI product designer who<br>
+    <em>codes, draws,</em> and ships.
   </h1>
-
-  <!-- SF Location -->
+  <p class="hero-sub">
+    9 years across consumer AI, enterprise SaaS,<br>and automotive. Available for what's next.
+  </p>
   <div class="hero-location">
-    <!-- Crayon-style map pin SVG -->
     <svg class="loc-pin" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M10 0C5.58 0 2 3.69 2 8.24C2 14.42 10 24 10 24C10 24 18 14.42 18 8.24C18 3.69 14.42 0 10 0Z" fill="#FF6B3D"/>
       <circle cx="10" cy="8.5" r="3" fill="#fff" opacity="0.9"/>
-      <!-- crayon texture lines -->
-      <path d="M2.5 6.5 Q4 5 5.5 6.5" stroke="#E85A2A" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
-      <path d="M14.5 4 Q16 3 17 5" stroke="#E85A2A" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
+      <path d="M3 6.5 Q5 5 6.5 6.5" stroke="#E85A2A" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
+      <path d="M14 4.5 Q16 3.5 17 5.5" stroke="#E85A2A" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
     </svg>
-    <span class="loc-text">San Francisco, CA &nbsp;·&nbsp; Open to Remote</span>
+    <span class="loc-text">San Francisco, CA</span>
   </div>
-
   <div class="hero-btn-wrap">
     <a href="habit-coach-ai.html" class="btn-primary">
       <span>See my best project</span>
@@ -466,7 +374,7 @@
   </div>
 </section>
 
-<!-- ══ TICKER ══ -->
+<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track" id="ticker">
     <div class="ticker-item">
@@ -483,9 +391,9 @@
     </div>
     <div class="ticker-item">
       <span class="ticker-badge">✦ Open to work</span>
-      Full time / Part time
+      AI-first companies <span class="ticker-sep">—</span> Full time
     </div>
-    <!-- duplicate for seamless loop -->
+    <!-- duplicate for loop -->
     <div class="ticker-item">
       <span class="ticker-badge">🏆 Won Hackathon</span>
       Best G2 Integration <span class="ticker-sep">—</span> AGI House · Apr 2026
@@ -500,15 +408,14 @@
     </div>
     <div class="ticker-item">
       <span class="ticker-badge">✦ Open to work</span>
-      Full time / Part time
+      AI-first companies <span class="ticker-sep">—</span> Full time
     </div>
   </div>
 </div>
 
-<!-- ══ WORK ══ -->
+<!-- WORK -->
 <section class="section" id="work">
   <div class="section-label reveal">Selected work</div>
-
   <div class="work-grid">
 
     <!-- 01 Habit Coach AI -->
@@ -521,16 +428,14 @@
         <div class="proj-hover-tags">
           <span class="proj-hover-tag">AI Product</span>
           <span class="proj-hover-tag">0→1</span>
-          <span class="proj-hover-tag">Design System</span>
+          <span class="proj-hover-tag">Conversational AI</span>
         </div>
       </div>
       <div class="proj-info">
         <div class="proj-info-left">
           <div class="proj-num-row">
-            <span class="proj-num">01</span>
-            <span class="proj-dot-sep"></span>
-            <span class="proj-year">2025</span>
-            <span class="proj-dot-sep"></span>
+            <span class="proj-num">01</span><span class="proj-dot-sep"></span>
+            <span class="proj-year">2025</span><span class="proj-dot-sep"></span>
             <span class="proj-year">Product launch</span>
           </div>
           <div class="proj-title">Habit Coach AI</div>
@@ -556,14 +461,12 @@
       <div class="proj-info">
         <div class="proj-info-left">
           <div class="proj-num-row">
-            <span class="proj-num">02</span>
-            <span class="proj-dot-sep"></span>
-            <span class="proj-year">2023</span>
-            <span class="proj-dot-sep"></span>
+            <span class="proj-num">02</span><span class="proj-dot-sep"></span>
+            <span class="proj-year">2023</span><span class="proj-dot-sep"></span>
             <span class="proj-year">Dashboards</span>
           </div>
           <div class="proj-title">ZS Associates — Sales Dashboards</div>
-          <div class="proj-subtitle">Redefined enterprise sales dashboards into a unified, insight-driven experience through rep-led insights and close cross-functional collaboration.</div>
+          <div class="proj-subtitle">Redefined enterprise sales dashboards into a unified, insight-driven experience through rep-led insights and cross-functional collaboration.</div>
         </div>
         <div class="proj-link-icon">↗</div>
       </div>
@@ -585,10 +488,8 @@
       <div class="proj-info">
         <div class="proj-info-left">
           <div class="proj-num-row">
-            <span class="proj-num">03</span>
-            <span class="proj-dot-sep"></span>
-            <span class="proj-year">2023</span>
-            <span class="proj-dot-sep"></span>
+            <span class="proj-num">03</span><span class="proj-dot-sep"></span>
+            <span class="proj-year">2023</span><span class="proj-dot-sep"></span>
             <span class="proj-year">Design system</span>
           </div>
           <div class="proj-title">ZS Associates — Design System</div>
@@ -598,50 +499,56 @@
       </div>
     </a>
 
-    <!-- 04 TATA Motors -->
-    <a href="tata-motors.html" class="proj-card reveal d4">
+    <!-- 04 TATA Motors — mockup visible by default, video fades in on hover -->
+    <a href="tata-motors.html" class="proj-card reveal d4" id="tataCard">
       <div class="proj-media">
-        <!-- CSS web screen mockup of TATA spare parts search UI -->
-        <div class="proj-mockup">
-          <div class="mockup-screen">
-            <div class="mockup-bar">
-              <span class="mockup-logo-text">TATA GENUINE PARTS</span>
-            </div>
-            <div class="mockup-body">
-              <div class="mockup-search">
-                <div class="mockup-search-icon"></div>
-                <span class="mockup-search-text">Search by name, voice or image…</span>
+        <div class="tata-media-wrap">
+          <!-- Static mockup (always visible) -->
+          <div class="tata-mockup-bg">
+            <div class="mockup-screen">
+              <div class="mockup-bar">
+                <span class="mockup-logo-text">TATA GENUINE PARTS</span>
               </div>
-              <div class="mockup-tabs">
-                <span class="mockup-tab active">By Name</span>
-                <span class="mockup-tab inactive">By Voice</span>
-                <span class="mockup-tab inactive">By Image</span>
-                <span class="mockup-tab inactive">By Click</span>
-              </div>
-              <div class="mockup-cards">
-                <div class="mockup-card">
-                  <div class="mockup-card-img"><div class="mockup-card-dot"></div></div>
-                  <div class="mockup-card-line"></div>
-                  <div class="mockup-card-line short"></div>
+              <div class="mockup-body">
+                <div class="mockup-search">
+                  <div class="mockup-search-icon"></div>
+                  <span class="mockup-search-text">Search by name, voice or image…</span>
                 </div>
-                <div class="mockup-card">
-                  <div class="mockup-card-img"><div class="mockup-card-dot"></div></div>
-                  <div class="mockup-card-line"></div>
-                  <div class="mockup-card-line short"></div>
+                <div class="mockup-tabs">
+                  <span class="mockup-tab active">By Name</span>
+                  <span class="mockup-tab inactive">By Voice</span>
+                  <span class="mockup-tab inactive">By Image</span>
+                  <span class="mockup-tab inactive">By Click</span>
                 </div>
-                <div class="mockup-card">
-                  <div class="mockup-card-img"><div class="mockup-card-dot"></div></div>
-                  <div class="mockup-card-line"></div>
-                  <div class="mockup-card-line short"></div>
-                </div>
-                <div class="mockup-card">
-                  <div class="mockup-card-img"><div class="mockup-card-dot"></div></div>
-                  <div class="mockup-card-line"></div>
-                  <div class="mockup-card-line short"></div>
+                <div class="mockup-grid">
+                  <div class="mockup-card-item">
+                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
+                    <div class="mockup-card-line"></div>
+                    <div class="mockup-card-line s"></div>
+                  </div>
+                  <div class="mockup-card-item">
+                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
+                    <div class="mockup-card-line"></div>
+                    <div class="mockup-card-line s"></div>
+                  </div>
+                  <div class="mockup-card-item">
+                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
+                    <div class="mockup-card-line"></div>
+                    <div class="mockup-card-line s"></div>
+                  </div>
+                  <div class="mockup-card-item">
+                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
+                    <div class="mockup-card-line"></div>
+                    <div class="mockup-card-line s"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- Video fades in on hover -->
+          <video id="v4" class="tata-video-overlay" muted loop playsinline preload="none">
+            <source src="assets/hero/tata motors.mp4" type="video/mp4" />
+          </video>
         </div>
         <div class="proj-scrim"></div>
         <div class="proj-hover-tags">
@@ -653,10 +560,8 @@
       <div class="proj-info">
         <div class="proj-info-left">
           <div class="proj-num-row">
-            <span class="proj-num">04</span>
-            <span class="proj-dot-sep"></span>
-            <span class="proj-year">2021</span>
-            <span class="proj-dot-sep"></span>
+            <span class="proj-num">04</span><span class="proj-dot-sep"></span>
+            <span class="proj-year">2021</span><span class="proj-dot-sep"></span>
             <span class="proj-year">Multimodal Search</span>
           </div>
           <div class="proj-title">TATA Motors</div>
@@ -671,69 +576,48 @@
 
 <hr class="divider" />
 
-<!-- ══ ABOUT ══ -->
+<!-- ABOUT — Emily style -->
 <section class="section" id="about">
-  <div class="about-wrap">
+  <div class="about-inner">
+    <div class="section-label reveal">About me</div>
 
-    <div class="about-img-col reveal">
-      <div class="about-img">
-        <img src="assets/hero/Profile pic.png" alt="Vyomika Parikh" />
+    <div class="about-photo-wrap reveal d1">
+      <img src="assets/hero/Profile pic.png" alt="Vyomika Parikh" />
+    </div>
+
+    <div class="about-stats-grid reveal d2">
+      <div class="about-stat">
+        <div class="about-stat-icon">⚡</div>
+        <div class="about-stat-val">9 years</div>
+        <div class="about-stat-label">of creative experience across AI, SaaS & automotive</div>
       </div>
-      <div class="about-badge">
-        <span class="pulse-dot"></span>
-        Open to work · SF / Remote
+      <div class="about-stat">
+        <div class="about-stat-icon">🏆</div>
+        <div class="about-stat-val">Hackathon win</div>
+        <div class="about-stat-label">Best G2 Integration at AGI House · Apr 2026</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-icon">🎓</div>
+        <div class="about-stat-val">Master's</div>
+        <div class="about-stat-label">Interaction Design · CCA · 2024</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-icon">🚀</div>
+        <div class="about-stat-val">First designer</div>
+        <div class="about-stat-label">@ Habit Coach AI — built the full design system from zero</div>
       </div>
     </div>
 
-    <div class="about-text-col">
-      <div class="section-label reveal">About me</div>
-      <h2 class="about-h2 reveal d1">
-        Designing with <em>intent</em>,<br>shipping with urgency.
-      </h2>
-      <p class="about-p reveal d2">
-        I'm a product designer with 9 years of experience across AI products, enterprise SaaS, fintech, and automotive. I graduated with a Master's in Interaction Design from CCA in 2024, then joined Habit Coach AI as their first-ever designer.
-      </p>
-      <p class="about-p reveal d2">
-        I think the best design, like a good oil painting, shows the hand behind it. I code, I draw, and I ship things that work.
-      </p>
-      <div class="about-stats reveal d3">
-        <div class="stat-row">
-          <span class="stat-icon">⚡</span>
-          <div>
-            <div class="stat-label">9 years of creative experience</div>
-            <div class="stat-sub">Consumer AI · Enterprise SaaS · Automotive</div>
-          </div>
-        </div>
-        <div class="stat-row">
-          <span class="stat-icon">🏆</span>
-          <div>
-            <div class="stat-label">Best G2 Integration · AGI House · Apr 2026</div>
-            <div class="stat-sub">Recognized for Habit Coach AI product work</div>
-          </div>
-        </div>
-        <div class="stat-row">
-          <span class="stat-icon">🎓</span>
-          <div>
-            <div class="stat-label">Master's, Interaction Design · CCA · 2024</div>
-            <div class="stat-sub">California College of the Arts</div>
-          </div>
-        </div>
-        <div class="stat-row">
-          <span class="stat-icon">📍</span>
-          <div>
-            <div class="stat-label">First designer @ Habit Coach AI</div>
-            <div class="stat-sub">Built the design system, voice UI, and onboarding from zero</div>
-          </div>
-        </div>
-      </div>
+    <div class="about-bio reveal d3">
+      <p>I'm a product designer with 9 years of experience across AI products, enterprise SaaS, fintech, and automotive. I graduated with a Master's in Interaction Design from CCA in 2024, then joined Habit Coach AI as their first-ever designer.</p>
+      <p>I think the best design, like a good oil painting, shows the hand behind it. I code, I draw, and I ship things that work.</p>
     </div>
-
   </div>
 </section>
 
 <hr class="divider" />
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="fn">Vyomika Parikh</div>
@@ -754,16 +638,23 @@
 </footer>
 
 <script>
-  /* Nav border on scroll */
+  /* Nav scroll border */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
 
-  /* Video hover play/pause */
+  /* Video hover — regular cards */
   document.querySelectorAll('.proj-card').forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
-    card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
-    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    const isTata = card.id === 'tataCard';
+    card.addEventListener('mouseenter', () => {
+      video.play().catch(()=>{});
+      if (isTata) card.classList.add('playing');
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause(); video.currentTime = 0;
+      if (isTata) card.classList.remove('playing');
+    });
   });
 
   /* Scroll reveal */
