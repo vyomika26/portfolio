@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZS Associates — Dashboards · Vyomika Parikh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:  #0D0D0D;
+      --g1:     #3D3D3D;
+      --g2:     #6B6B6B;
+      --g3:     #9A9A9A;
+      --g4:     #D4D4D4;
+      --g5:     #EFEFEF;
+      --g6:     #F7F7F7;
+      --white:  #FFFFFF;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    ::selection { background: #0D0D0D; color: #fff; }
+    body { background: var(--white); color: var(--black); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--g5);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--g4); flex-shrink: 0; }
+    .nav-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .nav-name-wrap { display: flex; flex-direction: column; }
+    .nav-name { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+    .nav-role { font-size: 10px; color: var(--g3); line-height: 1.2; }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-link { font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
+    .nav-link:hover { background: var(--g5); color: var(--black); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
+    .nav-back:hover { background: var(--g5); color: var(--black); }
+
+    .cs-wrap { max-width: 820px; margin: 0 auto; padding: 0 40px; }
+    .cs-hero { padding-top: 96px; padding-bottom: 64px; }
+    .cs-eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards; }
+    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g4); }
+    .cs-title { font-size: clamp(32px, 5vw, 60px); font-weight: 400; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards; }
+    .cs-title em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .cs-subtitle { font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 600px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards; }
+    .cs-meta { display: flex; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards; }
+    .cs-meta-item { padding: 16px 32px 16px 0; margin-right: 32px; }
+    .cs-meta-item:last-child { margin-right: 0; }
+    .cs-meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 4px; }
+    .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
+
+    .cs-hero-video { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 56px; margin-bottom: 80px; background: var(--g6); overflow: hidden; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards; }
+    .cs-hero-video video { width: 100%; max-height: 80vh; object-fit: cover; display: block; }
+
+    .cs-section { margin-bottom: 80px; }
+    .cs-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g3); margin-bottom: 20px; }
+    .cs-h2 { font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 18px; color: var(--black); }
+    .cs-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .cs-p { font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
+    .cs-p:last-child { margin-bottom: 0; }
+
+    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .cs-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
+    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
+
+    .cs-quote { border-left: 2px solid var(--black); padding: 4px 0 4px 24px; margin: 32px 0; }
+    .cs-quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: var(--g1); line-height: 1.6; margin-bottom: 10px; }
+    .cs-quote-attr { font-size: 12px; color: var(--g3); }
+
+    .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .cs-step { display: flex; gap: 28px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--g5); }
+    .cs-step:last-child { border-bottom: none; }
+    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; font-variant-numeric: tabular-nums; }
+    .cs-step-body {}
+    .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+    .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
+
+    .cs-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .cs-impact-item { background: var(--black); color: var(--white); border-radius: 12px; padding: 28px 24px; }
+    .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+    .cs-team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .cs-team-item { background: var(--g6); border: 1px solid var(--g5); border-radius: 10px; padding: 18px 20px; }
+    .cs-team-num { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .cs-team-label { font-size: 12px; color: var(--g3); }
+
+    .cs-divider { border: none; border-top: 1px solid var(--g5); margin: 80px 0; }
+
+    .cs-next { display: flex; align-items: center; justify-content: space-between; padding: 32px 36px; border: 1px solid var(--g5); border-radius: 16px; margin-bottom: 80px; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+    .cs-next:hover { background: var(--g6); border-color: var(--g4); }
+    .cs-next-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
+    .cs-next-title { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+    .cs-next-arrow { font-size: 24px; color: var(--g3); transition: transform 0.25s var(--ease-out); }
+    .cs-next:hover .cs-next-arrow { transform: translateX(6px); color: var(--black); }
+
+    footer { padding: 44px 40px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 32px; border-top: 1px solid var(--g5); }
+    .footer-left .fn { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .footer-left .fr { font-size: 12px; color: var(--g3); margin-bottom: 16px; }
+    .footer-left .fc { font-size: 11px; color: var(--g4); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link { font-size: 13px; color: var(--g2); transition: color 0.15s; }
+    .footer-link:hover { color: var(--black); }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-soc-btn { font-size: 12px; font-weight: 500; padding: 7px 15px; border-radius: 100px; border: 1px solid var(--g4); color: var(--g2); transition: all 0.2s; }
+    .footer-soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.05s} .d2{transition-delay:.1s} .d3{transition-delay:.15s}
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .cs-wrap { padding: 0 20px; }
+      .cs-hero { padding-top: 80px; padding-bottom: 40px; }
+      .cs-cards { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-team-grid { grid-template-columns: 1fr 1fr; }
+      .cs-meta { flex-direction: column; }
+      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5); margin-right: 0; }
+      footer { padding: 36px 20px; flex-direction: column; }
+      .footer-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-avatar"><img src="assets/hero/Profile pic.png" alt="Vyomika" /></div>
+    <div class="nav-name-wrap">
+      <span class="nav-name">Vyomika Parikh</span>
+      <span class="nav-role">AI Product Designer</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-back">← Back to work</a>
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="#" class="nav-link">Resume</a>
+  </div>
+</nav>
+
+<div class="cs-wrap">
+  <div class="cs-hero">
+    <div class="cs-eyebrow">
+      <span>02</span>
+      <span class="cs-eyebrow-dot"></span>
+      <span>Enterprise · Data Viz · B2B SaaS</span>
+      <span class="cs-eyebrow-dot"></span>
+      <span>2021–2023</span>
+    </div>
+    <h1 class="cs-title">ZS ZAIDYN — <em>Incentive dashboards</em> for pharma sales teams</h1>
+    <p class="cs-subtitle">Redesigned multi-platform sales dashboards for pharmaceutical field teams — transforming fragmented data into a unified, insight-driven experience used by thousands of reps.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Role</div>
+        <div class="cs-meta-val">Senior Visual Product Designer</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Timeline</div>
+        <div class="cs-meta-val">Feb 2021 – Jul 2023</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Type</div>
+        <div class="cs-meta-val">Enterprise SaaS · B2B</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Industry</div>
+        <div class="cs-meta-val">Pharma · Life Sciences</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-hero-video">
+  <video autoplay muted loop playsinline>
+    <source src="assets/hero/zs dashboard.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<div class="cs-wrap">
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The problem</div>
+    <h2 class="cs-h2">Pharma sales teams were drowning in <em>fragmented data</em></h2>
+    <p class="cs-p">Pharmaceutical and life sciences companies relied on outdated systems that spread critical data across multiple disconnected tools. Field reps, managers, and executives had no single source of truth for performance, incentives, or goals.</p>
+    <p class="cs-p">The result: high operational costs, delayed decisions, and field teams disengaged from the very dashboards meant to guide them.</p>
+
+    <div class="cs-cards">
+      <div class="cs-card">
+        <div class="cs-card-num">15+</div>
+        <div class="cs-card-label">Engineers collaborating across the dashboard system — design had to scale without fragmentation.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-num">2yr</div>
+        <div class="cs-card-label">Sustained engagement across multiple product managers and stakeholder groups in parallel.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-num">Multi</div>
+        <div class="cs-card-label">Platform — web, tablet, and mobile — requiring consistent design language across breakpoints.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-quote">
+      <div class="cs-quote-text">"How might real-time insights and personalized incentives boost operational effectiveness for field teams?"</div>
+      <div class="cs-quote-attr">— Core design question, ZS ZAIDYN Dashboard Project</div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Friction points discovered</div>
+    <h2 class="cs-h2">Four problems hiding in plain <em>sight</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Poor visual hierarchy</div>
+          <div class="cs-step-desc">Critical elements like the "Welcome Report" lacked prominence. Reps couldn't tell what mattered at a glance — everything competed for attention equally.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Information overload</div>
+          <div class="cs-step-desc">The "Resources" and "Report Links" sections felt overcrowded. Too much upfront, too early — discouraging interaction before reps even got started.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Unclear priorities</div>
+          <div class="cs-step-desc">Competing elements diluted focus. Without a clear hierarchy of what to act on first, field reps defaulted to workarounds and manual processes.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">User disengagement</div>
+          <div class="cs-step-desc">Irrelevant upfront content discouraged interaction. The dashboard felt like a chore, not a tool. Reps skipped it entirely and lost trust in the data.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Design solutions</div>
+    <h2 class="cs-h2">Six components, <em>one unified experience</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Slider Banner</div>
+          <div class="cs-step-desc">Clickable hero banner directing to detailed event pages. Prominent allocation for text and imagery — immediately communicating what's featured and why it matters.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Insights Section</div>
+          <div class="cs-step-desc">Hierarchical structure using subject → heading → date. Removed visual clutter (graphs, images) for pure information clarity. Individual clickable cards with a "View All" escape hatch.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Annual Awards</div>
+          <div class="cs-step-desc">Enhanced visibility in performance rankings with design system icons. Clear profit/loss indicators with directional arrows, and updated timeline representation for at-a-glance reading.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">QTD Total Payout</div>
+          <div class="cs-step-desc">Improved clarity on financial metrics with visual gain/loss indicators. Marginal up/down arrows giving reps immediate context on where they stand in the quarter.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">05</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Quick Links</div>
+          <div class="cs-step-desc">Responsive icon layout with background organization. Enlarged, center-aligned icons — each individually clickable — removing navigational friction from common workflows.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">06</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Upcoming Events</div>
+          <div class="cs-step-desc">Structured layout: date → month → event name → organizer. Integrated action buttons with logo color coordination for quick visual grouping across management events.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">My contributions</div>
+    <h2 class="cs-h2">Cross-functional design <em>at scale</em></h2>
+    <p class="cs-p">Working across a team of 15+ engineers, multiple product managers, and senior design leadership meant design had to be airtight — documented, consistent, and defensible.</p>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">→</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Requirements collaboration</div>
+          <div class="cs-step-desc">Worked directly with Sr. Director of Product Management and engineering leads to define scope, priority, and feasibility for each dashboard component.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">→</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Design consistency</div>
+          <div class="cs-step-desc">Maintained visual and interaction consistency across the platform alongside Sr. and Lead UX Designers — no component shipped without a design review.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">→</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">High-fidelity prototypes</div>
+          <div class="cs-step-desc">Created complete user flows and interactive prototypes for stakeholder review — bridging the gap between engineering specs and business expectations.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">→</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Designer mentorship</div>
+          <div class="cs-step-desc">Onboarded and mentored new designers joining the team — accelerating their ramp-up and standardizing how design decisions were documented and communicated.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Impact</div>
+    <h2 class="cs-h2">A dashboard that <em>field reps actually use</em></h2>
+    <p class="cs-p">The redesign delivered measurable gains in team efficiency, decision-making velocity, and strategic alignment — across thousands of pharmaceutical sales reps globally.</p>
+    <div class="cs-impact-grid">
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">2yr</div>
+        <div class="cs-impact-label">Sustained design contribution across a complex, multi-stakeholder pharma enterprise platform</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">15+</div>
+        <div class="cs-impact-label">Engineers aligned to a unified design system with zero major consistency regressions</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">↑</div>
+        <div class="cs-impact-label">Field team engagement and decision-making velocity — measured across quarterly business reviews</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">NDA</div>
+        <div class="cs-impact-label">Additional features under NDA including Business Rules Editor, interactive data states, and smart filtering controls</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <a href="zs-design-system.html" class="cs-next reveal">
+    <div>
+      <div class="cs-next-label">Next project</div>
+      <div class="cs-next-title">ZS Associates — Design System</div>
+    </div>
+    <div class="cs-next-arrow">→</div>
+  </a>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <div class="fn">Vyomika Parikh</div>
+    <div class="fr">AI Product Designer</div>
+    <div class="fc">Designed by Vyomika Parikh · Last updated April 2026</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Work</a>
+      <a href="index.html#about" class="footer-link">About</a>
+      <a href="#" class="footer-link">Resume</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/vyomikaparikh" class="footer-soc-btn" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:vyomika@gmail.com" class="footer-soc-btn">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Coach AI — Vyomika Parikh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:  #0D0D0D;
+      --g1:     #3D3D3D;
+      --g2:     #6B6B6B;
+      --g3:     #9A9A9A;
+      --g4:     #D4D4D4;
+      --g5:     #EFEFEF;
+      --g6:     #F7F7F7;
+      --white:  #FFFFFF;
+      --accent: #0D0D0D;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    ::selection { background: #0D0D0D; color: #fff; }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--g5);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--g4); flex-shrink: 0; }
+    .nav-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .nav-name-wrap { display: flex; flex-direction: column; }
+    .nav-name { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+    .nav-role { font-size: 10px; color: var(--g3); line-height: 1.2; }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-link { font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
+    .nav-link:hover { background: var(--g5); color: var(--black); }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-back:hover { background: var(--g5); color: var(--black); }
+
+    /* CASE STUDY LAYOUT */
+    .cs-wrap { max-width: 820px; margin: 0 auto; padding: 0 40px; }
+
+    /* HERO */
+    .cs-hero {
+      padding-top: 96px;
+      padding-bottom: 64px;
+    }
+    .cs-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards;
+    }
+    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g4); }
+    .cs-title {
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 400; letter-spacing: -0.04em; line-height: 1.1;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+    }
+    .cs-title em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .cs-subtitle {
+      font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 600px;
+      margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+    }
+    .cs-meta {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards;
+    }
+    .cs-meta-item {
+      padding: 16px 32px 16px 0;
+      margin-right: 32px;
+    }
+    .cs-meta-item:last-child { margin-right: 0; }
+    .cs-meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 4px; }
+    .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
+
+    /* HERO VIDEO */
+    .cs-hero-video {
+      width: 100vw; position: relative; left: 50%; right: 50%;
+      margin-left: -50vw; margin-right: -50vw;
+      margin-top: 56px; margin-bottom: 80px;
+      background: var(--g6); overflow: hidden;
+      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
+    }
+    .cs-hero-video video {
+      width: 100%; max-height: 80vh; object-fit: cover; display: block;
+    }
+
+    /* SECTIONS */
+    .cs-section { margin-bottom: 80px; }
+    .cs-section-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 20px;
+    }
+    .cs-h2 {
+      font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em;
+      line-height: 1.25; margin-bottom: 18px; color: var(--black);
+    }
+    .cs-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .cs-p {
+      font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px;
+    }
+    .cs-p:last-child { margin-bottom: 0; }
+
+    /* INSIGHT CARDS */
+    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .cs-card {
+      background: var(--g6); border: 1px solid var(--g5);
+      border-radius: 12px; padding: 24px;
+    }
+    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
+
+    /* QUOTE */
+    .cs-quote {
+      border-left: 2px solid var(--black);
+      padding: 4px 0 4px 24px; margin: 32px 0;
+    }
+    .cs-quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: var(--g1); line-height: 1.6; margin-bottom: 10px; }
+    .cs-quote-attr { font-size: 12px; color: var(--g3); }
+
+    /* NUMBERED STEPS */
+    .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .cs-step {
+      display: flex; gap: 28px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--g5);
+    }
+    .cs-step:last-child { border-bottom: none; }
+    .cs-step-num {
+      font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em;
+      flex-shrink: 0; width: 28px; padding-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+    .cs-step-body {}
+    .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+    .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
+
+    /* IMPACT GRID */
+    .cs-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .cs-impact-item {
+      background: var(--black); color: var(--white);
+      border-radius: 12px; padding: 28px 24px;
+    }
+    .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+    /* DIVIDER */
+    .cs-divider { border: none; border-top: 1px solid var(--g5); margin: 80px 0; }
+
+    /* NEXT PROJECT */
+    .cs-next {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 36px; border: 1px solid var(--g5); border-radius: 16px;
+      margin-bottom: 80px; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cs-next:hover { background: var(--g6); border-color: var(--g4); }
+    .cs-next-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
+    .cs-next-title { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+    .cs-next-arrow { font-size: 24px; color: var(--g3); transition: transform 0.25s var(--ease-out); }
+    .cs-next:hover .cs-next-arrow { transform: translateX(6px); color: var(--black); }
+
+    /* FOOTER */
+    footer {
+      padding: 44px 40px;
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 32px;
+      border-top: 1px solid var(--g5);
+    }
+    .footer-left .fn { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .footer-left .fr { font-size: 12px; color: var(--g3); margin-bottom: 16px; }
+    .footer-left .fc { font-size: 11px; color: var(--g4); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link { font-size: 13px; color: var(--g2); transition: color 0.15s; }
+    .footer-link:hover { color: var(--black); }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-soc-btn {
+      font-size: 12px; font-weight: 500; padding: 7px 15px;
+      border-radius: 100px; border: 1px solid var(--g4); color: var(--g2);
+      transition: all 0.2s;
+    }
+    .footer-soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.05s} .d2{transition-delay:.1s} .d3{transition-delay:.15s}
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .cs-wrap { padding: 0 20px; }
+      .cs-hero { padding-top: 80px; padding-bottom: 40px; }
+      .cs-cards { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-meta { flex-direction: column; gap: 0; }
+      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5); margin-right: 0; }
+      footer { padding: 36px 20px; flex-direction: column; }
+      .footer-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-avatar"><img src="assets/hero/Profile pic.png" alt="Vyomika" /></div>
+    <div class="nav-name-wrap">
+      <span class="nav-name">Vyomika Parikh</span>
+      <span class="nav-role">AI Product Designer</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-back">← Back to work</a>
+    <a href="index.html#about" class="nav-link">About</a>
+    <a href="#" class="nav-link">Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-wrap">
+  <div class="cs-hero">
+    <div class="cs-eyebrow">
+      <span>01</span>
+      <span class="cs-eyebrow-dot"></span>
+      <span>AI Product · 0→1 · Design System</span>
+      <span class="cs-eyebrow-dot"></span>
+      <span>2024–2025</span>
+    </div>
+    <h1 class="cs-title">Habit Coach AI — <em>Reimagining habit building</em> with a human-like AI coach</h1>
+    <p class="cs-subtitle">Led end-to-end design as the first designer at Habit Coach AI — building the conversational AI experience, onboarding, design system, and voice UI from zero.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Role</div>
+        <div class="cs-meta-val">Lead Product Designer</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Timeline</div>
+        <div class="cs-meta-val">Oct 2024 – Jan 2026</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Type</div>
+        <div class="cs-meta-val">Consumer AI · 0→1</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Tools</div>
+        <div class="cs-meta-val">Figma · Cursor · Amplitude</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO VIDEO -->
+<div class="cs-hero-video">
+  <video autoplay muted loop playsinline>
+    <source src="assets/hero/Animated-web-screens-[remix]-[remix] (1).mp4" type="video/mp4" />
+  </video>
+</div>
+
+<!-- CONTENT -->
+<div class="cs-wrap">
+
+  <!-- PROBLEM -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The problem</div>
+    <h2 class="cs-h2">Habit apps fail because they treat humans like <em>machines</em></h2>
+    <p class="cs-p">Most habit-building apps are rigid checklists — designed around streaks and gamification, not real human behaviour. When life gets in the way, users fall off and never return.</p>
+    <p class="cs-p">Three critical gaps existed in every existing solution on the market:</p>
+
+    <div class="cs-cards">
+      <div class="cs-card">
+        <div class="cs-card-num">95%</div>
+        <div class="cs-card-label">Boost in goal completion when an accountability partner is involved — yet most apps don't have one.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-num">65%</div>
+        <div class="cs-card-label">Of users abandon habit apps within a month due to rigid flows that don't adapt to real life.</div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-card-num">45%</div>
+        <div class="cs-card-label">Drop in engagement without a personalized, coach-like interaction — generic feels hollow.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="cs-section reveal">
+    <div class="cs-quote">
+      <div class="cs-quote-text">"I tried every productivity tool, but nothing stuck. Daily calls with a real person worked — but it wasn't scalable. When GPT-3 launched, I saw AI could be that human-like coach."</div>
+      <div class="cs-quote-attr">— Andriy Rusyn, CEO, Habit Coach AI</div>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Design approach</div>
+    <h2 class="cs-h2">Four principles that <em>guided every decision</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Progressive disclosure</div>
+          <div class="cs-step-desc">Surface information contextually and in the right moment — reducing cognitive load and avoiding overwhelming new users from the start.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Human connection</div>
+          <div class="cs-step-desc">Warm, supportive feedback that mimics real coaching relationships. The AI should feel like a person who genuinely cares — not a bot running a script.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Guided flow</div>
+          <div class="cs-step-desc">Clear, unambiguous navigation that removes friction at every step. No dead ends, no confusion, no second-guessing.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Multi-modal accessibility</div>
+          <div class="cs-step-desc">Designed for voice and text interactions — users can call or text their AI coach anytime. The experience adapts to however someone wants to show up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLUTIONS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What we built</div>
+    <h2 class="cs-h2">From SMS onboarding to <em>daily AI check-ins</em></h2>
+    <p class="cs-p">The product started with a single insight: the lowest friction way to start is not a form — it's a phone number. Users enter their number; the AI coach follows up via SMS with progressive questions, gathering context for full personalization without any downloads or sign-up flows.</p>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">SMS-first onboarding</div>
+          <div class="cs-step-desc">No app download required. Phone number entry → AI coach textes within seconds → progressive questions build a full user profile over the first few days.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Daily AI check-ins</div>
+          <div class="cs-step-desc">Consistent daily touchpoints with empathetic, personalized messages. The AI remembers what you said yesterday — and the day before. It adapts tone based on how you're doing.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Voice + text access</div>
+          <div class="cs-step-desc">Users can call or text their coach anytime. The interface seamlessly transitions between modalities — from a 5-second voice note to a full journaling session.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Sketch-test-repeat loop</div>
+          <div class="cs-step-desc">Monitored Amplitude analytics daily to find drop-off points. Each finding fed directly back into Figma — design guidelines updated in real time, not in sprint retrospectives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Impact</div>
+    <h2 class="cs-h2">Within 8 months of launch</h2>
+    <p class="cs-p">The product substantially redefined habit-building by blending AI with human-like interaction at scale — winning Best G2 Integration at AGI House in April 2026.</p>
+    <div class="cs-impact-grid">
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">🏆</div>
+        <div class="cs-impact-label">Best G2 Integration — AGI House · April 2026</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">8mo</div>
+        <div class="cs-impact-label">From launch to award-winning product with measurable user retention lift</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">0→1</div>
+        <div class="cs-impact-label">Built the entire design system, voice UI, and onboarding as first designer on the team</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">Daily</div>
+        <div class="cs-impact-label">Active users engaging with AI check-ins — return rate measured weekly via Amplitude</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- NEXT PROJECT -->
+  <a href="zs-dashboard.html" class="cs-next reveal">
+    <div>
+      <div class="cs-next-label">Next project</div>
+      <div class="cs-next-title">ZS Associates — Sales Dashboards</div>
+    </div>
+    <div class="cs-next-arrow">→</div>
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="fn">Vyomika Parikh</div>
+    <div class="fr">AI Product Designer</div>
+    <div class="fc">Designed by Vyomika Parikh · Last updated April 2026</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Work</a>
+      <a href="index.html#about" class="footer-link">About</a>
+      <a href="#" class="footer-link">Resume</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/vyomikaparikh" class="footer-soc-btn" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:vyomika@gmail.com" class="footer-soc-btn">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
