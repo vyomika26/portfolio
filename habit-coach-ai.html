@@ -17,7 +17,6 @@
       --g5:     #EFEFEF;
       --g6:     #F7F7F7;
       --white:  #FFFFFF;
-      --accent: #0D0D0D;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -66,26 +65,23 @@
     .cs-wrap { max-width: 820px; margin: 0 auto; padding: 0 40px; }
 
     /* HERO */
-    .cs-hero {
-      padding-top: 96px;
-      padding-bottom: 64px;
-    }
+    .cs-hero { padding-top: 96px; padding-bottom: 64px; }
     .cs-eyebrow {
       display: flex; align-items: center; gap: 12px;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--g3); margin-bottom: 28px;
+      font-size: 13px; font-weight: 400; letter-spacing: 0;
+      color: var(--g2); margin-bottom: 28px;
       opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards;
     }
-    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g4); }
+    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g3); }
     .cs-title {
-      font-size: clamp(32px, 5vw, 60px);
+      font-size: clamp(28px, 3.2vw, 46px);
       font-weight: 400; letter-spacing: -0.04em; line-height: 1.1;
       margin-bottom: 20px;
       opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
     }
     .cs-title em { font-style: italic; font-weight: 300; color: var(--g2); }
     .cs-subtitle {
-      font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 600px;
+      font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 640px;
       margin-bottom: 44px;
       opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
     }
@@ -94,24 +90,28 @@
       border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
       opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards;
     }
-    .cs-meta-item {
-      padding: 16px 32px 16px 0;
-      margin-right: 32px;
-    }
+    .cs-meta-item { padding: 16px 32px 16px 0; margin-right: 32px; }
     .cs-meta-item:last-child { margin-right: 0; }
     .cs-meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 4px; }
     .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
 
-    /* HERO VIDEO */
-    .cs-hero-video {
-      width: 100vw; position: relative; left: 50%; right: 50%;
+    /* HERO SHOWCASE */
+    .cs-hero-showcase {
+      width: 100vw; position: relative; left: 50%;
       margin-left: -50vw; margin-right: -50vw;
-      margin-top: 56px; margin-bottom: 80px;
-      background: var(--g6); overflow: hidden;
+      margin-bottom: 80px;
+      background: #6366F1;
+      padding: 56px 80px;
       opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
     }
-    .cs-hero-video video {
-      width: 100%; max-height: 80vh; object-fit: cover; display: block;
+    .cs-hero-showcase video {
+      width: 100%; display: block;
+      border-radius: 12px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+    }
+
+    @media (max-width: 768px) {
+      .cs-hero-showcase { padding: 32px 20px; }
     }
 
     /* SECTIONS */
@@ -125,52 +125,169 @@
       line-height: 1.25; margin-bottom: 18px; color: var(--black);
     }
     .cs-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
-    .cs-p {
-      font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px;
+    .cs-h3 {
+      font-size: 17px; font-weight: 500; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 12px; color: var(--black);
     }
+    .cs-p { font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
     .cs-p:last-child { margin-bottom: 0; }
+
+    /* PRODUCT DESCRIPTION BOX */
+    .cs-product-desc {
+      background: var(--g6); border: 1px solid var(--g5);
+      border-radius: 12px; padding: 24px 28px; margin-bottom: 40px;
+    }
+    .cs-product-desc p { font-size: 15px; color: var(--g1); line-height: 1.75; font-style: italic; }
+
+    /* CORE EXPERIENCE GRID */
+    .cs-exp-header { margin-bottom: 32px; }
+    .cs-exp-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #6366F1; margin-bottom: 6px;
+    }
+    .cs-exp-sub { font-size: 13px; color: var(--g3); }
+    .cs-exp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      margin-top: 0;
+    }
+    .cs-exp-card {
+      border: 1px solid var(--g5); border-radius: 16px; overflow: hidden;
+      cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .cs-exp-card:hover { border-color: var(--g4); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .cs-exp-img {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      background: var(--g6);
+    }
+    .cs-exp-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .cs-exp-desc {
+      padding: 16px 20px 20px;
+      font-size: 14px; color: var(--g1); line-height: 1.6;
+    }
+
+    @media (max-width: 768px) { .cs-exp-grid { grid-template-columns: 1fr; } }
 
     /* INSIGHT CARDS */
     .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-    .cs-card {
-      background: var(--g6); border: 1px solid var(--g5);
-      border-radius: 12px; padding: 24px;
-    }
+    .cs-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
     .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
     .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
 
-    /* QUOTE */
-    .cs-quote {
-      border-left: 2px solid var(--black);
-      padding: 4px 0 4px 24px; margin: 32px 0;
+    /* RESEARCH THEMES */
+    .cs-themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .cs-theme {
+      background: var(--white); border: 1px solid var(--g5);
+      border-radius: 12px; padding: 24px;
     }
+    .cs-theme-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--black); margin-bottom: 10px;
+    }
+    .cs-theme-body { font-size: 13px; color: var(--g2); line-height: 1.65; }
+    .cs-theme-examples {
+      margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--g5);
+      font-size: 12px; color: var(--g3); line-height: 1.6;
+    }
+    .cs-theme-conclusion {
+      margin-top: 10px; font-size: 12px; font-weight: 500; color: var(--g1);
+    }
+
+    /* HOW MIGHT WE */
+    .cs-hmw {
+      background: var(--black); color: var(--white);
+      border-radius: 12px; padding: 32px 36px; margin: 32px 0;
+    }
+    .cs-hmw-label { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .cs-hmw-text { font-size: clamp(16px, 2vw, 20px); font-weight: 300; font-style: italic; line-height: 1.5; }
+
+    /* QUOTE */
+    .cs-quote { border-left: 2px solid var(--black); padding: 4px 0 4px 24px; margin: 32px 0; }
     .cs-quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: var(--g1); line-height: 1.6; margin-bottom: 10px; }
     .cs-quote-attr { font-size: 12px; color: var(--g3); }
 
     /* NUMBERED STEPS */
     .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
-    .cs-step {
-      display: flex; gap: 28px; align-items: flex-start;
-      padding: 24px 0; border-bottom: 1px solid var(--g5);
-    }
+    .cs-step { display: flex; gap: 28px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--g5); }
     .cs-step:last-child { border-bottom: none; }
-    .cs-step-num {
-      font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em;
-      flex-shrink: 0; width: 28px; padding-top: 2px;
-      font-variant-numeric: tabular-nums;
-    }
+    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; font-variant-numeric: tabular-nums; }
     .cs-step-body {}
     .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
     .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
 
+    /* REALITY CHECK */
+    .cs-reality {
+      background: var(--g6); border-left: 2px solid var(--g3);
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 20px;
+    }
+    .cs-reality-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
+    .cs-reality-text { font-size: 13px; color: var(--g2); line-height: 1.65; }
+
+    /* DECISION LIST */
+    .cs-decisions { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+    .cs-decision { display: flex; gap: 12px; align-items: flex-start; }
+    .cs-decision-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--g4); flex-shrink: 0; margin-top: 7px; }
+    .cs-decision-text { font-size: 14px; color: var(--g2); line-height: 1.65; }
+    .cs-decision-text strong { color: var(--g1); font-weight: 500; }
+
+    /* SKIPPED LIST */
+    .cs-skipped { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; }
+    .cs-skipped-item { font-size: 13px; color: var(--g3); line-height: 1.5; padding-left: 16px; position: relative; }
+    .cs-skipped-item::before { content: '—'; position: absolute; left: 0; color: var(--g4); }
+
+    /* COMPONENT LIST */
+    .cs-component-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .cs-component-item { font-size: 14px; color: var(--g2); line-height: 1.6; padding: 14px 18px; background: var(--g6); border-radius: 8px; }
+
     /* IMPACT GRID */
     .cs-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-    .cs-impact-item {
-      background: var(--black); color: var(--white);
-      border-radius: 12px; padding: 28px 24px;
-    }
+    .cs-impact-item { background: var(--black); color: var(--white); border-radius: 12px; padding: 28px 24px; }
     .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
     .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+    /* IMAGE / VIDEO MEDIA */
+    .cs-media {
+      width: 100%; background: var(--g6); border: 1px solid var(--g5);
+      border-radius: 12px; overflow: hidden; margin: 28px 0;
+    }
+    .cs-media video { width: 100%; display: block; }
+    .cs-media img { width: 100%; display: block; }
+    .cs-media-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .cs-media-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+    .cs-media-2col img, .cs-media-3col img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-media-caption {
+      font-size: 11px; color: var(--g3); text-align: center;
+      padding: 10px 16px 4px; letter-spacing: 0.06em; font-weight: 500; text-transform: uppercase;
+    }
+    .cs-media-label-row {
+      display: grid; gap: 3px; margin-top: 6px;
+    }
+    .cs-media-label-row.two { grid-template-columns: 1fr 1fr; }
+    .cs-media-label-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .cs-media-label-row span {
+      font-size: 11px; color: var(--g3); text-align: center;
+      padding: 6px 4px; font-weight: 500; letter-spacing: 0.04em;
+    }
+
+    /* FULL-BLEED MEDIA */
+    .cs-media-full {
+      width: 100vw; position: relative; left: 50%;
+      margin-left: -50vw; margin-right: -50vw;
+      margin: 28px 0; background: var(--g6); overflow: hidden;
+    }
+    .cs-media-full video { width: 100%; display: block; }
+    .cs-media-full img { width: 100%; display: block; }
+
+    /* SECTION DIVIDER */
+    .cs-section-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 40px;
+    }
+    .cs-section-divider-num {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--g4); flex-shrink: 0;
+    }
+    .cs-section-divider-line { flex: 1; height: 1px; background: var(--g5); }
 
     /* DIVIDER */
     .cs-divider { border: none; border-top: 1px solid var(--g5); margin: 80px 0; }
@@ -224,7 +341,9 @@
       .cs-wrap { padding: 0 20px; }
       .cs-hero { padding-top: 80px; padding-bottom: 40px; }
       .cs-cards { grid-template-columns: 1fr; }
+      .cs-themes { grid-template-columns: 1fr; }
       .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-component-grid { grid-template-columns: 1fr; }
       .cs-meta { flex-direction: column; gap: 0; }
       .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5); margin-right: 0; }
       footer { padding: 36px 20px; flex-direction: column; }
@@ -237,7 +356,7 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-brand">
-    <div class="nav-avatar"><img src="assets/hero/Profile pic.png" alt="Vyomika" /></div>
+    <div class="nav-avatar"><img src="assets/shared/profile-pic.png" alt="Vyomika" /></div>
     <div class="nav-name-wrap">
       <span class="nav-name">Vyomika Parikh</span>
       <span class="nav-role">AI Product Designer</span>
@@ -254,162 +373,507 @@
 <div class="cs-wrap">
   <div class="cs-hero">
     <div class="cs-eyebrow">
-      <span>01</span>
+      <span>Conversational UI</span>
       <span class="cs-eyebrow-dot"></span>
-      <span>AI Product · 0→1 · Design System</span>
+      <span>Product Design</span>
       <span class="cs-eyebrow-dot"></span>
-      <span>2024–2025</span>
+      <span>Vibe Coding</span>
     </div>
-    <h1 class="cs-title">Habit Coach AI — <em>Reimagining habit building</em> with a human-like AI coach</h1>
-    <p class="cs-subtitle">Led end-to-end design as the first designer at Habit Coach AI — building the conversational AI experience, onboarding, design system, and voice UI from zero.</p>
+    <h1 class="cs-title">Designing the future of Self<br>improvement — Habit building<br>through conversational AI</h1>
+    <p class="cs-subtitle">Led end-to-end UX & UI as the first designer at Habit Coach AI — building the conversational AI experience, onboarding, design system, and voice UI from zero.</p>
     <div class="cs-meta">
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-val">Lead Product Designer</div>
+        <div class="cs-meta-label">My Role</div>
+        <div class="cs-meta-val">End-to-end UX & UI · Design System</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Timeline</div>
+        <div class="cs-meta-label">Duration</div>
         <div class="cs-meta-val">Oct 2024 – Jan 2026</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Type</div>
-        <div class="cs-meta-val">Consumer AI · 0→1</div>
+        <div class="cs-meta-label">Tools</div>
+        <div class="cs-meta-val">Figma · Cursor AI · Amplitude · Airtable · Jitter</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Tools</div>
-        <div class="cs-meta-val">Figma · Cursor · Amplitude</div>
+        <div class="cs-meta-label">Team</div>
+        <div class="cs-meta-val">CEO · CTO · PM · 1 design intern · 4 engineers · UX writer</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- HERO VIDEO -->
-<div class="cs-hero-video">
+<!-- HERO IMAGE -->
+<div class="cs-hero-showcase">
   <video autoplay muted loop playsinline>
-    <source src="assets/hero/Animated-web-screens-[remix]-[remix] (1).mp4" type="video/mp4" />
+    <source src="assets/habit-coach/hero.mp4" type="video/mp4" />
   </video>
 </div>
 
 <!-- CONTENT -->
 <div class="cs-wrap">
 
-  <!-- PROBLEM -->
+  <!-- PRODUCT DESCRIPTION -->
   <div class="cs-section reveal">
+    <div class="cs-product-desc">
+      <p>"Habit Coach AI is a 24/7 AI-powered accountability companion that helps users build habits through proactive calls, conversational tracking, and personalized coaching."</p>
+    </div>
+    <p class="cs-p">When I joined as the first designer, Habit Coach AI had early functionality but no design foundation. The experience was inconsistent across touchpoints, lacked a cohesive brand identity, and didn't fully communicate trust or accountability — critical for a wellness product.</p>
+    <p class="cs-p">At the same time, the team was shipping AI features rapidly. I had to design scalable systems and improve the experience incrementally, without disrupting active users, while defining the brand and interaction model from scratch.</p>
+    <div class="cs-media reveal" style="margin-top:32px; margin-bottom:0;">
+      <video autoplay muted loop playsinline>
+        <source src="assets/habit-coach/preview.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- SECTION OVERVIEW -->
+  <div class="cs-section reveal">
+    <div class="cs-exp-header">
+      <div class="cs-exp-label">Core experience areas I transformed</div>
+      <div class="cs-exp-sub">Click to know more</div>
+    </div>
+    <div class="cs-exp-grid">
+      <a class="cs-exp-card" href="#section-onboarding">
+        <div class="cs-exp-img"><img src="assets/habit-coach/onboarding.png" alt="Onboarding" /></div>
+        <div class="cs-exp-desc">Transforming onboarding into a guided path to first-habit success.</div>
+      </a>
+      <a class="cs-exp-card" href="#section-voice">
+        <div class="cs-exp-img"><img src="assets/habit-coach/ai calls you .png" alt="AI Calls" /></div>
+        <div class="cs-exp-desc">Designing voice and chat flows that turn dialogue into daily action.</div>
+      </a>
+      <a class="cs-exp-card" href="#section-design-system">
+        <div class="cs-exp-img"><img src="assets/habit-coach/design system.png" alt="Design System" /></div>
+        <div class="cs-exp-desc">Built a scalable design system to drive consistency and accelerate development.</div>
+      </a>
+      <a class="cs-exp-card" href="#section-marketing">
+        <div class="cs-exp-img"><img src="assets/habit-coach/Ads 01 Light mode.jpg" alt="Marketing" /></div>
+        <div class="cs-exp-desc">Designing high-conversion marketing ads and App Store assets.</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- SECTION 1: ONBOARDING -->
+  <div id="section-onboarding" class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">01 — Onboarding</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+    <h2 class="cs-h2">Transforming onboarding into <em>a guided path to first-habit success</em></h2>
+
+    <!-- Problem -->
+    <div class="cs-section reveal" style="margin-bottom:40px;">
+      <div class="cs-section-label">The problem</div>
+      <div class="cs-cards">
+        <div class="cs-card">
+          <div class="cs-card-num">95%</div>
+          <div class="cs-card-label">Of users dropped off during onboarding — before ever experiencing the product.</div>
+        </div>
+        <div class="cs-card" style="grid-column: span 2;">
+          <div class="cs-card-label" style="font-size:14px; line-height:1.7;">Users were asked to enter their phone number and continue via SMS without enough context, trust signals, or clear explanation of the product — leading to confusion and low activation.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research -->
+    <div class="cs-section reveal" style="margin-bottom:40px;">
+      <div class="cs-section-label">Research</div>
+      <h3 class="cs-h3">User behavior data, onboarding metrics, and competitor analysis</h3>
+      <p class="cs-p">User data and feedback revealed early drop-offs driven by lack of context and trust. These insights defined the key focus areas for the onboarding redesign.</p>
+
+      <div class="cs-themes">
+        <div class="cs-theme">
+          <div class="cs-theme-title">Clarity first</div>
+          <div class="cs-theme-body">Users need to understand what the product does before committing.</div>
+          <div class="cs-theme-examples">Habit apps show benefits before sign-up. AI tools preview the experience before interaction. Coaching apps explain value before asking for personal data.</div>
+          <div class="cs-theme-conclusion">Users are more likely to continue when the purpose is clear.</div>
+        </div>
+        <div class="cs-theme">
+          <div class="cs-theme-title">Trust before commitment</div>
+          <div class="cs-theme-body">Entering a phone number felt high-risk without enough reassurance.</div>
+          <div class="cs-theme-examples">Headspace / Calm build trust through guided intro screens. Duolingo explains value before account creation. Notion AI shows examples before asking for input.</div>
+          <div class="cs-theme-conclusion">Trust signals are critical before asking for personal information.</div>
+        </div>
+        <div class="cs-theme">
+          <div class="cs-theme-title">Progress & momentum</div>
+          <div class="cs-theme-body">The SMS-only flow had no visible steps or completion cues.</div>
+          <div class="cs-theme-examples">Users didn't know how long setup takes, what comes next, or when they finish. Products with strong onboarding show steps, progress, and outcome.</div>
+          <div class="cs-theme-conclusion">Momentum reduces drop-off.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How Might We -->
+    <div class="cs-hmw reveal">
+      <div class="cs-hmw-label">How might we</div>
+      <div class="cs-hmw-text">"How might we design an onboarding experience that builds trust, provides clarity, and drives users to complete setup with confidence?"</div>
+    </div>
+
+    <!-- Onboarding: problem statement + wireframes -->
+    <div class="cs-media reveal">
+      <img src="assets/habit-coach/Problem statement.png" alt="Problem statement" />
+    </div>
+    <div class="cs-media reveal">
+      <div class="cs-media-2col">
+        <img src="assets/habit-coach/Wireframe 1.png" alt="Wireframe iteration 1" />
+        <img src="assets/habit-coach/Wireframe 2.png" alt="Wireframe iteration 2" />
+      </div>
+      <div class="cs-media-label-row two">
+        <span>Early wireframes</span>
+        <span>Revised flow</span>
+      </div>
+    </div>
+
+    <!-- Iteration Process -->
+    <div class="cs-section reveal" style="margin-bottom:0;">
+      <div class="cs-section-label">Iteration</div>
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-num">Wk 1–2</div>
+          <div class="cs-step-body">
+            <div class="cs-step-title">Initial wireframes</div>
+            <div class="cs-step-desc">Designed initial wireframes, reviewed and aligned with the team on direction and key user needs.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">Wk 3</div>
+          <div class="cs-step-body">
+            <div class="cs-step-title">High-fidelity mockups</div>
+            <div class="cs-step-desc">High-fidelity mockups with light/dark mode variations.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">Wk 4</div>
+          <div class="cs-step-body">
+            <div class="cs-step-title">Shipped & measured</div>
+            <div class="cs-step-desc">Shipped and monitored via Amplitude funnel analysis. Monitored new user onboarding daily to track behavior, identify drop-offs, catch bugs, and update flows and design guidelines directly in Figma.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">Wk 5–6</div>
+          <div class="cs-step-body">
+            <div class="cs-step-title">Fixed drop-off at step 2</div>
+            <div class="cs-step-desc">Added visual progression (1 of 4, 2 of 4…). Simplified copy from engineering-speak to plain language. Added illustrations to make it feel human, not clinical.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-reality">
+        <div class="cs-reality-label">Reality check</div>
+        <div class="cs-reality-text">It took 3 iterations to get the flow right. The first version still had too much text. The second version had confusing button placement. The third version worked.</div>
+      </div>
+
+      <!-- Final onboarding screens -->
+      <div class="cs-section-label" style="margin-top:40px;">Final solution</div>
+      <div class="cs-media reveal">
+        <div class="cs-media-3col">
+          <img src="assets/habit-coach/Onboarding 1 final.png" alt="Onboarding step 1" />
+          <img src="assets/habit-coach/Onboarding 2 final.png" alt="Onboarding step 2" />
+          <img src="assets/habit-coach/Onboarding 3 final.png" alt="Onboarding step 3" />
+        </div>
+        <div class="cs-media-label-row three">
+          <span>Step 1</span>
+          <span>Step 2</span>
+          <span>Step 3</span>
+        </div>
+      </div>
+      <div class="cs-media reveal">
+        <img src="assets/habit-coach/Onboarding iteration.png" alt="Onboarding iteration overview" />
+      </div>
+      <div class="cs-media reveal">
+        <video autoplay muted loop playsinline>
+          <source src="assets/habit-coach/Onboarding 4  final.mov" />
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- SECTION 2: HABIT BUILDING INTERFACE -->
+  <div id="section-voice" class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">02 — Habit Building Interface</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+    <h2 class="cs-h2">Designing the <em>habit tracker and daily check-in</em> experience</h2>
+    <p class="cs-p" style="margin-bottom:28px; font-style:italic; color:var(--g3);">Weeks 6–10</p>
+
     <div class="cs-section-label">The problem</div>
-    <h2 class="cs-h2">Habit apps fail because they treat humans like <em>machines</em></h2>
-    <p class="cs-p">Most habit-building apps are rigid checklists — designed around streaks and gamification, not real human behaviour. When life gets in the way, users fall off and never return.</p>
-    <p class="cs-p">Three critical gaps existed in every existing solution on the market:</p>
+    <p class="cs-p">Users could add habits via chat, but there was no visual tracker. Everything lived in Google Sheets on the backend.</p>
 
-    <div class="cs-cards">
-      <div class="cs-card">
-        <div class="cs-card-num">95%</div>
-        <div class="cs-card-label">Boost in goal completion when an accountability partner is involved — yet most apps don't have one.</div>
+    <!-- Habit tracker: light/dark mode -->
+    <div class="cs-media reveal">
+      <div class="cs-media-2col">
+        <img src="assets/habit-coach/Habit Tracking Light mode.png" alt="Habit tracker — light mode" />
+        <img src="assets/habit-coach/Habit tracking dark mode.png" alt="Habit tracker — dark mode" />
       </div>
-      <div class="cs-card">
-        <div class="cs-card-num">65%</div>
-        <div class="cs-card-label">Of users abandon habit apps within a month due to rigid flows that don't adapt to real life.</div>
-      </div>
-      <div class="cs-card">
-        <div class="cs-card-num">45%</div>
-        <div class="cs-card-label">Drop in engagement without a personalized, coach-like interaction — generic feels hollow.</div>
+      <div class="cs-media-label-row two">
+        <span>Light mode</span>
+        <span>Dark mode</span>
       </div>
     </div>
-  </div>
 
-  <!-- QUOTE -->
-  <div class="cs-section reveal">
-    <div class="cs-quote">
-      <div class="cs-quote-text">"I tried every productivity tool, but nothing stuck. Daily calls with a real person worked — but it wasn't scalable. When GPT-3 launched, I saw AI could be that human-like coach."</div>
-      <div class="cs-quote-attr">— Andriy Rusyn, CEO, Habit Coach AI</div>
-    </div>
-  </div>
-
-  <!-- APPROACH -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Design approach</div>
-    <h2 class="cs-h2">Four principles that <em>guided every decision</em></h2>
+    <div class="cs-section-label" style="margin-top:32px;">What I built</div>
     <div class="cs-steps">
       <div class="cs-step">
-        <div class="cs-step-num">01</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Progressive disclosure</div>
-          <div class="cs-step-desc">Surface information contextually and in the right moment — reducing cognitive load and avoiding overwhelming new users from the start.</div>
+          <div class="cs-step-title">Calendar view tracker</div>
+          <div class="cs-step-desc">Designed a simple habit tracker with calendar view. Created a full iteration flow: add → edit → delete → mark complete.</div>
         </div>
       </div>
       <div class="cs-step">
-        <div class="cs-step-num">02</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Human connection</div>
-          <div class="cs-step-desc">Warm, supportive feedback that mimics real coaching relationships. The AI should feel like a person who genuinely cares — not a bot running a script.</div>
+          <div class="cs-step-title">Light & dark mode</div>
+          <div class="cs-step-desc">Designed both from day one because users check in at night and bright screens felt intrusive.</div>
         </div>
       </div>
       <div class="cs-step">
-        <div class="cs-step-num">03</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Guided flow</div>
-          <div class="cs-step-desc">Clear, unambiguous navigation that removes friction at every step. No dead ends, no confusion, no second-guessing.</div>
+          <div class="cs-step-title">Emoji picker for personalization</div>
+          <div class="cs-step-desc">Built emoji picker for habit personalization. A small change that made a big difference in engagement.</div>
         </div>
       </div>
       <div class="cs-step">
-        <div class="cs-step-num">04</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Multi-modal accessibility</div>
-          <div class="cs-step-desc">Designed for voice and text interactions — users can call or text their AI coach anytime. The experience adapts to however someone wants to show up.</div>
+          <div class="cs-step-title">Cursor UI patterns</div>
+          <div class="cs-step-desc">Implemented cursor UI patterns for quick, low-friction interactions.</div>
         </div>
       </div>
+    </div>
+
+    <div class="cs-section-label" style="margin-top:40px;">Key design decisions</div>
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Calendar view:</strong> Initially designed a list view (easier to code), but users wanted to see their streaks visually. Switched to a calendar grid after feedback.</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Emojis:</strong> Text-only habits felt boring. Small change, big impact on engagement.</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Light/Dark mode:</strong> Built both from day one — users check in at night and bright screens felt intrusive.</div>
+      </div>
+    </div>
+    <div class="cs-skipped">
+      <div class="cs-skipped-item">Skipped advanced filtering (not enough users yet)</div>
+      <div class="cs-skipped-item">Kept it to 5 habits max initially (simplified the UI)</div>
+      <div class="cs-skipped-item">No animations in v1 (faster to ship, added later)</div>
+    </div>
+
+    <div class="cs-media reveal">
+      <img src="assets/habit-coach/Habit building.png" alt="Habit building interface" />
+    </div>
+    <div class="cs-media reveal">
+      <video autoplay muted loop playsinline>
+        <source src="assets/habit-coach/Habit coach - mobile .mov" />
+      </video>
     </div>
   </div>
 
-  <!-- SOLUTIONS -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">What we built</div>
-    <h2 class="cs-h2">From SMS onboarding to <em>daily AI check-ins</em></h2>
-    <p class="cs-p">The product started with a single insight: the lowest friction way to start is not a form — it's a phone number. Users enter their number; the AI coach follows up via SMS with progressive questions, gathering context for full personalization without any downloads or sign-up flows.</p>
+  <hr class="cs-divider" />
+
+  <!-- SECTION 3: AI CHAT & VOICE -->
+  <div id="section-design-system" class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">03 — AI Chat & Voice Interface</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+    <h2 class="cs-h2">Designing chat and voice flows that <em>turn dialogue into daily action</em></h2>
+    <p class="cs-p" style="margin-bottom:28px; font-style:italic; color:var(--g3);">Ongoing</p>
+
+    <div class="cs-section-label">The problem</div>
+    <p class="cs-p">Voice calls and chat felt like separate products. Users didn't know they could switch between them.</p>
+
+    <div class="cs-media reveal">
+      <img src="assets/habit-coach/Chat.png" alt="Chat interface" />
+    </div>
+
+    <div class="cs-section-label" style="margin-top:32px;">The coach personalities</div>
+    <p class="cs-p">The product has 6 AI coaches with different personalities — Maya, Sarah, Anne, Sergeant Grindmode, Bro Coach, Alex. I designed the visual language for each:</p>
+    <div class="cs-decisions" style="margin-bottom:28px;">
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Color coding</strong> for each coach to make them feel distinct and recognizable</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Tone indicators</strong> in chat — relaxed, direct, visionary — baked into the visual style</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text"><strong>Avatar design</strong> and coach selection flow</div>
+      </div>
+    </div>
+
+    <div class="cs-media reveal">
+      <video autoplay muted loop playsinline>
+        <source src="assets/habit-coach/Chat + voice UI.mov" />
+      </video>
+    </div>
+    <div class="cs-media reveal">
+      <img src="assets/habit-coach/Dashboard.png" alt="Dashboard" />
+    </div>
+    <div class="cs-media reveal">
+      <video autoplay muted loop playsinline>
+        <source src="assets/habit-coach/Dashboard .mov" />
+      </video>
+    </div>
+
+    <div class="cs-reality reveal">
+      <div class="cs-reality-label">Honest admission</div>
+      <div class="cs-reality-text">The voice interface is still being refined. It's hard to design for something you can't fully control (the AI's responses). We're still learning what users need here.</div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- SECTION 4: DESIGN SYSTEM -->
+  <div id="section-marketing" class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">04 — Design System</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+    <h2 class="cs-h2">A scalable design system to <em>drive consistency and ship faster</em></h2>
+    <p class="cs-p" style="margin-bottom:28px; font-style:italic; color:var(--g3);">Weeks 2–12, Ongoing</p>
+
+    <div class="cs-quote reveal">
+      <div class="cs-quote-text">"With a team of 2 engineers and 1 designer, we needed reusable components to ship fast without redesigning everything."</div>
+      <div class="cs-quote-attr">— Why I built this first</div>
+    </div>
+
+    <div class="cs-section-label">What I created</div>
+    <div class="cs-decisions" style="margin-bottom:32px;">
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Component library in Figma with semantic versioning</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Design tokens for colors, typography, spacing, shadows</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Documentation in Notion for developer handoff</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Cursor integration for auto-generating code from designs</div>
+      </div>
+    </div>
+
+    <div class="cs-section-label">Core components</div>
+    <div class="cs-component-grid">
+      <div class="cs-component-item">Buttons — primary, secondary, text, disabled states</div>
+      <div class="cs-component-item">Input fields — text, number, emoji picker</div>
+      <div class="cs-component-item">Cards — habit cards, coach cards, stats cards</div>
+      <div class="cs-component-item">Navigation — bottom nav, top bar, modals</div>
+      <div class="cs-component-item">Typography system — headings, body, labels</div>
+      <div class="cs-component-item">Color system — light/dark mode, semantic colors</div>
+    </div>
+
+    <div class="cs-media reveal" style="margin-top:28px;">
+      <img src="assets/habit-coach/design system.png" alt="Design system component library" />
+    </div>
+
+    <div class="cs-section-label" style="margin-top:32px;">How it's used</div>
     <div class="cs-steps">
       <div class="cs-step">
-        <div class="cs-step-num">01</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">SMS-first onboarding</div>
-          <div class="cs-step-desc">No app download required. Phone number entry → AI coach textes within seconds → progressive questions build a full user profile over the first few days.</div>
+          <div class="cs-step-title">Engineers pull directly from Figma</div>
+          <div class="cs-step-desc">Components are built to spec — no back-and-forth about sizing or spacing.</div>
         </div>
       </div>
       <div class="cs-step">
-        <div class="cs-step-num">02</div>
+        <div class="cs-step-num">→</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Daily AI check-ins</div>
-          <div class="cs-step-desc">Consistent daily touchpoints with empathetic, personalized messages. The AI remembers what you said yesterday — and the day before. It adapts tone based on how you're doing.</div>
-        </div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">03</div>
-        <div class="cs-step-body">
-          <div class="cs-step-title">Voice + text access</div>
-          <div class="cs-step-desc">Users can call or text their coach anytime. The interface seamlessly transitions between modalities — from a 5-second voice note to a full journaling session.</div>
-        </div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">04</div>
-        <div class="cs-step-body">
-          <div class="cs-step-title">Sketch-test-repeat loop</div>
-          <div class="cs-step-desc">Monitored Amplitude analytics daily to find drop-off points. Each finding fed directly back into Figma — design guidelines updated in real time, not in sprint retrospectives.</div>
+          <div class="cs-step-title">Cursor AI generates initial code</div>
+          <div class="cs-step-desc">Cursor AI generates initial code from component specs, then we iterate in dev and update Figma to match.</div>
         </div>
       </div>
     </div>
+
+    <div class="cs-reality reveal">
+      <div class="cs-reality-label">Reality check</div>
+      <div class="cs-reality-text">The design system is about 70% complete. I'm still documenting edge cases and adding components as we need them. It's not perfect, but it's functional and saves us hours every week.</div>
+    </div>
   </div>
+
+  <hr class="cs-divider" />
+
+  <!-- SECTION 5: MARKETING & GROWTH -->
+  <div class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">05 — Marketing & Growth</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+    <h2 class="cs-h2">Marketing assets to <em>support growth and conversion</em></h2>
+    <p class="cs-p" style="margin-bottom:28px; font-style:italic; color:var(--g3);">Side work</p>
+
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Landing page redesign — homepage, pricing, features</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Social media templates for Instagram / Twitter</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">App store screenshots and preview video mockups</div>
+      </div>
+      <div class="cs-decision">
+        <div class="cs-decision-dot"></div>
+        <div class="cs-decision-text">Vibe coded upgrade pro flow</div>
+      </div>
+    </div>
+
+    <div class="cs-media reveal">
+      <div class="cs-media-2col">
+        <img src="assets/habit-coach/Ads 01 Light mode.jpg" alt="Ad 01 — light mode" />
+        <img src="assets/habit-coach/Ads 01 dark mode.jpg" alt="Ad 01 — dark mode" />
+      </div>
+      <div class="cs-media-label-row two">
+        <span>Ad 01 — light</span>
+        <span>Ad 01 — dark</span>
+      </div>
+    </div>
+    <div class="cs-media reveal">
+      <div class="cs-media-2col">
+        <img src="assets/habit-coach/Ads 02 Light mode.jpg" alt="Ad 02 — light mode" />
+        <img src="assets/habit-coach/Ads 02 dark mode.jpg" alt="Ad 02 — dark mode" />
+      </div>
+      <div class="cs-media-label-row two">
+        <span>Ad 02 — light</span>
+        <span>Ad 02 — dark</span>
+      </div>
+    </div>
+
+    <div class="cs-reality reveal">
+      <div class="cs-reality-label">Context</div>
+      <div class="cs-reality-text">These weren't my main focus, but they needed to exist. I designed templates that the team could reuse without needing me for every iteration.</div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
 
   <!-- IMPACT -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Impact</div>
-    <h2 class="cs-h2">Within 8 months of launch</h2>
-    <p class="cs-p">The product substantially redefined habit-building by blending AI with human-like interaction at scale — winning Best G2 Integration at AGI House in April 2026.</p>
-    <div class="cs-impact-grid">
+    <h2 class="cs-h2">The results</h2>
+
+    <div class="cs-impact-grid" style="margin-top:28px;">
       <div class="cs-impact-item">
         <div class="cs-impact-num">🏆</div>
         <div class="cs-impact-label">Best G2 Integration — AGI House · April 2026</div>
-      </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">8mo</div>
-        <div class="cs-impact-label">From launch to award-winning product with measurable user retention lift</div>
       </div>
       <div class="cs-impact-item">
         <div class="cs-impact-num">0→1</div>
@@ -418,6 +882,48 @@
       <div class="cs-impact-item">
         <div class="cs-impact-num">Daily</div>
         <div class="cs-impact-label">Active users engaging with AI check-ins — return rate measured weekly via Amplitude</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">8mo</div>
+        <div class="cs-impact-label">From launch to award-winning product with measurable user retention lift</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- LEARNINGS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Learnings</div>
+    <h2 class="cs-h2">What I learned <em>from this project</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">AI product design is different</div>
+          <div class="cs-step-desc">You can't control the output, so you design the container — UI patterns, tone, structure — and let the AI fill it in.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Simplicity wins</div>
+          <div class="cs-step-desc">Tried complex interactions in v1 — animations, micro-interactions. Users didn't care. They wanted it to work, not look fancy.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Voice interfaces are hard</div>
+          <div class="cs-step-desc">Still figuring out how to design for audio-first experiences. It's a learning process.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Being the first designer means wearing all the hats</div>
+          <div class="cs-step-desc">Brand, product, marketing, systems. You do everything. It's chaotic but you learn fast.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -440,7 +946,7 @@
   <div class="footer-left">
     <div class="fn">Vyomika Parikh</div>
     <div class="fr">AI Product Designer</div>
-    <div class="fc">Designed by Vyomika Parikh · Last updated April 2026</div>
+    <div class="fc">Designed by Vyomika Parikh · Last updated May 2026</div>
   </div>
   <div class="footer-right">
     <div class="footer-links">
@@ -456,10 +962,12 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
 </script>
 </body>
 </html>
