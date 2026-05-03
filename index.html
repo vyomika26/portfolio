@@ -157,59 +157,6 @@
     }
     .proj-card:hover .proj-media video { transform: scale(1.05); }
 
-    /* TATA: mockup + video overlay */
-    .tata-media-wrap {
-      position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden;
-    }
-    .tata-mockup-bg {
-      position: absolute; inset: 0;
-      background: #1A2B4A;
-      display: flex; align-items: center; justify-content: center;
-      transform: scale(1.01); transition: transform 0.7s var(--ease-out);
-    }
-    .proj-card:hover .tata-mockup-bg { transform: scale(1.05); }
-    .mockup-screen {
-      width: 88%; height: 84%; background: #F4F6FA;
-      border-radius: 8px; overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      display: flex; flex-direction: column;
-    }
-    .mockup-bar {
-      height: 32px; background: #003087;
-      display: flex; align-items: center; padding: 0 12px; flex-shrink: 0;
-    }
-    .mockup-logo-text { font-size: 9px; font-weight: 700; color: #fff; letter-spacing: 0.06em; }
-    .mockup-body { flex: 1; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
-    .mockup-search {
-      background: #fff; border-radius: 5px; height: 24px;
-      display: flex; align-items: center; padding: 0 8px; gap: 5px;
-      border: 1.5px solid #E0E4EC;
-    }
-    .mockup-search-icon { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #9A9A9A; flex-shrink: 0; }
-    .mockup-search-text { font-size: 8px; color: #9A9A9A; }
-    .mockup-tabs { display: flex; gap: 5px; }
-    .mockup-tab { font-size: 7px; font-weight: 600; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.03em; }
-    .mockup-tab.active { background: #003087; color: #fff; }
-    .mockup-tab.inactive { background: #E0E4EC; color: #6B6B6B; }
-    .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; flex: 1; }
-    .mockup-card-item {
-      background: #fff; border-radius: 5px; padding: 6px;
-      display: flex; flex-direction: column; gap: 3px; border: 1px solid #E0E4EC;
-    }
-    .mockup-card-thumb { height: 22px; border-radius: 3px; background: #E8EDF5; display: flex; align-items: center; justify-content: center; }
-    .mockup-card-stripe { width: 18px; height: 3px; border-radius: 2px; background: #003087; opacity: 0.35; }
-    .mockup-card-line { height: 3px; border-radius: 2px; background: #E0E4EC; margin-top: 2px; }
-    .mockup-card-line.s { width: 55%; }
-
-    /* TATA video overlay — fades in on hover */
-    .tata-video-overlay {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
-      opacity: 0; transition: opacity 0.4s var(--ease-out);
-      transform: scale(1.01);
-    }
-    .proj-card.playing .tata-video-overlay { opacity: 1; transform: scale(1.05); }
-
     .proj-scrim {
       position: absolute; inset: 0;
       background: rgba(13,13,13,0); transition: background 0.4s;
@@ -499,57 +446,12 @@
       </div>
     </a>
 
-    <!-- 04 TATA Motors — mockup visible by default, video fades in on hover -->
-    <a href="tata-motors.html" class="proj-card reveal d4" id="tataCard">
+    <!-- 04 TATA Motors -->
+    <a href="tata-motors.html" class="proj-card reveal d4">
       <div class="proj-media">
-        <div class="tata-media-wrap">
-          <!-- Static mockup (always visible) -->
-          <div class="tata-mockup-bg">
-            <div class="mockup-screen">
-              <div class="mockup-bar">
-                <span class="mockup-logo-text">TATA GENUINE PARTS</span>
-              </div>
-              <div class="mockup-body">
-                <div class="mockup-search">
-                  <div class="mockup-search-icon"></div>
-                  <span class="mockup-search-text">Search by name, voice or image…</span>
-                </div>
-                <div class="mockup-tabs">
-                  <span class="mockup-tab active">By Name</span>
-                  <span class="mockup-tab inactive">By Voice</span>
-                  <span class="mockup-tab inactive">By Image</span>
-                  <span class="mockup-tab inactive">By Click</span>
-                </div>
-                <div class="mockup-grid">
-                  <div class="mockup-card-item">
-                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
-                    <div class="mockup-card-line"></div>
-                    <div class="mockup-card-line s"></div>
-                  </div>
-                  <div class="mockup-card-item">
-                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
-                    <div class="mockup-card-line"></div>
-                    <div class="mockup-card-line s"></div>
-                  </div>
-                  <div class="mockup-card-item">
-                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
-                    <div class="mockup-card-line"></div>
-                    <div class="mockup-card-line s"></div>
-                  </div>
-                  <div class="mockup-card-item">
-                    <div class="mockup-card-thumb"><div class="mockup-card-stripe"></div></div>
-                    <div class="mockup-card-line"></div>
-                    <div class="mockup-card-line s"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Video fades in on hover -->
-          <video id="v4" class="tata-video-overlay" muted loop playsinline preload="none">
-            <source src="assets/tata-motors/video.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <video id="v4" muted loop playsinline preload="none">
+          <source src="assets/tata-motors/video.mp4" type="video/mp4" />
+        </video>
         <div class="proj-scrim"></div>
         <div class="proj-hover-tags">
           <span class="proj-hover-tag">Accessibility</span>
@@ -646,15 +548,8 @@
   document.querySelectorAll('.proj-card').forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
-    const isTata = card.id === 'tataCard';
-    card.addEventListener('mouseenter', () => {
-      video.play().catch(()=>{});
-      if (isTata) card.classList.add('playing');
-    });
-    card.addEventListener('mouseleave', () => {
-      video.pause(); video.currentTime = 0;
-      if (isTata) card.classList.remove('playing');
-    });
+    card.addEventListener('mouseenter', () => { video.play().catch(()=>{}); });
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
   });
 
   /* Scroll reveal */
