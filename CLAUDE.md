@@ -29,7 +29,7 @@ No build step — open HTML files directly in a browser or use a local server:
 
 ```bash
 # Simple local server (Python)
-python3 -m http.server 8080
+python3 -m http.server 9090
 
 # Or use VS Code Live Server extension
 ```

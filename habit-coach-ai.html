@@ -152,7 +152,7 @@
       margin-top: 0;
     }
     .cs-exp-card {
-      border: 1px solid var(--g5); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--g5); border-radius: 16px;
       cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
       text-decoration: none; color: inherit;
       display: flex; flex-direction: column;
@@ -160,9 +160,9 @@
     .cs-exp-card:hover { border-color: var(--g4); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
     .cs-exp-img {
       width: 100%; aspect-ratio: 4/3; overflow: hidden;
-      background: var(--g6);
+      background: var(--g6); border-radius: 15px 15px 0 0;
     }
-    .cs-exp-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .cs-exp-img img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
     .cs-exp-desc {
       padding: 16px 20px 20px;
       font-size: 14px; color: var(--g1); line-height: 1.6;
