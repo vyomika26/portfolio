@@ -260,6 +260,34 @@
     .cs-decision-text { font-size: 14px; color: var(--g2); line-height: 1.65; }
     .cs-decision-text strong { color: var(--g1); font-weight: 500; }
 
+    /* ITERATION BEFORE/AFTER */
+    .cs-iter-frame { margin: 28px 0; }
+    .cs-iter-badge {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .cs-iter-badge.v1 { background: #FEF3C7; color: #92400E; }
+    .cs-iter-badge.v2 { background: #D1FAE5; color: #065F46; }
+    .cs-iter-tradeoffs {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin: 32px 0;
+    }
+    .cs-iter-tradeoff {
+      background: var(--g6); border: 1px solid var(--g5);
+      border-radius: 12px; padding: 20px;
+    }
+    .cs-iter-tradeoff-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--g3); margin-bottom: 8px;
+    }
+    .cs-iter-tradeoff-title {
+      font-size: 14px; font-weight: 600; color: var(--black);
+      margin-bottom: 8px; line-height: 1.4;
+    }
+    .cs-iter-tradeoff-body { font-size: 13px; color: var(--g2); line-height: 1.6; }
+    @media (max-width: 768px) { .cs-iter-tradeoffs { grid-template-columns: 1fr; } }
+
     /* SKIPPED LIST */
     .cs-skipped { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; }
     .cs-skipped-item { font-size: 13px; color: var(--g3); line-height: 1.5; padding-left: 16px; position: relative; }
@@ -501,6 +529,12 @@
       </div>
     </div>
 
+    <!-- Problem statement — before state of the product, sets up research -->
+    <div class="cs-expandable-img reveal" style="margin-bottom:40px;">
+      <img src="assets/habit-coach/Problem statement.png" alt="Problem statement" />
+      <button class="cs-expand-btn" onclick="openLightbox('assets/habit-coach/Problem statement.png')">↗ View full</button>
+    </div>
+
     <!-- Research -->
     <div class="cs-section reveal" style="margin-bottom:40px;">
       <div class="cs-section-label">Research</div>
@@ -529,61 +563,58 @@
       </div>
     </div>
 
-    <!-- Problem statement — moved into research section -->
-    <div class="cs-expandable-img reveal" style="margin-top:28px;">
-      <img src="assets/habit-coach/Problem statement.png" alt="Problem statement" />
-      <button class="cs-expand-btn" onclick="openLightbox('assets/habit-coach/Problem statement.png')">↗ View full</button>
-    </div>
-
     <!-- How Might We -->
     <div class="cs-hmw reveal">
       <div class="cs-hmw-label">How might we</div>
       <div class="cs-hmw-text">"How might we design an onboarding experience that builds trust, provides clarity, and drives users to complete setup with confidence?"</div>
     </div>
 
-    <!-- Wireframes -->
-    <div class="cs-media reveal">
-      <div class="cs-media-2col">
-        <img src="assets/habit-coach/Wireframe 1.png" alt="Wireframe iteration 1" />
-        <img src="assets/habit-coach/Wireframe 2.png" alt="Wireframe iteration 2" />
-      </div>
-      <div class="cs-media-label-row two">
-        <span>Early wireframes</span>
-        <span>Revised flow</span>
-      </div>
-    </div>
-
     <!-- Iteration Process -->
     <div class="cs-section reveal" style="margin-bottom:0;">
       <div class="cs-section-label">Iteration</div>
-      <div class="cs-steps">
-        <div class="cs-step">
-          <div class="cs-step-num">Wk 1–2</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Initial wireframes</div>
-            <div class="cs-step-desc">Designed initial wireframes, reviewed and aligned with the team on direction and key user needs.</div>
-          </div>
+      <p class="cs-p">I tracked drop-offs in Amplitude after each ship, identified exactly where users left, and iterated the flow in two rounds before it worked.</p>
+
+      <!-- v1: Early wireframes — Wk 1–2 -->
+      <div class="cs-iter-frame reveal">
+        <span class="cs-iter-badge v1">v1 — Early flow &nbsp;·&nbsp; Wk 1–2</span>
+        <p class="cs-p" style="margin: 6px 0 12px; font-size:13px; color:var(--g2);">Designed initial wireframes, reviewed and aligned with the team on direction and key user needs.</p>
+        <div class="cs-expandable-img">
+          <img src="assets/habit-coach/Wireframe 1.png" alt="Early wireframe flow" />
+          <button class="cs-expand-btn" onclick="openLightbox('assets/habit-coach/Wireframe 1.png')">↗ View full</button>
         </div>
-        <div class="cs-step">
-          <div class="cs-step-num">Wk 3</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">High-fidelity mockups</div>
-            <div class="cs-step-desc">High-fidelity mockups with light/dark mode variations.</div>
-          </div>
+      </div>
+
+      <!-- Wk 3 bridge -->
+      <p class="cs-p" style="margin:24px 0 0; color:var(--g3); font-size:13px;">
+        <strong style="color:var(--g2);">Wk 3</strong> &nbsp;— Built high-fidelity mockups with light/dark mode and shipped. Then watched Amplitude.
+      </p>
+
+      <!-- Tradeoff reasoning — Wk 4 data -->
+      <div class="cs-iter-tradeoffs reveal">
+        <div class="cs-iter-tradeoff">
+          <div class="cs-iter-tradeoff-tag">Wk 4 — What we saw</div>
+          <div class="cs-iter-tradeoff-title">53% dropped at step 1</div>
+          <div class="cs-iter-tradeoff-body">The phone number ask came cold — users had no context for the product or why it needed their number. No trust had been built yet.</div>
         </div>
-        <div class="cs-step">
-          <div class="cs-step-num">Wk 4</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Shipped & measured</div>
-            <div class="cs-step-desc">Shipped and monitored via Amplitude funnel analysis. Monitored new user onboarding daily to track behavior, identify drop-offs, catch bugs, and update flows and design guidelines directly in Figma.</div>
-          </div>
+        <div class="cs-iter-tradeoff">
+          <div class="cs-iter-tradeoff-tag">The tradeoff</div>
+          <div class="cs-iter-tradeoff-title">Longer flow, higher trust</div>
+          <div class="cs-iter-tradeoff-body">Moving the number ask to the end meant more steps. But users who got there were already invested — completion rate mattered more than funnel length.</div>
         </div>
-        <div class="cs-step">
-          <div class="cs-step-num">Wk 5–6</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Fixed drop-off at step 2</div>
-            <div class="cs-step-desc">Added visual progression (1 of 4, 2 of 4…). Simplified copy from engineering-speak to plain language. Added illustrations to make it feel human, not clinical.</div>
-          </div>
+        <div class="cs-iter-tradeoff">
+          <div class="cs-iter-tradeoff-tag">What changed</div>
+          <div class="cs-iter-tradeoff-title">Coach selection first</div>
+          <div class="cs-iter-tradeoff-body">Opening with a coach selection made the experience feel personal from the start. The number ask at the end felt earned, not intrusive.</div>
+        </div>
+      </div>
+
+      <!-- v2: Revised flow — Wk 5–6 -->
+      <div class="cs-iter-frame reveal">
+        <span class="cs-iter-badge v2">v2 — Revised flow &nbsp;·&nbsp; Wk 5–6</span>
+        <p class="cs-p" style="margin: 6px 0 12px; font-size:13px; color:var(--g2);">Added visual progression (1 of 4, 2 of 4…). Simplified copy from engineering-speak to plain language. Added illustrations to make it feel human, not clinical.</p>
+        <div class="cs-expandable-img">
+          <img src="assets/habit-coach/Wireframe 2.png" alt="Revised wireframe flow" />
+          <button class="cs-expand-btn" onclick="openLightbox('assets/habit-coach/Wireframe 2.png')">↗ View full</button>
         </div>
       </div>
       <div class="cs-reality">
