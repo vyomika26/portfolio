@@ -261,7 +261,13 @@
     .cs-decision-text strong { color: var(--g1); font-weight: 500; }
 
     /* ITERATION BEFORE/AFTER */
-    .cs-iter-frame { margin: 28px 0; }
+    .cs-iter-frame {
+      margin: 28px -180px;
+      background: var(--g6); border: 1px solid var(--g5); border-radius: 16px;
+      padding: 20px; box-sizing: border-box;
+    }
+    .cs-iter-frame .cs-expandable-img img { border-radius: 8px; }
+    @media (max-width: 900px) { .cs-iter-frame { margin: 28px 0; } }
     .cs-iter-badge {
       display: inline-block; font-size: 11px; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
@@ -574,9 +580,9 @@
       <div class="cs-section-label">Iteration</div>
       <p class="cs-p">I tracked drop-offs in Amplitude after each ship, identified exactly where users left, and iterated the flow in two rounds before it worked.</p>
 
-      <!-- v1: Early wireframes — Wk 1–2 -->
+      <!-- v1: Early flow — Wk 1 -->
       <div class="cs-iter-frame reveal">
-        <span class="cs-iter-badge v1">v1 — Early flow &nbsp;·&nbsp; Wk 1–2</span>
+        <span class="cs-iter-badge v1">v1 — Early flow &nbsp;·&nbsp; Wk 1</span>
         <p class="cs-p" style="margin: 6px 0 12px; font-size:13px; color:var(--g2);">Designed initial wireframes, reviewed and aligned with the team on direction and key user needs.</p>
         <div class="cs-expandable-img">
           <img src="assets/habit-coach/Wireframe 1.png" alt="Early wireframe flow" />
@@ -584,15 +590,10 @@
         </div>
       </div>
 
-      <!-- Wk 3 bridge -->
-      <p class="cs-p" style="margin:24px 0 0; color:var(--g3); font-size:13px;">
-        <strong style="color:var(--g2);">Wk 3</strong> &nbsp;— Built high-fidelity mockups with light/dark mode and shipped. Then watched Amplitude.
-      </p>
-
-      <!-- Tradeoff reasoning — Wk 4 data -->
+      <!-- Data from Wk 1 → tradeoff reasoning -->
       <div class="cs-iter-tradeoffs reveal">
         <div class="cs-iter-tradeoff">
-          <div class="cs-iter-tradeoff-tag">Wk 4 — What we saw</div>
+          <div class="cs-iter-tradeoff-tag">Data from Wk 1</div>
           <div class="cs-iter-tradeoff-title">53% dropped at step 1</div>
           <div class="cs-iter-tradeoff-body">The phone number ask came cold — users had no context for the product or why it needed their number. No trust had been built yet.</div>
         </div>
@@ -608,15 +609,23 @@
         </div>
       </div>
 
-      <!-- v2: Revised flow — Wk 5–6 -->
+      <!-- v2: Revised flow — Wk 2 -->
       <div class="cs-iter-frame reveal">
-        <span class="cs-iter-badge v2">v2 — Revised flow &nbsp;·&nbsp; Wk 5–6</span>
-        <p class="cs-p" style="margin: 6px 0 12px; font-size:13px; color:var(--g2);">Added visual progression (1 of 4, 2 of 4…). Simplified copy from engineering-speak to plain language. Added illustrations to make it feel human, not clinical.</p>
+        <span class="cs-iter-badge v2">v2 — Revised flow &nbsp;·&nbsp; Wk 2</span>
+        <p class="cs-p" style="margin: 6px 0 12px; font-size:13px; color:var(--g2);">Redesigned based on Wk 1 data. Moved coach selection to step 1 to build trust early, pushed the phone number ask to the end of the flow.</p>
         <div class="cs-expandable-img">
           <img src="assets/habit-coach/Wireframe 2.png" alt="Revised wireframe flow" />
           <button class="cs-expand-btn" onclick="openLightbox('assets/habit-coach/Wireframe 2.png')">↗ View full</button>
         </div>
       </div>
+
+      <!-- Wk 3: Hi-fi + Wk 4: Ship & measure -->
+      <p class="cs-p" style="margin:28px 0 6px; font-size:13px; color:var(--g2);">
+        <strong style="color:var(--g1);">Wk 3</strong> &nbsp;— Translated the revised wireframes into high-fidelity mockups with light/dark mode variations.
+      </p>
+      <p class="cs-p" style="margin:0 0 0; font-size:13px; color:var(--g2);">
+        <strong style="color:var(--g1);">Wk 4</strong> &nbsp;— Shipped and monitored via Amplitude. Identified a second drop at step 2: too much text, confusing button placement, no sense of progress. Added visual progression (1 of 4, 2 of 4…), simplified copy from engineering-speak to plain language, and added illustrations to make it feel human, not clinical.
+      </p>
       <div class="cs-reality">
         <div class="cs-reality-label">Reality check</div>
         <div class="cs-reality-text">It took 3 iterations to get the flow right. The first version still had too much text. The second version had confusing button placement. The third version worked.</div>
