@@ -40,22 +40,6 @@ To view changes: refresh the browser. No compilation, no hot reload needed.
 
 ## Git & Push Rules — READ BEFORE EVERY COMMIT/PUSH
 
-### Always use Homebrew git, never Apple git
-
-```bash
-# Check which git you're using
-which git          # should be /opt/homebrew/bin/git
-git --version      # should be 2.50+ (Homebrew), NOT 2.39.2 (Apple)
-
-# If wrong, fix for this session:
-export PATH="/opt/homebrew/bin:$PATH"
-
-# Or call explicitly:
-/opt/homebrew/bin/git push origin main
-```
-
-Apple's bundled git 2.39.2 has an HTTP/2 bug that sends only 14 bytes of the pack file — GitHub rejects the push silently. Always use Homebrew git.
-
 ### Required git config (set once, persists)
 
 ```bash
@@ -99,11 +83,11 @@ The remote will reset the connection if a single push is too large (~50MB+ is ri
 # Example batch push workflow
 git add assets/habit-coach/video1.mp4 assets/habit-coach/image1.png
 git commit -m "Add habit coach hero media"
-/opt/homebrew/bin/git push origin main
+git push origin main
 
 git add assets/habit-coach/video2.mp4 assets/habit-coach/image2.png
 git commit -m "Add habit coach core experience media"
-/opt/homebrew/bin/git push origin main
+git push origin main
 ```
 
 ---
@@ -155,7 +139,6 @@ Before staging and committing:
 - [ ] All new video files are `.mp4` (not `.mov`)
 - [ ] Video files verified with `file` command — "ISO Media, MP4 Base Media"
 - [ ] `git config --list | grep lfs` returns nothing
-- [ ] Using `/opt/homebrew/bin/git` (not Apple git)
 - [ ] `http.postBuffer` set to `524288000`
 - [ ] Planning to push in batches if adding multiple large files
 - [ ] Tested media in Chrome (not just Safari) on localhost
@@ -181,7 +164,6 @@ Before staging and committing:
 
 | Problem | Root Cause | Fix |
 |---|---|---|
-| Push sends only 14 bytes | Apple git 2.39.2 HTTP/2 bug | Use `/opt/homebrew/bin/git` |
 | Push fails "unable to rewind rpc post data" | `http.postBuffer` too small | `git config http.postBuffer 524288000` |
 | GitHub Pages shows broken images/videos | Git LFS was enabled | Remove LFS entirely; store as real git objects |
 | Videos broken on Chrome/Firefox | `.mov` files, `Content-Type: video/quicktime` | Convert to `.mp4` with ffmpeg |
