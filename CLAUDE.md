@@ -40,6 +40,14 @@ To view changes: refresh the browser. No compilation, no hot reload needed.
 
 ## Git & Push Rules — READ BEFORE EVERY COMMIT/PUSH
 
+### Git version
+
+Requires git 2.40+. Check with `git --version`. If older, update via Homebrew:
+
+```bash
+brew install git   # then open a new terminal — PATH will pick up the new version
+```
+
 ### Required git config (set once, persists)
 
 ```bash
