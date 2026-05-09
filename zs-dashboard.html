@@ -119,6 +119,12 @@
     .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
     .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
 
+    /* ─── STAT CARDS ─── */
+    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .cs-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
+    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
+
     /* ─── FOCUS AREAS ─── */
     .cs-exp-header { margin-bottom: 28px; }
     .cs-exp-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--zs); margin-bottom: 6px; }
@@ -266,6 +272,7 @@
       .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5) !important; }
       .cs-meta-item:last-child { border-bottom: none !important; }
       .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-cards { grid-template-columns: 1fr; }
       .cs-exp-grid { grid-template-columns: 1fr; }
       .cs-themes { grid-template-columns: 1fr; }
       .cs-iter-tradeoffs { grid-template-columns: 1fr; }
@@ -409,6 +416,21 @@
       <div class="cs-section-label">The challenge</div>
       <p class="cs-p">Sales data, incentive progress, and goal tracking lived in separate tools. A field rep checking their quarterly performance had to navigate multiple systems — with numbers that rarely matched and no single place to act on what they found.</p>
       <p class="cs-p">Without a unified view, tracking progress was slow and error-prone. Managers couldn't spot struggling reps in time. Executives lacked a reliable signal. Reps stopped trusting the data.</p>
+
+      <div class="cs-cards" style="margin: 28px 0;">
+        <div class="cs-card">
+          <div class="cs-card-num">&lt; 30%</div>
+          <div class="cs-card-label">Weekly active usage among field reps — most had abandoned the dashboard entirely before the redesign.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-card-num">3+</div>
+          <div class="cs-card-label">Separate systems reps navigated daily just to check their performance, payouts, and rankings.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-card-num">1 in 3</div>
+          <div class="cs-card-label">Reps reported incentive discrepancies due to mismatched data across disconnected tools.</div>
+        </div>
+      </div>
 
       <div class="cs-hmw">
         <div class="cs-hmw-label">How might we</div>
