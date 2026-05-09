@@ -73,8 +73,7 @@
     }
     .cs-hero-showcase video,
     .cs-hero-showcase img {
-      width: 100%; max-height: 78vh; object-fit: cover; display: block;
-      border-radius: 0;
+      width: 100%; height: auto; display: block;
     }
 
     .cs-section { margin-bottom: 80px; }
@@ -85,10 +84,11 @@
     .cs-p:last-child { margin-bottom: 0; }
 
     /* Stat cards */
-    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
     .cs-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
-    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--zs-ds); line-height: 1; margin-bottom: 8px; }
     .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
+    .cs-cards-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-top: 28px; margin-bottom: 10px; }
 
     /* HMW — black box */
     .cs-hmw { background: var(--black); border-radius: 16px; padding: 44px 48px; }
@@ -142,7 +142,7 @@
     .cs-placeholder.large { height: 360px; }
 
     /* Feedback list inside iter frames */
-    .cs-feedback-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 10px; margin-top: 4px; }
+    .cs-feedback-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--zs-ds); margin-bottom: 10px; margin-top: 4px; }
     .cs-feedback-item {
       font-size: 13px; color: var(--g2); line-height: 1.55;
       padding: 8px 0 8px 16px;
@@ -157,11 +157,27 @@
       background: var(--g4);
     }
 
+    /* Media images */
+    .cs-media { width: 100%; display: block; border-radius: 12px; border: 1px solid var(--g5); margin: 20px 0; }
+    .cs-media-caption { font-size: 12px; color: var(--g3); margin-top: -12px; margin-bottom: 20px; }
+
+    /* Design principles */
+    .cs-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .cs-principle { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 22px; }
+    .cs-principle-title { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+    .cs-principle-desc { font-size: 13px; color: var(--g2); line-height: 1.55; }
+
+    /* Reflections */
+    .cs-reflections { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+    .cs-reflection { padding: 18px 0 18px 20px; border-bottom: 1px solid var(--g5); position: relative; font-size: 14px; color: var(--g2); line-height: 1.7; }
+    .cs-reflection:last-child { border-bottom: none; }
+    .cs-reflection::before { content: ''; position: absolute; left: 0; top: 26px; width: 6px; height: 6px; border-radius: 50%; background: var(--zs-ds); }
+
     /* What shipped steps */
     .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
     .cs-step { display: flex; gap: 28px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--g5); }
     .cs-step:last-child { border-bottom: none; }
-    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; font-variant-numeric: tabular-nums; }
+    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--zs-ds); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; font-variant-numeric: tabular-nums; }
     .cs-step-body {}
     .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
     .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
@@ -277,18 +293,19 @@
     <p class="cs-p">ZAIDYN was a multi-product platform serving a complex ecosystem across pharma sales. But the teams building it (researchers, designers, engineers) each carried their own definition of who the users were. Every new feature shipped with a slightly different user in mind, and the misalignment compounded with every sprint.</p>
     <p class="cs-p">There was no standard format, no reusable artifact, and no single source of truth. Persona creation was ad hoc, siloed, and couldn't scale.</p>
 
-    <div class="cs-cards" style="margin: 28px 0;">
+    <div class="cs-cards-label">The state before this project</div>
+    <div class="cs-cards">
       <div class="cs-card">
         <div class="cs-card-num">30+</div>
-        <div class="cs-card-label">Distinct user types across the ZAIDYN platform, with no unified format to represent any of them.</div>
+        <div class="cs-card-label">User types that needed representing across ZAIDYN, each defined differently by a different team.</div>
       </div>
       <div class="cs-card">
         <div class="cs-card-num">5+</div>
-        <div class="cs-card-label">Product teams, each operating on their own definition of the same users with no shared language.</div>
+        <div class="cs-card-label">Teams building for users they couldn't agree on, with no shared definition or format.</div>
       </div>
       <div class="cs-card">
         <div class="cs-card-num">0</div>
-        <div class="cs-card-label">Reusable templates before this project. Every persona was built from scratch, each time, differently.</div>
+        <div class="cs-card-label">Shared templates. Every persona built from scratch, by different people, with different outputs.</div>
       </div>
     </div>
   </div>
@@ -301,7 +318,31 @@
     </div>
   </div>
 
-  <!-- 02 — THE APPROACH -->
+  <!-- 02 — DESIGN PRINCIPLES -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Design principles</div>
+    <h2 class="cs-h2">Four principles that <em>shaped every decision</em></h2>
+    <div class="cs-principles">
+      <div class="cs-principle">
+        <div class="cs-principle-title">Empathy-Driven</div>
+        <div class="cs-principle-desc">Design with deep user understanding and emotional connection. Personas should feel like real people, not data summaries.</div>
+      </div>
+      <div class="cs-principle">
+        <div class="cs-principle-title">Scalable &amp; Flexible</div>
+        <div class="cs-principle-desc">Adaptable templates that work for 2 personas or 200, scaling to new user groups without breaking down.</div>
+      </div>
+      <div class="cs-principle">
+        <div class="cs-principle-title">Data-Informed</div>
+        <div class="cs-principle-desc">Let research data guide structure while balancing creative storytelling, grounded in facts and readable at a glance.</div>
+      </div>
+      <div class="cs-principle">
+        <div class="cs-principle-title">Inclusive &amp; Simple</div>
+        <div class="cs-principle-desc">Prioritize accessibility and simplicity: non-Figma users should be able to open and edit layouts without special expertise.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — THE APPROACH -->
   <div class="cs-section reveal">
     <div class="cs-section-label">The approach</div>
     <h2 class="cs-h2">Not a data table. <em>A person.</em></h2>
@@ -352,7 +393,7 @@
       <div class="cs-iter-frame is-final">
         <span class="cs-iter-badge vf">v2.0 · Shipped</span>
         <p class="cs-p" style="margin-bottom: 0;">The version that scaled. Clean text hierarchy, org chart embedded in the Day in Life section, persona group tags for navigation, and 20px body text for readability at 1920×1080. Editable by anyone.</p>
-        <div class="cs-placeholder large">Final persona template v2.0 — screenshot placeholder</div>
+        <img src="assets/zs-design-system/persona-hero.png" alt="Final persona template v2.0 — Dhara, Data Scientist" class="cs-media" />
         <div class="cs-feedback-label">Final refinements applied</div>
         <div class="cs-feedback-item">Persona group tag added to the right side for quick visual identification across the full library</div>
         <div class="cs-feedback-item">Org chart moved into the Day in Life section: wider, justified text, indents removed</div>
@@ -404,6 +445,10 @@
         </div>
       </div>
     </div>
+    <img src="assets/zs-design-system/persona-v2-final.png" alt="Standardized Figma persona templates library" class="cs-media" style="margin-top: 32px;" />
+    <p class="cs-media-caption">Standardized templates page in Figma: select, copy, and start editing immediately</p>
+    <img src="assets/zs-design-system/master-components.jpg" alt="Master persona components in Figma showing multiple persona drafts" class="cs-media" />
+    <p class="cs-media-caption">Master file in use: multiple persona drafts across user groups, all built from the same components</p>
   </div>
 
   <!-- 05 — IMPACT -->
@@ -414,20 +459,32 @@
     <div class="cs-impact-grid">
       <div class="cs-impact-item">
         <div class="cs-impact-num">80+</div>
-        <div class="cs-impact-label">Personas generated company-wide in a single day using the master template</div>
+        <div class="cs-impact-label">User personas created company-wide in a single day, enabling more personalized and impactful product design</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">15</div>
+        <div class="cs-impact-label">Non-designers guided through the system, directly enhancing design thinking across research and product teams</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">22</div>
+        <div class="cs-impact-label">Editable components in the master file, streamlining workflow with fully customizable, reusable elements</div>
       </div>
       <div class="cs-impact-item">
         <div class="cs-impact-num">10%</div>
-        <div class="cs-impact-label">Project timeline saved through reusable component collaboration across teams</div>
+        <div class="cs-impact-label">Project timeline saved by merging persona design with component architecture from a fellow designer</div>
       </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">5+</div>
-        <div class="cs-impact-label">Product teams aligned to a single user definition format for the first time</div>
-      </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">1 file</div>
-        <div class="cs-impact-label">Source of truth for all ZS persona work, editable by anyone regardless of Figma experience</div>
-      </div>
+    </div>
+  </div>
+
+  <!-- 06 — REFLECTIONS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Reflections</div>
+    <h2 class="cs-h2">What this project <em>taught me</em></h2>
+    <div class="cs-reflections">
+      <div class="cs-reflection">Collaborating with lead user researchers and a visual designer clarified the persona design process and showed how a well-structured system can scale empathy across an entire company, not just a single team.</div>
+      <div class="cs-reflection">Structured feedback calls with researchers after each version were the single biggest driver of design quality. Getting specific critique on real artifacts beats any amount of solo iteration.</div>
+      <div class="cs-reflection">Optimizing for 1920×1080 from the start meant the file worked equally well in Figma, on the web, and in executive presentations without any reformatting overhead.</div>
+      <div class="cs-reflection">Merging persona design with component architecture from a fellow designer let me fulfill requirements faster and saved 10% of the project timeline. Cross-disciplinary learning inside a sprint has real ROI.</div>
     </div>
   </div>
 
