@@ -14,7 +14,7 @@ Working notes and context for Claude Code sessions on this repo.
 ## Reference Site
 
 **https://www.vyomikaparikh.com** — Vyomika's original Wix portfolio.
-Each case study page here should mirror the corresponding Wix page as closely as possible.
+Content is sourced from these Wix pages, but the **design language must match the portfolio site** (Inter, greyscale, habit-coach style) — NOT the Wix aesthetic.
 
 | Local file | Reference URL |
 |---|---|
@@ -25,38 +25,63 @@ Each case study page here should mirror the corresponding Wix page as closely as
 
 ---
 
+## Portfolio Design Language (apply to ALL case study pages)
+
+`habit-coach-ai.html` is the canonical reference for look and feel.
+
+- **Font:** Inter only (no Poppins)
+- **Palette:** Greyscale base (`--black`, `--g1`–`--g6`, `--white`) + per-project accent used sparingly
+- **Layout:** `cs-wrap` max-width 820px, editorial
+- **Hero showcase:** full-bleed block with project accent bg color, image inside with border-radius + shadow
+- **Sections:** numbered dividers (`01 — Section Name` + horizontal rule)
+- **HMW block:** black bg container, italic text, contained (not full-bleed)
+- **Impact cards:** dark black bg — NOT peach/colored
+- **Footer:** minimal 2-col (name + links/social), NOT centered lavender
+- **Lightbox:** yes, on wireframe/exploration images
+- **Next project:** cs-next bordered card at bottom
+
+Per-project accent colors (used for `cs-exp-label`, `cs-solution-label`, `--zs` etc.):
+- Habit Coach: `#6366F1` (indigo)
+- ZS Dashboard: `#E8820C` (orange)
+
+---
+
 ## Case Study Status
 
-### `zs-dashboard.html` ✅ Rebuilt — 2026-05-09
-Rebuilt from scratch to match https://www.vyomikaparikh.com/zs-zaidyn.
+### `zs-dashboard.html` ✅ Redesigned — 2026-05-09
+Rebuilt to match portfolio design language (Inter, greyscale, habit-coach style). Content sourced from vyomikaparikh.com/zs-zaidyn but design is independent.
 
 **Design:**
-- Accent color: orange `#E8820C`
-- Fonts: Poppins (headings) + Inter (body)
-- Hero image + all product screenshots pulled from Wix CDN (public URLs, no local copies yet)
+- Accent: `--zs: #E8820C` used sparingly (labels, solution labels, exp-label)
+- Font: Inter only
+- Hero showcase: full-bleed orange bg block
+- All product screenshots: Wix CDN (public URLs, no local copies yet)
 
 **Section order:**
-1. Hero tags (HEALTH TECH · DASHBOARD · WEB) + bold title
-2. Full-width ZAIDYN dashboard hero image (Wix CDN)
-3. Meta two-column — Duration / Role / Team | Platform description
-4. Problem Statement
-5. Project Impact — 3 peach cards (45,000+ / $2.5B+ / 75%)
-6. My Focus Areas — 2×2 image grid + NDA disclaimer
-7. Multi-Platform Incentives Dashboard heading
-8. The Challenge — two-column label + bullets
-9. Orange full-width quote block
-10. Design Process — research grid + 4 friction point cards
-11. Design Explorations — italic heading + wireframes image
-12. Final Solution — 5 alternating image/text blocks (peach bg)
-13. Project Impact — repeated
-14. My Contribution — bullet list
-15. Lavender footer — "Thank you for the visit" + email
+1. Hero — eyebrow, thin-weight title, subtitle, meta 2×2
+2. Hero showcase — full-bleed orange, dashboard hero image
+3. Product context — italic quote box
+4. Scale — dark impact cards ("The scale I was designing for")
+5. My Focus Areas — cs-exp-card grid (1 clickable, 3 NDA)
+6. DIVIDER
+7. 01 — Multi-Platform Incentives Dashboard (section-divider)
+8. The Challenge — prose + black HMW box
+9. Design Process — cs-steps (Discovery / Analysis / Friction Mapping)
+10. Friction Points — 4 cs-theme cards 2×2
+11. Design Explorations — before placeholder + tradeoff cards + wireframe iter-frame
+12. Final Solution — 5 cs-solution blocks (label + title + resolves + image + decisions)
+13. DIVIDER
+14. After Launch — dark impact cards (payoff)
+15. My Contribution — cs-steps (mentoring first)
+16. Learnings — cs-steps numbered
+17. DIVIDER
+18. Next project → Tata Motors
+19. Footer (minimal 2-col)
 
-**Still to do / brainstorm:**
-- [ ] Review content depth — expand any sections?
-- [ ] Before/after comparison in Design Explorations?
+**Still to do:**
+- [ ] Before screenshot of old ZAIDYN dashboard (placeholder in Design Explorations)
+- [ ] Verify/refine Learnings copy with Vyomika
 - [ ] Download Wix CDN images locally so they don't depend on Wix
-- [ ] Add "Next project" nav link at bottom
 - [ ] Commit to git
 
 ---
