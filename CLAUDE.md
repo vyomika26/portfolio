@@ -23,6 +23,14 @@ CSS custom properties defined in `index.html` and reused across pages:
 - Font sizing: use `clamp()` for responsive type (e.g. `clamp(28px, 3.2vw, 46px)`)
 - Scroll animations: `.reveal` class with `IntersectionObserver` — elements fade/slide in on scroll
 
+## Copy & Writing Rules
+
+When writing or editing any visible text on the site (headings, body copy, captions, labels, descriptions):
+
+- **No em-dashes (—) in prose.** They are an LLM tell and make copy feel machine-generated. Replace with a comma, period, colon, semicolon, or rewrite the sentence.
+- Em-dashes are **only acceptable** in structural UI labels where they are a deliberate design pattern: section dividers (`01 — Section Name`), badge labels (`Before — Existing state`), page titles, and image alt text.
+- Write in a direct, human voice. Avoid filler phrases like "ensuring that", "leveraging", "seamlessly", "robust", "streamlining" unless quoting a real product description.
+
 ## Development
 
 No build step — open HTML files directly in a browser or use a local server:
