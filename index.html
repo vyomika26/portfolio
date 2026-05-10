@@ -150,6 +150,7 @@
       position: relative; width: 100%; overflow: hidden;
       background: var(--g5); border-radius: 20px 20px 0 0;
       aspect-ratio: 16 / 10;
+      transform: translateZ(0); /* Chrome: force compositing so overflow:hidden clips video */
     }
     .proj-media video {
       position: absolute; top: 0; left: 0;
@@ -161,8 +162,8 @@
     }
     .proj-card:hover .proj-media video { transform: scale(1.05); }
     #v1 { object-position: center center; }
-    #v3 { object-position: center center; transform: scale(1.08); transform-origin: center center; }
-    .proj-card:hover #v3 { transform: scale(1.14); }
+    #v3 { object-position: center center; transform: scale(1.01); transform-origin: center center; }
+    .proj-card:hover #v3 { transform: scale(1.05); }
 
     .proj-scrim {
       position: absolute; inset: 0;
