@@ -63,14 +63,18 @@
     .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
 
     .cs-hero-showcase {
-      margin-top: 56px; margin-bottom: 80px;
-      border-radius: 20px; overflow: hidden;
-      transform: translateZ(0); /* Chrome: force compositing for proper border-radius clip */
+      width: 100vw; position: relative; left: 50%;
+      margin-left: -50vw; margin-right: -50vw;
+      margin-bottom: 80px;
+      background: var(--white);
+      padding: 28px 56px;
+      transform: translateZ(0);
       opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
-      box-shadow: 0 24px 72px rgba(0,0,0,0.22);
     }
     .cs-hero-showcase video {
       width: 100%; height: auto; display: block;
+      border-radius: 12px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
     }
 
     .cs-section { margin-bottom: 80px; }
@@ -238,6 +242,7 @@
       .cs-hmw { padding: 28px 24px; }
       .cs-meta { flex-direction: column; }
       .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5); margin-right: 0; }
+      .cs-hero-showcase { padding: 16px 20px; }
       footer { padding: 36px 20px; flex-direction: column; }
       .footer-right { align-items: flex-start; }
     }
@@ -292,13 +297,13 @@
   </div>
 </div>
 
-<div class="cs-wrap">
+<div class="cs-hero-showcase">
+  <video autoplay muted loop playsinline>
+    <source src="assets/zs-design-system/video.mp4" type="video/mp4" />
+  </video>
+</div>
 
-  <div class="cs-hero-showcase">
-    <video autoplay muted loop playsinline>
-      <source src="assets/zs-design-system/video.mp4" type="video/mp4" />
-    </video>
-  </div>
+<div class="cs-wrap">
 
   <!-- 01 — THE PROBLEM -->
   <div class="cs-section reveal">
