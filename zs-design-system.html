@@ -161,6 +161,23 @@
     .cs-media { width: 100%; display: block; border-radius: 12px; border: 1px solid var(--g5); margin: 20px 0; }
     .cs-media-caption { font-size: 12px; color: var(--g3); margin-top: -12px; margin-bottom: 20px; }
 
+    /* Full-bleed image inside iter-frame — breaks out of 28px padding */
+    .cs-iter-frame .cs-media {
+      width: calc(100% + 56px);
+      margin-left: -28px;
+      margin-right: -28px;
+      border-radius: 8px;
+      border-left: none;
+      border-right: none;
+    }
+
+    /* What shipped subsection headings */
+    .cs-shipped-h { font-size: 16px; font-weight: 500; color: var(--black); letter-spacing: -0.02em; margin: 40px 0 6px; }
+    .cs-shipped-desc { font-size: 14px; color: var(--g2); line-height: 1.7; margin-bottom: 16px; }
+    .cs-getting-started { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .cs-gs-step { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; color: var(--g2); line-height: 1.6; }
+    .cs-gs-num { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(13,148,136,0.1); color: var(--zs-ds); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
     /* Design principles */
     .cs-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
     .cs-principle { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 22px; }
@@ -416,40 +433,55 @@
   <div class="cs-section reveal">
     <div class="cs-section-label">What shipped</div>
     <h2 class="cs-h2">A master file that <em>anyone could open</em> and use</h2>
+    <p class="cs-p">Two deliverables came out of the final design sprint: a scalable Figma component library and a step-by-step annotation guide. Together they let any designer or researcher across the company pick up a persona, customize it, and ship it without a handoff meeting.</p>
+
+    <div class="cs-shipped-h">Generating Editable Master Components</div>
+    <div class="cs-shipped-desc">Versatile, editable components that streamline the research process and ensure consistency across projects. A single Figma source of truth optimized for 1920×1080 so it works across web and presentation formats without reformatting.</div>
     <div class="cs-steps">
       <div class="cs-step">
         <div class="cs-step-num">01</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Master file template</div>
-          <div class="cs-step-desc">A single Figma source of truth with fully editable components, optimized for 1920×1080 so it works across web and presentation formats without reformatting.</div>
+          <div class="cs-step-title">Standardized template library</div>
+          <div class="cs-step-desc">One master file with fully editable persona cards for all 30+ user types, built from shared components so every persona stays visually consistent regardless of who edits it.</div>
         </div>
       </div>
       <div class="cs-step">
         <div class="cs-step-num">02</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Comprehensive usage guide</div>
-          <div class="cs-step-desc">Detailed annotations and content guidelines, written so a new ZSer or someone unfamiliar with pharma could understand the personas without needing a briefing.</div>
+          <div class="cs-step-title">Day in Life org charts</div>
+          <div class="cs-step-desc">Embedded relationship maps within each persona showing how users connect to each other, giving teams immediate context on collaboration patterns and decision flows.</div>
         </div>
       </div>
       <div class="cs-step">
         <div class="cs-step-num">03</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Day in Life org charts</div>
-          <div class="cs-step-desc">Embedded relationship maps within each persona showing how users connect to each other, giving teams immediate context on collaboration patterns and decision flows.</div>
-        </div>
-      </div>
-      <img src="assets/zs-design-system/day-in-life.png" alt="Day in Life section with embedded org chart showing user relationships" class="cs-media" style="margin: 8px 0 24px;" />
-      <div class="cs-step">
-        <div class="cs-step-num">04</div>
-        <div class="cs-step-body">
           <div class="cs-step-title">Persona group tags</div>
-          <div class="cs-step-desc">Right-side tagging system for quick visual identification across 30+ personas, enabling teams to sort, filter, and navigate the full persona library at a glance.</div>
+          <div class="cs-step-desc">Right-side tagging system for quick visual identification across 30+ personas, enabling teams to sort, filter, and navigate the full library at a glance.</div>
         </div>
       </div>
     </div>
-    <img src="assets/zs-design-system/persona-v2-final.png" alt="Standardized Figma persona templates library" class="cs-media" style="margin-top: 32px;" />
+    <img src="assets/zs-design-system/persona-v2-final.png" alt="Standardized Figma persona templates library" class="cs-media" style="margin-top: 24px;" />
     <p class="cs-media-caption">Standardized templates page in Figma: select, copy, and start editing immediately</p>
-    <img src="assets/zs-design-system/master-components.jpg" alt="Master persona components in Figma showing multiple persona drafts" class="cs-media" />
+    <img src="assets/zs-design-system/day-in-life.png" alt="Day in Life section with embedded org chart showing user relationships" class="cs-media" />
+    <p class="cs-media-caption">Day in Life section embedded inside each persona, showing role relationships and collaboration patterns</p>
+
+    <div class="cs-shipped-h">User Guide with Annotation</div>
+    <div class="cs-shipped-desc">A comprehensive step-by-step guide with detailed annotations, written so a new ZSer or someone unfamiliar with pharma could pick up and use the system without a briefing.</div>
+    <div class="cs-getting-started">
+      <div class="cs-gs-step">
+        <div class="cs-gs-num">1</div>
+        <div>Select the persona template pages of your choice in the Standardized Templates section and make a copy. Do not edit the original — it stays as the blank template for future use.</div>
+      </div>
+      <div class="cs-gs-step">
+        <div class="cs-gs-num">2</div>
+        <div>Paste the pages in your workspace on Figma. The copy works in the same file, a different page, or a new Figma file entirely.</div>
+      </div>
+      <div class="cs-gs-step">
+        <div class="cs-gs-num">3</div>
+        <div>Edit directly. All text, images, and components are unlocked. No prior Figma experience needed.</div>
+      </div>
+    </div>
+    <img src="assets/zs-design-system/master-components.jpg" alt="Master persona components in Figma showing multiple persona drafts" class="cs-media" style="margin-top: 24px;" />
     <p class="cs-media-caption">Master file in use: multiple persona drafts across user groups, all built from the same components</p>
   </div>
 
