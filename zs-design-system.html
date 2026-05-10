@@ -558,6 +558,17 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Reset hero video to t=0 whenever it enters the viewport so it always starts on the role badges frame
+  const heroVideo = document.querySelector('.cs-hero-showcase video');
+  if (heroVideo) {
+    const heroObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { heroVideo.currentTime = 0; heroVideo.play(); }
+      });
+    }, { threshold: 0.3 });
+    heroObs.observe(document.querySelector('.cs-hero-showcase'));
+  }
 </script>
 </body>
 </html>
