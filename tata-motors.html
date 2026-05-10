@@ -17,8 +17,9 @@
       --g5:     #EFEFEF;
       --g6:     #F7F7F7;
       --white:  #FFFFFF;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --tata:   #1048C8;
+      --font:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,6 +29,7 @@
     a { color: inherit; text-decoration: none; }
     img, video { display: block; }
 
+    /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 300;
       height: 56px; display: flex; align-items: center; justify-content: space-between;
@@ -48,64 +50,155 @@
     .nav-back { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--g2); padding: 6px 13px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
     .nav-back:hover { background: var(--g5); color: var(--black); }
 
+    /* ─── LAYOUT ─── */
     .cs-wrap { max-width: 820px; margin: 0 auto; padding: 0 40px; }
+
+    /* ─── HERO ─── */
     .cs-hero { padding-top: 96px; padding-bottom: 64px; }
-    .cs-eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards; }
-    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g4); }
-    .cs-title { font-size: clamp(32px, 5vw, 60px); font-weight: 400; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards; }
+    .cs-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; font-weight: 400; color: var(--g2); margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards;
+    }
+    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g3); }
+    .cs-title {
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 400; letter-spacing: -0.04em; line-height: 1.1;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+    }
     .cs-title em { font-style: italic; font-weight: 300; color: var(--g2); }
-    .cs-subtitle { font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 600px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards; }
-    .cs-meta { display: flex; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards; }
-    .cs-meta-item { padding: 16px 32px 16px 0; margin-right: 32px; }
-    .cs-meta-item:last-child { margin-right: 0; }
+    .cs-subtitle {
+      font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 640px;
+      margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+    }
+    .cs-meta {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards;
+    }
+    .cs-meta-item { padding: 16px 24px 16px 0; }
+    .cs-meta-item:nth-child(-n+2) { border-bottom: 1px solid var(--g5); }
+    .cs-meta-item:nth-child(n+3) { padding-top: 20px; }
     .cs-meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 4px; }
     .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
 
-    .cs-hero-video { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 56px; margin-bottom: 80px; background: var(--g6); overflow: hidden; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards; }
-    .cs-hero-video video { width: 100%; max-height: 80vh; object-fit: cover; display: block; }
+    /* ─── HERO SHOWCASE ─── */
+    .cs-hero-showcase {
+      width: 100vw; position: relative; left: 50%;
+      margin-left: -50vw; margin-right: -50vw;
+      margin-bottom: 80px;
+      background: var(--tata);
+      padding: 28px 56px;
+      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
+    }
+    .cs-hero-showcase img { width: 100%; display: block; border-radius: 12px; box-shadow: 0 12px 48px rgba(0,0,0,0.28); }
 
+    /* ─── SECTIONS ─── */
     .cs-section { margin-bottom: 80px; }
     .cs-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g3); margin-bottom: 20px; }
-    .cs-h2 { font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 18px; }
+    .cs-h2 { font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 18px; color: var(--black); }
     .cs-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
     .cs-p { font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
     .cs-p:last-child { margin-bottom: 0; }
 
-    .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-    .cs-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
-    .cs-card-num { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
-    .cs-card-label { font-size: 13px; color: var(--g2); line-height: 1.5; }
+    /* ─── PRODUCT DESC BOX ─── */
+    .cs-product-desc { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px 28px; margin-bottom: 32px; }
+    .cs-product-desc p { font-size: 15px; color: var(--g1); line-height: 1.75; font-style: italic; }
 
-    .cs-quote { border-left: 2px solid var(--black); padding: 4px 0 4px 24px; margin: 32px 0; }
-    .cs-quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: var(--g1); line-height: 1.6; margin-bottom: 10px; }
-    .cs-quote-attr { font-size: 12px; color: var(--g3); }
+    /* ─── DARK IMPACT GRID ─── */
+    .cs-impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+    .cs-impact-grid.two { grid-template-columns: 1fr 1fr; }
+    .cs-impact-item { background: var(--black); color: var(--white); border-radius: 12px; padding: 28px 24px; }
+    .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; color: var(--tata); }
+    .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
 
-    /* FIELD QUOTES */
-    .cs-field-quotes { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
-    .cs-field-quote { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
-    .cs-field-quote-text { font-size: 14px; font-style: italic; color: var(--g1); line-height: 1.65; margin-bottom: 10px; }
-    .cs-field-quote-loc { font-size: 11px; color: var(--g3); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+    /* ─── FIELD NOTES (sticky) ─── */
+    .cs-field-notes { display: flex; gap: 18px; margin-top: 36px; }
+    .cs-sticky { background: #FFFBE6; border-radius: 2px; padding: 20px 22px 18px; flex: 1; box-shadow: 2px 4px 12px rgba(0,0,0,0.1); }
+    .cs-sticky:nth-child(1) { transform: rotate(1.2deg); }
+    .cs-sticky:nth-child(2) { transform: rotate(-2.4deg); }
+    .cs-sticky:nth-child(3) { transform: rotate(1.6deg); }
+    .cs-sticky-text { font-size: 14px; font-style: italic; font-family: Georgia, 'Times New Roman', serif; color: #2a2a2a; line-height: 1.65; margin-bottom: 14px; }
+    .cs-sticky-attr { font-size: 11px; color: #888; font-weight: 500; letter-spacing: 0.04em; }
 
-    .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    /* ─── SECTION DIVIDER ─── */
+    .cs-section-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .cs-section-divider-num { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g4); flex-shrink: 0; }
+    .cs-section-divider-line { flex: 1; height: 1px; background: var(--g5); }
+
+    /* ─── HMW ─── */
+    .cs-hmw { background: var(--g6); border-left: 4px solid var(--tata); border-radius: 0 12px 12px 0; padding: 28px 32px; margin: 36px 0; }
+    .cs-hmw-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tata); margin-bottom: 14px; }
+    .cs-hmw-text { font-size: clamp(17px, 2.2vw, 22px); font-weight: 400; font-style: italic; font-family: Georgia, 'Times New Roman', serif; line-height: 1.6; color: var(--black); }
+
+    /* ─── THEMES / PROBLEMS ─── */
+    .cs-themes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+    .cs-theme { background: var(--white); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
+    .cs-theme-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
+    .cs-theme-body { font-size: 13px; color: var(--g2); line-height: 1.65; }
+
+    /* ─── STEPS ─── */
+    .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
     .cs-step { display: flex; gap: 28px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--g5); }
     .cs-step:last-child { border-bottom: none; }
-    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; font-variant-numeric: tabular-nums; }
-    .cs-step-body {}
+    .cs-step-num { font-size: 12px; font-weight: 600; color: var(--g4); letter-spacing: 0.06em; flex-shrink: 0; width: 28px; padding-top: 2px; }
     .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
     .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
 
-    .cs-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-    .cs-impact-item { background: var(--black); color: var(--white); border-radius: 12px; padding: 28px 24px; }
-    .cs-impact-num { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
-    .cs-impact-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+    /* ─── PERSONA GRID ─── */
+    .cs-persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+    .cs-persona-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 16px; overflow: hidden; }
+    .cs-persona-img { width: 100%; overflow: hidden; background: var(--g5); }
+    .cs-persona-img img { width: 100%; height: auto; display: block; }
+    .cs-persona-body { padding: 16px 20px 20px; }
+    .cs-persona-name { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: var(--black); margin-bottom: 2px; }
+    .cs-persona-role { font-size: 11px; color: var(--g3); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+    .cs-persona-quote { font-size: 14px; font-style: italic; color: var(--g1); line-height: 1.65; }
 
-    .cs-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-    .cs-principle { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 22px; }
-    .cs-principle-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
-    .cs-principle-desc { font-size: 13px; color: var(--g2); line-height: 1.55; }
+    /* ─── MEDIA ─── */
+    .cs-media { width: 100%; background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; overflow: hidden; margin: 20px 0; }
+    .cs-media img { width: 100%; display: block; }
+    .cs-media:first-child { margin-top: 0; }
 
+    /* ─── SOLUTION BLOCKS ─── */
+    .cs-solution { margin-bottom: 56px; padding-bottom: 56px; border-bottom: 1px solid var(--g5); }
+    .cs-solution:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .cs-solution-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tata); margin-bottom: 8px; }
+    .cs-solution-title { font-size: clamp(17px, 2vw, 21px); font-weight: 500; letter-spacing: -0.02em; color: var(--black); margin-bottom: 8px; line-height: 1.3; }
+    .cs-solution-title em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .cs-solution-resolves { font-size: 13px; color: var(--g3); margin-bottom: 20px; font-style: italic; }
+
+    /* ─── DECISIONS ─── */
+    .cs-decisions { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .cs-decision { display: flex; gap: 12px; align-items: flex-start; }
+    .cs-decision-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--g4); flex-shrink: 0; margin-top: 7px; }
+    .cs-decision-text { font-size: 14px; color: var(--g2); line-height: 1.65; }
+    .cs-decision-text strong { color: var(--g1); font-weight: 500; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 48px; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; border-radius: 10px; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 28px; color: #fff; background: none; border: none; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.15s; }
+    .lightbox-close:hover { opacity: 1; }
+    .cs-expandable-img { position: relative; display: block; width: 100%; cursor: zoom-in; }
+    .cs-expandable-img img { width: 100%; display: block; }
+    .cs-expand-btn {
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(0,0,0,0.6); color: #fff;
+      border: none; border-radius: 8px; padding: 7px 14px;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+    .cs-expand-btn:hover { background: rgba(0,0,0,0.85); }
+
+    /* ─── DIVIDER ─── */
     .cs-divider { border: none; border-top: 1px solid var(--g5); margin: 80px 0; }
 
+    /* ─── NEXT PROJECT ─── */
     .cs-next { display: flex; align-items: center; justify-content: space-between; padding: 32px 36px; border: 1px solid var(--g5); border-radius: 16px; margin-bottom: 80px; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
     .cs-next:hover { background: var(--g6); border-color: var(--g4); }
     .cs-next-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
@@ -113,6 +206,7 @@
     .cs-next-arrow { font-size: 24px; color: var(--g3); transition: transform 0.25s var(--ease-out); }
     .cs-next:hover .cs-next-arrow { transform: translateX(6px); color: var(--black); }
 
+    /* ─── FOOTER ─── */
     footer { padding: 44px 40px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 32px; border-top: 1px solid var(--g5); }
     .footer-left .fn { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
     .footer-left .fr { font-size: 12px; color: var(--g3); margin-bottom: 16px; }
@@ -125,21 +219,25 @@
     .footer-soc-btn { font-size: 12px; font-weight: 500; padding: 7px 15px; border-radius: 100px; border: 1px solid var(--g4); color: var(--g2); transition: all 0.2s; }
     .footer-soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
+    /* ─── REVEAL ─── */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
     .reveal.in { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.05s} .d2{transition-delay:.1s} .d3{transition-delay:.15s}
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* ─── MOBILE ─── */
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .cs-wrap { padding: 0 20px; }
-      .cs-hero { padding-top: 80px; }
-      .cs-cards { grid-template-columns: 1fr; }
-      .cs-impact-grid { grid-template-columns: 1fr; }
-      .cs-principles { grid-template-columns: 1fr; }
-      .cs-meta { flex-direction: column; }
-      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5); margin-right: 0; }
+      .cs-hero { padding-top: 80px; padding-bottom: 40px; }
+      .cs-hero-showcase { padding: 20px; }
+      .cs-meta { grid-template-columns: 1fr; }
+      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5) !important; }
+      .cs-meta-item:last-child { border-bottom: none !important; }
+      .cs-impact-grid { grid-template-columns: 1fr 1fr !important; }
+      .cs-themes { grid-template-columns: 1fr; }
+      .cs-field-notes { flex-direction: column; }
+      .cs-persona-grid { grid-template-columns: 1fr; }
       footer { padding: 36px 20px; flex-direction: column; }
       .footer-right { align-items: flex-start; }
     }
@@ -147,6 +245,13 @@
 </head>
 <body>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-brand">
     <div class="nav-avatar"><img src="assets/shared/profile-pic.png" alt="Vyomika" /></div>
@@ -162,20 +267,23 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="cs-wrap">
   <div class="cs-hero">
     <div class="cs-eyebrow">
-      <span>04</span>
+      <span>Multimodal</span>
       <span class="cs-eyebrow-dot"></span>
-      <span>Accessibility · Multimodal · Search UX</span>
+      <span>Accessibility</span>
+      <span class="cs-eyebrow-dot"></span>
+      <span>Design System</span>
       <span class="cs-eyebrow-dot"></span>
       <span>2021</span>
     </div>
-    <h1 class="cs-title">TATA Motors — <em>Simplifying spare parts search</em> for 52,000 mechanics</h1>
-    <p class="cs-subtitle">Designed a multimodal search experience that helped auto mechanics across India find the right parts faster, using voice, image, and text in their native language.</p>
+    <h1 class="cs-title">TATA Motors — <em>Simplifying spare parts search for 52,000 mechanics</em></h1>
+    <p class="cs-subtitle">A multimodal search experience for Tata Genuine Parts that lets mechanics find the right spare part in seconds, using voice, image, or text in any of India's regional languages.</p>
     <div class="cs-meta">
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Role</div>
+        <div class="cs-meta-label">My Role</div>
         <div class="cs-meta-val">Product Designer</div>
       </div>
       <div class="cs-meta-item">
@@ -183,151 +291,547 @@
         <div class="cs-meta-val">8 weeks · Mar–May 2021</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Type</div>
-        <div class="cs-meta-val">Accessibility · Search UX</div>
+        <div class="cs-meta-label">Team</div>
+        <div class="cs-meta-val">1 PD · 1 UXR · 1 UX Lead · 1 Lead Engineer</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Partner</div>
+        <div class="cs-meta-label">Partner Agency</div>
         <div class="cs-meta-val">YUJ Designs</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cs-hero-video">
-  <video autoplay muted loop playsinline>
-    <source src="assets/tata-motors/video.mp4" type="video/mp4" />
-  </video>
+<!-- HERO SHOWCASE -->
+<div class="cs-hero-showcase">
+  <img
+    src="https://static.wixstatic.com/media/52ea71_b9d5ed0e11f04060bf2576bb1e3c6802f001.jpg/v1/fill/w_1400,h_833,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_b9d5ed0e11f04060bf2576bb1e3c6802f001.jpg"
+    alt="TATA e-Dukaan — multimodal search interface"
+  />
 </div>
 
+<!-- CONTENT -->
 <div class="cs-wrap">
 
+  <!-- PRODUCT CONTEXT -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">The problem</div>
-    <h2 class="cs-h2">A 12% revenue decline caused by <em>a search box that didn't work</em></h2>
-    <p class="cs-p">Tata Genuine Parts was losing 12% of its motor parts revenue, not because of logistics or pricing, but because mechanics couldn't find the parts they needed. Over 52,000 mechanics across India were spending more time searching than repairing.</p>
+    <div class="cs-product-desc">
+      <p>"Tata Genuine Parts (TGP) is the OEM parts division of Tata Motors, supplying components to over 52,000 mechanics across India who service Tata's commercial vehicle fleet. YUJ Designs was brought in to redesign the e-Dukaan search experience from the ground up."</p>
+    </div>
+    <p class="cs-p">I joined as the product designer embedded with YUJ Designs for this engagement. The existing search experience was built around a single text field that required exact part numbers or names: a fundamental mismatch with how mechanics actually work. They know parts by regional nicknames, by sight, or by the vehicle they're pulling them from. Not by catalog codes.</p>
+  </div>
 
-    <div class="cs-cards">
-      <div class="cs-card">
-        <div class="cs-card-num">12%</div>
-        <div class="cs-card-label">Revenue decline in motor parts sales, traced directly to inefficient search experiences.</div>
+  <!-- BUSINESS STAKES -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The business problem</div>
+    <h2 class="cs-h2">A search UX failure <em>with a measurable cost</em></h2>
+    <p class="cs-p">Tata Motors observed a 12% decline in motor parts revenue. The root cause wasn't logistics or pricing. Mechanics were abandoning the platform when they couldn't find what they needed fast enough, sourcing from third-party suppliers instead. Every failed search was a lost sale and a crack in the brand's reliability story.</p>
+    <div class="cs-impact-grid">
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">12%</div>
+        <div class="cs-impact-label">Revenue decline in OEM motor parts, traced to search failures</div>
       </div>
-      <div class="cs-card">
-        <div class="cs-card-num">52K+</div>
-        <div class="cs-card-label">Mechanics across India struggling to locate the right spare parts in time to finish jobs.</div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">52K+</div>
+        <div class="cs-impact-label">Mechanics spending more time searching than repairing</div>
       </div>
-      <div class="cs-card">
-        <div class="cs-card-num">8wk</div>
-        <div class="cs-card-label">Design and delivery timeline: research, prototyping, testing, and handoff in two months.</div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">22</div>
+        <div class="cs-impact-label">Official languages in India, none of which the existing search supported</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">1</div>
+        <div class="cs-impact-label">Search method: text only, for a workforce often wrist-deep in an engine</div>
       </div>
     </div>
   </div>
 
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Research</div>
-    <h2 class="cs-h2">Six mechanic interviews. <em>One clear truth.</em></h2>
-    <p class="cs-p">Conducted field interviews with mechanics in Bangalore, Delhi, and Gujarat, with sessions held in the mechanic's native language, including Gujarati, to eliminate translation barriers and get to the real experience.</p>
+  <hr class="cs-divider" />
 
-    <div class="cs-field-quotes">
-      <div class="cs-field-quote">
-        <div class="cs-field-quote-text">"We spend too much time looking for the parts we need. If we could find parts more easily, we could finish our jobs much more quickly."</div>
-        <div class="cs-field-quote-loc">Mechanic · Bangalore</div>
+  <!-- 01 — THE CHALLENGE -->
+  <div class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">01 — The Challenge</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+
+    <h2 class="cs-h2">Four ways the old design <em>failed the people using it</em></h2>
+    <p class="cs-p">The existing e-Dukaan search was built for the database, not for the mechanic. It assumed users knew exact part numbers, spoke one language, and were typing on a clean keyboard from a desk. None of those assumptions held in the field.</p>
+
+    <!-- OLD UI SCREENSHOT -->
+    <div class="cs-media" style="margin-top: 28px;">
+      <a class="cs-expandable-img" data-src="https://static.wixstatic.com/media/52ea71_19d81d52f35744218ee60ef00489768d~mv2.png/v1/fill/w_1200,h_720,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_19d81d52f35744218ee60ef00489768d~mv2.png">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_19d81d52f35744218ee60ef00489768d~mv2.png/v1/fill/w_1200,h_720,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_19d81d52f35744218ee60ef00489768d~mv2.png"
+          alt="The old e-Dukaan search interface — before redesign"
+        />
+        <button class="cs-expand-btn">Expand</button>
+      </a>
+    </div>
+
+    <div class="cs-themes">
+      <div class="cs-theme">
+        <div class="cs-theme-title">Search one-dimensional</div>
+        <div class="cs-theme-body">Text-only input. No fallback for mechanics who couldn't spell a part name, didn't know its catalog term, or simply had dirty hands.</div>
       </div>
-      <div class="cs-field-quote">
-        <div class="cs-field-quote-text">"We call parts by different names — 'patti' in South India, 'chakka' in the North. I want the search to give results in our terms."</div>
-        <div class="cs-field-quote-loc">Mechanic · Delhi</div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">No visual hierarchy</div>
+        <div class="cs-theme-body">Results arrived as an undifferentiated list with no grouping by assembly, no kit bundling, and no signal about what was previously ordered.</div>
       </div>
-      <div class="cs-field-quote">
-        <div class="cs-field-quote-text">"Having support in Gujarati will make our work even easier."</div>
-        <div class="cs-field-quote-loc">Mechanic · Gujarat</div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">Not inclusive design</div>
+        <div class="cs-theme-body">No accommodations for varying literacy levels, low-light garage conditions, or the physical reality of working with both hands occupied.</div>
       </div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">No multilingual support</div>
+        <div class="cs-theme-body">India has 22 official languages and hundreds of regional dialects. The app recognized exactly one, and expected mechanics to use it correctly.</div>
+      </div>
+    </div>
+
+    <!-- PROBLEMS BANNER -->
+    <div class="cs-media" style="margin-top: 24px;">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_5e5e4c19dfc04ef99c2be76776b4767e~mv2.png/v1/fill/w_1400,h_315,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_5e5e4c19dfc04ef99c2be76776b4767e~mv2.png"
+        alt="Problems in the old design summary"
+      />
+    </div>
+
+    <div class="cs-hmw">
+      <div class="cs-hmw-label">How Might We</div>
+      <div class="cs-hmw-text">"How might we help mechanics quickly find the right auto parts by simplifying the search interface?"</div>
     </div>
   </div>
 
+  <!-- DESIGN PRINCIPLES -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">Original design problems</div>
-    <h2 class="cs-h2">Four critical flaws in the <em>existing experience</em></h2>
-    <div class="cs-principles">
-      <div class="cs-principle">
-        <div class="cs-principle-title">One-dimensional search</div>
-        <div class="cs-principle-desc">Limited to a single search method: no voice, no image, no alternatives for mechanics who work with their hands.</div>
+    <div class="cs-section-label">Design principles going in</div>
+    <h2 class="cs-h2">The four principles <em>that shaped every decision</em></h2>
+    <div class="cs-themes">
+      <div class="cs-theme">
+        <div class="cs-theme-title">Multimodal search</div>
+        <div class="cs-theme-body">Text, voice, and image as equal first-class search methods, not add-ons, each suited to different real-world scenarios.</div>
       </div>
-      <div class="cs-principle">
-        <div class="cs-principle-title">Poor visual hierarchy</div>
-        <div class="cs-principle-desc">Disorganized information presentation with no clear path from search to the correct part in the right quantity.</div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">Relevant information</div>
+        <div class="cs-theme-body">Results organized by assembly and kit, not just keyword match. Show what matters to the job, not what the database knows.</div>
       </div>
-      <div class="cs-principle">
-        <div class="cs-principle-title">Non-inclusive design</div>
-        <div class="cs-principle-desc">No accessibility considerations for mechanics with varying literacy levels, physical constraints, or low-light garage conditions.</div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">Inclusive design</div>
+        <div class="cs-theme-body">Designed for varying literacy levels, low-light conditions, and the physical constraints of garage work. Accessibility as a baseline, not a feature.</div>
       </div>
-      <div class="cs-principle">
-        <div class="cs-principle-title">No multilingual support</div>
-        <div class="cs-principle-desc">India has 22 official languages and hundreds of regional dialects. The app only spoke one.</div>
+      <div class="cs-theme">
+        <div class="cs-theme-title">User-friendly interface</div>
+        <div class="cs-theme-body">A guided experience with smart defaults: recent searches, registered vehicles, and recently viewed parts surfaced before the mechanic types a word.</div>
       </div>
+    </div>
+
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- 02 — RESEARCH & PROCESS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">02 — Research &amp; Process</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+
+    <h2 class="cs-h2">Designing all four modes <em>before talking to a single user</em></h2>
+    <p class="cs-p">We mapped out all four search approaches on a single canvas first, then used this as a conversation starter with mechanics. Testing against something concrete let us validate assumptions quickly rather than designing in a vacuum.</p>
+
+    <!-- BIG WIREFRAME OVERVIEW -->
+    <div class="cs-media" style="margin-top: 24px;">
+      <a class="cs-expandable-img" data-src="https://static.wixstatic.com/media/52ea71_e2be915b337b45b9999af0fe34f81e42~mv2.png/v1/fill/w_1400,h_918,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_e2be915b337b45b9999af0fe34f81e42~mv2.png">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_e2be915b337b45b9999af0fe34f81e42~mv2.png/v1/fill/w_1400,h_918,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_e2be915b337b45b9999af0fe34f81e42~mv2.png"
+          alt="All four search modes mapped on a single canvas"
+        />
+        <button class="cs-expand-btn">Expand</button>
+      </a>
     </div>
   </div>
 
+  <!-- USER INTERVIEWS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">Design solutions</div>
-    <h2 class="cs-h2">Four ways to search. <em>One experience.</em></h2>
+    <div class="cs-section-label">User interviews</div>
+    <h2 class="cs-h2">Six mechanics. <em>Three cities. Four languages.</em></h2>
+    <p class="cs-p">User interviews were the only method that made sense here. We needed to understand cultural and language nuances firsthand, not through intermediaries. Multilingual sessions with the full cross-functional team: UXR, UX Lead, and Lead Engineer joined every call.</p>
+
     <div class="cs-steps">
       <div class="cs-step">
         <div class="cs-step-num">01</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Search by Click</div>
-          <div class="cs-step-desc">Smart defaults on open: shows recent searches, registered vehicle options, and recently viewed parts. One tap to add to cart. Reduces the blank-screen problem that kills momentum.</div>
+          <div class="cs-step-title">Six mechanics across Bangalore, Delhi, and Gujarat</div>
+          <div class="cs-step-desc">Sessions held in each mechanic's preferred language to get unfiltered responses about their actual search experience. No translator, no softening.</div>
         </div>
       </div>
       <div class="cs-step">
         <div class="cs-step-num">02</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Search by Name</div>
-          <div class="cs-step-desc">Intelligent suggestions that group results by assembly and kit, not just keyword matches. Highlights last-ordered items first so repeat jobs are instant.</div>
+          <div class="cs-step-title">I personally interviewed Jay Shah in Gujarati</div>
+          <div class="cs-step-desc">Eliminating the translation layer meant we heard exactly how mechanics describe their frustrations. The engineering lead was present, so constraints reached him directly rather than through a design brief.</div>
         </div>
       </div>
       <div class="cs-step">
         <div class="cs-step-num">03</div>
         <div class="cs-step-body">
-          <div class="cs-step-title">Search by Voice</div>
-          <div class="cs-step-desc">Mechanics speak the part name in their preferred language: Hindi, Gujarati, Tamil, or English. The system understands regional terminology variants like "patti" and "chakka" without needing standardized input.</div>
+          <div class="cs-step-title">Cross-functional listening</div>
+          <div class="cs-step-desc">Having UXR, UX Lead, and Lead Engineer in every session meant decisions could be made with shared context. No telephone-game distortion between research and engineering.</div>
         </div>
       </div>
-      <div class="cs-step">
-        <div class="cs-step-num">04</div>
-        <div class="cs-step-body">
-          <div class="cs-step-title">Search by Image</div>
-          <div class="cs-step-desc">OCR-powered visual identification: mechanics photograph a worn or unfamiliar part to find the right replacement. Dramatically improves accessibility for low-literacy users and complex part identification.</div>
+    </div>
+
+    <div class="cs-field-notes">
+      <div class="cs-sticky">
+        <div class="cs-sticky-text">Mechanics know the part by sight and by sound. The catalog number is the last thing they think about.</div>
+      </div>
+      <div class="cs-sticky">
+        <div class="cs-sticky-text">Same part, four different names depending on which state you're in. None of them wrong.</div>
+      </div>
+      <div class="cs-sticky">
+        <div class="cs-sticky-text">Hands are always occupied. Typing is a last resort, not a default.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Who we designed for</div>
+    <h2 class="cs-h2">Four mechanics. <em>Four different search problems.</em></h2>
+    <div class="cs-persona-grid">
+      <div class="cs-persona-card">
+        <div class="cs-persona-img">
+          <img
+            src="https://static.wixstatic.com/media/52ea71_80187c051f59418b939802ad0564f35e~mv2.png/v1/fill/w_800,h_754,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_80187c051f59418b939802ad0564f35e~mv2.png"
+            alt="Subbu, auto mechanic, Bangalore"
+          />
+        </div>
+        <div class="cs-persona-body">
+          <div class="cs-persona-name">Subbu</div>
+          <div class="cs-persona-role">Auto mechanic · Bangalore</div>
+          <div class="cs-persona-quote">"We spend too much time looking for the parts we need. If we could find parts more easily, we could finish our jobs much more quickly."</div>
+        </div>
+      </div>
+      <div class="cs-persona-card">
+        <div class="cs-persona-img">
+          <img
+            src="https://static.wixstatic.com/media/52ea71_6c02453c0a46475da72d5b21da9909af~mv2.png/v1/fill/w_800,h_620,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_6c02453c0a46475da72d5b21da9909af~mv2.png"
+            alt="Arjun, auto mechanic, Delhi"
+          />
+        </div>
+        <div class="cs-persona-body">
+          <div class="cs-persona-name">Arjun</div>
+          <div class="cs-persona-role">Auto mechanic · Delhi</div>
+          <div class="cs-persona-quote">"We call parts by different names, like 'patti' in South India and 'chakka' in the North. I want the search to give results in our terms."</div>
+        </div>
+      </div>
+      <div class="cs-persona-card">
+        <div class="cs-persona-img">
+          <img
+            src="https://static.wixstatic.com/media/52ea71_844ae53721a24cc7890decef00b18e11~mv2.png/v1/fill/w_800,h_714,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_844ae53721a24cc7890decef00b18e11~mv2.png"
+            alt="Jay, auto mechanic, Gujarat"
+          />
+        </div>
+        <div class="cs-persona-body">
+          <div class="cs-persona-name">Jay</div>
+          <div class="cs-persona-role">Auto mechanic · Gujarat</div>
+          <div class="cs-persona-quote">"Having support in Gujarati will make our work even easier."</div>
+        </div>
+      </div>
+      <div class="cs-persona-card">
+        <div class="cs-persona-img">
+          <img
+            src="https://static.wixstatic.com/media/52ea71_6dda261f719f46b9b2f66dd3cad04fea~mv2.png/v1/fill/w_800,h_651,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_6dda261f719f46b9b2f66dd3cad04fea~mv2.png"
+            alt="Meena, auto mechanic, Gujarat"
+          />
+        </div>
+        <div class="cs-persona-body">
+          <div class="cs-persona-name">Meena</div>
+          <div class="cs-persona-role">Auto mechanic · Gujarat</div>
+          <div class="cs-persona-quote">"As soon as we get the right parts, our work speed picks up, you know?"</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- RESEARCH LEARNINGS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">Key learnings</div>
-    <h2 class="cs-h2">What the <em>first design got wrong</em></h2>
-    <p class="cs-p">The initial approach of searching by fleet number failed immediately. It was designed around what the database knew, not what the mechanic experienced. The moment we ran interviews, we found the real mental model: parts have names, and those names change by region.</p>
-    <p class="cs-p">The biggest shift: stop designing for the system and start designing for the person holding the wrench.</p>
+    <div class="cs-section-label">What we learned</div>
+    <h2 class="cs-h2">What mechanics needed <em>that the app never gave them</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Fast search to minimize downtime</div>
+          <div class="cs-step-desc">A delayed job costs money. Every extra minute searching is a minute the vehicle isn't fixed and the mechanic isn't earning.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Regional terms alongside catalog names</div>
+          <div class="cs-step-desc">Parts have different names in different states. "Patti" and "chakka" aren't wrong; they're just regional. The system needed to know both.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Native language input as a first-class option</div>
+          <div class="cs-step-desc">Not a toggle buried in settings. If a mechanic thinks and speaks in Gujarati, the search should work in Gujarati without friction.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Search that works when hands aren't free</div>
+          <div class="cs-step-desc">Typing requires clean hands. Mechanics often have neither. Voice and image input weren't nice-to-have; they were the only realistic path to accessibility.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- WIREFRAME DETAIL SHEETS -->
   <div class="cs-section reveal">
-    <div class="cs-section-label">Impact</div>
-    <h2 class="cs-h2">Search that finally speaks <em>the mechanic's language</em></h2>
-    <div class="cs-impact-grid">
+    <div class="cs-section-label">Wireframes</div>
+    <h2 class="cs-h2">From insight to interface <em>in four screens</em></h2>
+    <p class="cs-p">Each research finding mapped directly to a wireframe decision. Tactically organized information, realistic part images, and actual vehicle data so mechanics could react to something real rather than something abstract.</p>
+    <div class="cs-media">
+      <a class="cs-expandable-img" data-src="https://static.wixstatic.com/media/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png/v1/crop/x_0,y_0,w_4960,h_1363/fill/w_1400,h_386,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png/v1/crop/x_0,y_0,w_4960,h_1363/fill/w_1400,h_386,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png"
+          alt="Wireframe screens — Search on click and Search by part number"
+        />
+        <button class="cs-expand-btn">Expand</button>
+      </a>
+    </div>
+    <div class="cs-media">
+      <a class="cs-expandable-img" data-src="https://static.wixstatic.com/media/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png/v1/crop/x_0,y_1378,w_4960,h_1470/fill/w_1400,h_415,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png/v1/crop/x_0,y_1378,w_4960,h_1470/fill/w_1400,h_415,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_f6514ce38b8747969bfd19b2cb12be0f~mv2.png"
+          alt="Wireframe screens — Search by fleet number and Search by unusual name"
+        />
+        <button class="cs-expand-btn">Expand</button>
+      </a>
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- 03 — THE SOLUTION -->
+  <div class="cs-section reveal">
+    <div class="cs-section-divider">
+      <span class="cs-section-divider-num">03 — The Solution</span>
+      <div class="cs-section-divider-line"></div>
+    </div>
+
+    <h2 class="cs-h2">Four ways to search. <em>One experience.</em></h2>
+    <p class="cs-p">The final design gives mechanics four search paths that adapt to their situation. Hands dirty? Voice or camera. Know the exact part? Type by name. Just want to reorder? One tap from the home screen. The search method adapts to the mechanic, not the other way around.</p>
+  </div>
+
+  <!-- SOLUTION BLOCKS -->
+  <div class="cs-section reveal">
+    <div class="cs-solution">
+      <div class="cs-solution-label">Search by Click</div>
+      <h3 class="cs-solution-title">Smart defaults that <em>eliminate the blank screen</em></h3>
+      <p class="cs-solution-resolves">Resolves: one-dimensional search, poor repeat-order experience</p>
+      <div class="cs-media">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_26dfedde786b49e88074e0822b8c01cd~mv2.png/v1/fill/w_1400,h_808,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_26dfedde786b49e88074e0822b8c01cd~mv2.png"
+          alt="Search by Click: recent searches, registered vehicles, recently viewed parts"
+        />
+      </div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Recent searches surface first.</strong> The most common use case: a mechanic returning to find the same part they ordered last week. One tap, not a full search.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Registered vehicles shown on open.</strong> Mechanics service the same fleet repeatedly. Tying search to a known vehicle eliminates wrong-part errors before they happen.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Recently viewed parts with quick add-to-cart.</strong> For mechanics mid-job who need to reorder, no search required at all.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-solution reveal">
+      <div class="cs-solution-label">Search by Name</div>
+      <h3 class="cs-solution-title">Suggestions that <em>group by how mechanics think</em></h3>
+      <p class="cs-solution-resolves">Resolves: no visual hierarchy, fragmented search results</p>
+      <div class="cs-media">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_87dfda64899b48438f4a6c9c14ee6e8b~mv2.png/v1/fill/w_1200,h_758,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_87dfda64899b48438f4a6c9c14ee6e8b~mv2.png"
+          alt="Search by Name: suggestions grouped by assembly and kits with last-ordered items"
+        />
+      </div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Results grouped by assembly and kit.</strong> A mechanic replacing brakes needs all the brake components, not an alphabetical list of parts that happen to include the word "brake."</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Last-ordered items highlighted first.</strong> Repeat jobs are the majority of a mechanic's work. Getting to the right part on the second visit should be faster than the first.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Intelligent suggestions on every keystroke.</strong> The system anticipates the part before the mechanic finishes typing, reducing cognitive load in a high-pressure, time-sensitive environment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-solution reveal">
+      <div class="cs-solution-label">Search by Voice</div>
+      <h3 class="cs-solution-title">Speak the part name <em>in any language you know it</em></h3>
+      <p class="cs-solution-resolves">Resolves: no multilingual support, hands-free accessibility</p>
+      <div class="cs-media">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_aca0439d94234b46b7888ca3b3d3d985~mv2.png/v1/fill/w_1200,h_758,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_aca0439d94234b46b7888ca3b3d3d985~mv2.png"
+          alt="Search by Voice: multilingual voice input with regional dialect recognition"
+        />
+      </div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Supports Hindi, Gujarati, Tamil, and English.</strong> Mechanics say the part name in the language they learned it in. The system resolves it to the catalog entry without requiring transliteration.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Regional dialect recognition built in.</strong> "Patti" in Tamil Nadu and "chakka" in Delhi both resolve to the correct part, not a no-results page.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Hands-free by design.</strong> A mechanic under a truck with both hands occupied can speak a search and have results ready when they come back to the screen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-solution reveal">
+      <div class="cs-solution-label">Search by Image</div>
+      <h3 class="cs-solution-title">Photograph a worn part, <em>get the replacement</em></h3>
+      <p class="cs-solution-resolves">Resolves: literacy barriers, worn parts with no visible labels</p>
+      <div class="cs-media">
+        <img
+          src="https://static.wixstatic.com/media/52ea71_fead9d734465489a8b038037322087a5~mv2.png/v1/fill/w_1200,h_758,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_fead9d734465489a8b038037322087a5~mv2.png"
+          alt="Search by Image: OCR-powered visual part identification"
+        />
+      </div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>OCR-powered part number extraction.</strong> If the part still has a visible number or label, the camera reads it directly. No manual transcription, no typos.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Visual matching for worn or unlabeled parts.</strong> When a part is too degraded to have a readable number, image recognition identifies it by shape and context.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-dot"></div>
+          <div class="cs-decision-text"><strong>Accessibility for low-literacy users.</strong> A mechanic who struggles to read in any language can still find the right part. The camera removes the literacy requirement entirely.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN SYSTEM -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Design system</div>
+    <h2 class="cs-h2">Brand consistency <em>without compromising usability</em></h2>
+    <p class="cs-p">We used Tata's existing color system, typography, and brand identity as the foundation. The design language needed to feel like Tata: reliable, confident, built for serious work. We extended it with a cohesive icon system in line-style, 3D, and shaded variations that reinforced trust and pride in the brand at every touchpoint.</p>
+    <div class="cs-media">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_ab1f729762634cfebdb0fa09eb52d520~mv2.png/v1/fill/w_1400,h_437,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_ab1f729762634cfebdb0fa09eb52d520~mv2.png"
+        alt="Tata brand color system"
+      />
+    </div>
+    <div class="cs-media">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_76be4adc134e48ee9a567119a23a5fa0~mv2.png/v1/fill/w_1200,h_779,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_76be4adc134e48ee9a567119a23a5fa0~mv2.png"
+        alt="Icon system: line, 3D, and shaded variations"
+      />
+    </div>
+    <div class="cs-media">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_28eb062d11eb48b79825a9bb4110e54e~mv2.png/v1/fill/w_1200,h_420,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_28eb062d11eb48b79825a9bb4110e54e~mv2.png"
+        alt="Typography system"
+      />
+    </div>
+  </div>
+
+  <hr class="cs-divider" />
+
+  <!-- OUTCOME -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">After launch</div>
+    <h2 class="cs-h2">e-Dukaan shipped. <em>The numbers followed.</em></h2>
+    <p class="cs-p">The redesigned e-Dukaan launched on the Google Play Store. Time to find a part dropped significantly, user satisfaction rose, and adoption spread well beyond the original 52,000 mechanic base.</p>
+    <div class="cs-media">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_7fb209d654044690843ad5402b47ef56~mv2.png/v1/fill/w_1400,h_677,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Success%20%26%20Metrics.png"
+        alt="e-Dukaan: 50K+ downloads, 40% reduced search time, 30% satisfaction increase"
+      />
+    </div>
+    <div class="cs-impact-grid two" style="margin-top: 28px;">
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">40%</div>
+        <div class="cs-impact-label">Reduction in search time after the multimodal redesign shipped</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">30%</div>
+        <div class="cs-impact-label">Increase in user satisfaction score for spare parts purchases</div>
+      </div>
+      <div class="cs-impact-item">
+        <div class="cs-impact-num">50K+</div>
+        <div class="cs-impact-label">Downloads on Google Play Store, far beyond the original user base</div>
+      </div>
       <div class="cs-impact-item">
         <div class="cs-impact-num">4×</div>
-        <div class="cs-impact-label">Search modalities (click, name, voice, and image) replacing a single-method system</div>
+        <div class="cs-impact-label">Search modalities available, replacing a system that only had one</div>
       </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">Multi</div>
-        <div class="cs-impact-label">Language voice search supporting regional dialects and local part name variations across India</div>
+    </div>
+  </div>
+
+  <!-- LEARNINGS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Learnings</div>
+    <h2 class="cs-h2">What this project <em>changed about how I design</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Fleet number search was wrong from the start</div>
+          <div class="cs-step-desc">Our initial design organized search around fleet numbers. Mechanics don't think in fleet numbers. They think in parts, vehicle models, and the job they're trying to finish. The first prototype exposed this gap immediately.</div>
+        </div>
       </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">52K+</div>
-        <div class="cs-impact-label">Mechanics served with a search experience built around how they actually talk about parts</div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Early involvement beats late validation</div>
+          <div class="cs-step-desc">Having mechanics in the room, not just as research subjects at the start but as ongoing references throughout, meant we could pressure-test decisions in real time. We caught wrong assumptions in weeks, not months.</div>
+        </div>
       </div>
-      <div class="cs-impact-item">
-        <div class="cs-impact-num">OCR</div>
-        <div class="cs-impact-label">Image recognition enabling visual part identification for low-literacy and first-time users</div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Cross-language collaboration needs deliberate design</div>
+          <div class="cs-step-desc">Running interviews in Gujarati and Hindi alongside English changed how our team communicated. The engineering lead heard constraints directly instead of filtered through a designer's summary. That directness shortened our iteration cycles.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Accessibility is a product requirement, not a UX nicety</div>
+          <div class="cs-step-desc">Voice and image search weren't built because they're cool features. They were the only realistic way to serve a user base with varying literacy levels working in environments where typing is impractical. Designing for the hardest constraint improved the experience for everyone.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">05</div>
+        <div class="cs-step-body">
+          <div class="cs-step-title">Technology serves the user's mental model</div>
+          <div class="cs-step-desc">OCR and multilingual voice recognition weren't chosen because they were available. They were chosen because mechanics already had a mental model: speak or show the part. The technology let us match it. Start with the behavior, then find the technology that fits.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -336,8 +840,8 @@
 
   <a href="habit-coach-ai.html" class="cs-next reveal">
     <div>
-      <div class="cs-next-label">Back to first project</div>
-      <div class="cs-next-title">Habit Coach AI — AI habit-building coach</div>
+      <div class="cs-next-label">Next project</div>
+      <div class="cs-next-title">Habit Coach AI — AI-powered habit-building coach</div>
     </div>
     <div class="cs-next-arrow">→</div>
   </a>
@@ -348,7 +852,7 @@
   <div class="footer-left">
     <div class="fn">Vyomika Parikh</div>
     <div class="fr">AI Product Designer</div>
-    <div class="fc">Designed by Vyomika Parikh · Last updated April 2026</div>
+    <div class="fc">Designed by Vyomika Parikh · Last updated May 2026</div>
   </div>
   <div class="footer-right">
     <div class="footer-links">
@@ -368,6 +872,18 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.cs-expandable-img').forEach(el => {
+    el.addEventListener('click', () => {
+      lbImg.src = el.dataset.src || el.querySelector('img').src;
+      lb.classList.add('open');
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('open'));
+  lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>
