@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Coach AI — Case Study · Vyomika Parikh</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0D0D0D;
+      --g1: #3D3D3D;
+      --g2: #6B6B6B;
+      --g3: #9A9A9A;
+      --g4: #D4D4D4;
+      --g5: #EFEFEF;
+      --g6: #F7F7F7;
+      --white: #FFFFFF;
+      --accent: #6366F1;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --content-width: 740px;
+      --wide-width: 1000px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g5);
+    }
+    .nav-back { font-size: 13px; color: var(--g2); display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+    .nav-back:hover { color: var(--black); }
+    .nav-right { display: flex; gap: 40px; }
+    .nav-right a { font-size: 13px; color: var(--g3); transition: color 0.15s; }
+    .nav-right a:hover { color: var(--black); }
+
+    /* LAYOUT */
+    .wrap { max-width: var(--content-width); margin: 0 auto; padding: 0 24px; }
+    .wrap-wide { max-width: var(--wide-width); margin: 0 auto; padding: 0 24px; }
+
+    /* HERO */
+    .hero { padding: 120px 24px 80px; max-width: var(--content-width); margin: 0 auto; }
+    .hero-tags {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .hero-tag-pill {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+      padding: 5px 12px; border-radius: 100px;
+      background: var(--g6); color: var(--g1);
+      border: 1px solid var(--g5);
+    }
+    .hero h1 {
+      font-size: clamp(28px, 3.6vw, 44px); font-weight: 400; letter-spacing: -0.03em;
+      line-height: 1.18; color: var(--black); margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .hero-sub { font-size: 17px; color: var(--g2); line-height: 1.75; margin-bottom: 48px; max-width: 580px; }
+
+    /* META ROW */
+    .meta-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--g5); padding-top: 28px; gap: 24px;
+    }
+    .meta-item-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
+    .meta-item-val { font-size: 13px; color: var(--black); line-height: 1.5; }
+
+    /* HERO VIDEO */
+    .hero-media {
+      max-width: var(--wide-width);
+      margin: 0 auto 0;
+      padding: 0 24px;
+    }
+    .hero-media video {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+    }
+
+    /* SECTION */
+    .section { padding: 80px 0; border-top: 1px solid var(--g5); }
+    .section:first-of-type { border-top: none; }
+    .section-num {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(22px, 2.4vw, 30px); font-weight: 400; letter-spacing: -0.03em;
+      line-height: 1.25; color: var(--black); margin-bottom: 28px;
+    }
+    .section-title em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .body { font-size: 16px; color: var(--g1); line-height: 1.85; margin-bottom: 16px; }
+    .body:last-child { margin-bottom: 0; }
+    .body-sm { font-size: 14px; color: var(--g2); line-height: 1.8; margin-bottom: 12px; }
+
+    /* SUBSECTION LABEL */
+    .sub-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 16px; margin-top: 40px;
+    }
+    .sub-label:first-child { margin-top: 0; }
+
+    /* PROBLEM CARDS */
+    .problem-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; margin: 28px 0; }
+    .problem-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 14px; padding: 24px 28px; }
+    .problem-stat { font-size: 40px; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .problem-desc { font-size: 13px; color: var(--g2); line-height: 1.6; }
+
+    /* ROLE GRID */
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .role-card { background: var(--g6); border-radius: 12px; padding: 20px 22px; }
+    .role-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 8px; }
+    .role-card-val { font-size: 14px; color: var(--black); line-height: 1.6; }
+
+    /* PERSONA CARDS */
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .persona-card { background: var(--g6); border: 1px solid var(--g5); border-radius: 14px; padding: 20px; }
+    .persona-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .persona-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .persona-name { font-size: 13px; font-weight: 600; color: var(--black); }
+    .persona-role { font-size: 11px; color: var(--g3); }
+    .persona-pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 20px; padding: 3px 9px; margin-bottom: 8px; }
+    .persona-quote { font-size: 12.5px; color: var(--g1); line-height: 1.6; font-style: italic; margin-bottom: 12px; }
+    .persona-item { font-size: 12px; color: var(--g2); line-height: 1.5; display: flex; gap: 6px; margin-bottom: 4px; }
+
+    /* RESEARCH THEMES */
+    .theme-list { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .theme-item { padding: 24px 0; border-top: 1px solid var(--g5); display: grid; grid-template-columns: 200px 1fr; gap: 32px; }
+    .theme-item:last-child { border-bottom: 1px solid var(--g5); }
+    .theme-name { font-size: 14px; font-weight: 500; color: var(--black); }
+    .theme-body { font-size: 14px; color: var(--g2); line-height: 1.7; }
+
+    /* HMW */
+    .hmw {
+      background: var(--accent); color: var(--white);
+      border-radius: 16px; padding: 40px 44px; margin: 40px 0;
+      font-size: clamp(16px, 2vw, 20px); font-weight: 400; line-height: 1.6; font-style: italic;
+    }
+    .hmw-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px; font-style: normal; }
+
+    /* PROCESS STEPS */
+    .process-list { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .process-item { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 24px 0; border-top: 1px solid var(--g5); align-items: start; }
+    .process-item:last-child { border-bottom: 1px solid var(--g5); }
+    .process-num { font-size: 13px; font-weight: 600; color: var(--g3); padding-top: 2px; }
+    .process-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+    .process-body { font-size: 14px; color: var(--g2); line-height: 1.7; }
+
+    /* ITERATION FRAMES */
+    .iter-block { margin: 32px 0; }
+    .iter-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+      background: #e0e7ff; color: #3730a3; border-radius: 100px; padding: 6px 14px;
+      margin-bottom: 16px;
+    }
+    .iter-badge.v2 { background: #dbeafe; color: #1d4ed8; }
+    .iter-img { width: 100%; border-radius: 12px; overflow: hidden; background: #0D0D0D; }
+
+    /* SLIDESHOW */
+    .slideshow { position: relative; border-radius: 16px; overflow: hidden; background: #0D0D0D; user-select: none; }
+    .slideshow-track { display: flex; transition: transform 0.4s var(--ease-out); }
+    .slideshow-slide { min-width: 100%; height: 520px; }
+    .slideshow-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .slideshow.full-img .slideshow-slide { height: auto; }
+    .slideshow.full-img .slideshow-slide img { height: auto; object-fit: unset; }
+    .slideshow-nav {
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px;
+    }
+    .slideshow-dot {
+      width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--g4);
+      background: var(--white); color: var(--g3);
+      font-size: 11px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .slideshow-dot.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+    /* BEFORE / AFTER COMPARISON SLIDER */
+    .compare-wrap {
+      position: relative; overflow: hidden; border-radius: 16px; cursor: col-resize;
+      user-select: none; border: 1px solid var(--g5);
+    }
+    .compare-after {
+      display: block; width: 100%; height: auto;
+    }
+    .compare-before-layer {
+      position: absolute; top: 0; left: 0; height: 100%;
+      overflow: hidden; width: 50%;
+    }
+    .compare-before-layer img {
+      display: block; height: 100%; width: auto; max-width: none;
+      position: absolute; top: 0; left: 0;
+    }
+    .compare-divider {
+      position: absolute; top: 0; bottom: 0; width: 2px;
+      background: var(--white); left: 50%; transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .compare-handle {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--black); pointer-events: none;
+    }
+    .compare-label {
+      position: absolute; top: 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(0,0,0,0.55); color: #fff;
+      padding: 4px 10px; border-radius: 100px; pointer-events: none;
+    }
+    .compare-label.before { left: 16px; }
+    .compare-label.after { right: 16px; }
+    .tradeoff-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+    .tradeoff-card { background: var(--g6); border-radius: 12px; padding: 20px; }
+    .tradeoff-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 8px; }
+    .tradeoff-title { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+    .tradeoff-body { font-size: 13px; color: var(--g2); line-height: 1.6; }
+
+    /* BEFORE / AFTER */
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    .ba-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g3); margin-bottom: 10px; }
+    .ba-img { border-radius: 12px; overflow: hidden; border: 1px solid var(--g5); }
+    .ba-img img { width: 100%; display: block; }
+
+    /* SCREENS ROW */
+    .screens-row {
+      display: grid;
+      gap: 20px;
+      margin-top: 40px;
+      align-items: start;
+    }
+    .screens-row.col-4 { grid-template-columns: repeat(4, 1fr); }
+    .screens-row.col-3 { grid-template-columns: repeat(3, 1fr); }
+    .screen-col { display: flex; flex-direction: column; gap: 12px; }
+    .screen-col-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--g3); text-align: center;
+    }
+    .screen-col-media {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border: 1px solid var(--g5);
+    }
+    .screen-col-media img, .screen-col-media video { width: 100%; display: block; }
+    .screen-col-link { text-decoration: none; color: inherit; transition: transform 0.2s var(--ease-out), opacity 0.2s; }
+    .screen-col-link:hover { transform: translateY(-4px); opacity: 0.9; }
+    .screen-col-link:hover .screen-col-label { color: var(--accent); }
+
+    /* MARKETING ADS */
+    .ad-stat-chip { font-size:12px; font-weight:500; padding:8px 16px; border-radius:100px; background:var(--g6); border:1px solid var(--g5); color:var(--g2); white-space:nowrap; }
+    .ad-stat-chip.accent { background:var(--accent); color:var(--white); border-color:var(--accent); }
+    .ad-phone-scene { display:flex; justify-content:center; align-items:center; padding:16px 0; }
+    /* Static phone frame — proportioned 467×922px */
+    .ads-phone-frame {
+      width: 340px;
+      background: #1C1C1E;
+      border-radius: 56px;
+      padding: 13px;
+      box-shadow:
+        0 60px 100px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.11),
+        inset 0 0 0 1px rgba(255,255,255,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+      position: relative;
+      flex-shrink: 0;
+    }
+    /* Volume buttons */
+    .ads-phone-frame::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 110px;
+      width: 4px; height: 36px;
+      background: #2C2C2E;
+      border-radius: 3px 0 0 3px;
+      box-shadow: 0 52px 0 #2C2C2E, 0 96px 0 #2C2C2E;
+    }
+    /* Power button */
+    .ads-phone-frame::after {
+      content: '';
+      position: absolute;
+      right: -4px; top: 148px;
+      width: 4px; height: 58px;
+      background: #2C2C2E;
+      border-radius: 0 3px 3px 0;
+    }
+    .ads-phone-island {
+      width: 88px; height: 26px;
+      background: #000;
+      border-radius: 100px;
+      position: absolute;
+      top: 14px;
+      left: 50%; transform: translateX(-50%);
+      z-index: 20;
+    }
+    /* Screen: 467×922 aspect ratio, black bg fills above/below image */
+    .ads-phone-screen {
+      border-radius: 44px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 467 / 922;
+      position: relative;
+    }
+    /* Images centered vertically, fill screen width = 467px in phone */
+    .ads-phone-screen-inner {
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+    /* Slideshow track */
+    .ads-phone-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ads-phone-slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+    .ads-phone-slide img {
+      width: 300px;
+      height: 300px;
+      display: block;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+    /* Instagram story chrome — overlaid on top of screen */
+    .ads-story-chrome {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      padding: 50px 14px 12px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    /* Progress bars */
+    .ads-story-bars { display:flex; gap:4px; margin-bottom:12px; }
+    .ads-story-bar-bg {
+      flex: 1; height: 2.5px; border-radius: 2px;
+      background: rgba(255,255,255,0.32); overflow: hidden;
+    }
+    .ads-story-bar-fill {
+      height: 100%; width: 0%; background: #fff; border-radius: 2px;
+    }
+    .ads-story-bar-fill.done { width: 100%; }
+    .ads-story-bar-fill.active {
+      animation: storyFill 3s linear forwards;
+    }
+    @keyframes storyFill { from { width: 0%; } to { width: 100%; } }
+    /* Story header */
+    .ads-story-header { display:flex; align-items:center; gap:8px; }
+    .ads-story-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg,#6366F1,#8B5CF6);
+      border: 2px solid rgba(255,255,255,0.85);
+      flex-shrink: 0; display:flex; align-items:center; justify-content:center;
+    }
+    .ads-story-meta { display:flex; flex-direction:column; gap:2px; }
+    .ads-story-name { font-size:10px; font-weight:700; color:#fff; line-height:1; letter-spacing:0.01em; }
+    .ads-story-time { font-size:9px; color:rgba(255,255,255,0.65); line-height:1; }
+    .ads-story-close { margin-left:auto; font-size:16px; color:rgba(255,255,255,0.8); line-height:1; }
+    /* slide indicator dots */
+    .ads-phone-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .ads-phone-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--g4);
+      transition: background 0.3s, width 0.3s;
+    }
+    .ads-phone-dot.active {
+      background: var(--black);
+      width: 18px;
+      border-radius: 3px;
+    }
+    .ad-card { border-radius: 20px; overflow: hidden; background: var(--g6); border: 1px solid var(--g5); }
+    .ad-card-tag { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--g3); padding:14px 18px 10px; }
+    .ad-card img { width:100%; display:block; }
+    .ad-platform-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; padding: 5px 12px;
+      border-radius: 100px; background: var(--g6); border: 1px solid var(--g5); color: var(--g2);
+    }
+
+    /* SPLIT ROW (overview/problem alternating layout) */
+    .split-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+      margin-top: 0;
+    }
+    .split-row.flip { direction: rtl; }
+    .split-row.flip > * { direction: ltr; }
+    .split-media-card {
+      background: var(--white); border-radius: 24px; padding: 32px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; border: 1px solid var(--g5);
+    }
+    .split-media-card img, .split-media-card video {
+      width: 82%; max-width: 360px; border-radius: 28px; display: block;
+    }
+    .split-text { display: flex; flex-direction: column; gap: 16px; }
+    .split-heading { font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.025em; color: var(--black); line-height: 1.25; }
+    .split-body { font-size: 15px; color: var(--g2); line-height: 1.8; }
+    .split-callout {
+      border-radius: 14px; padding: 22px 24px;
+      background: var(--g6);
+      margin-top: 4px;
+    }
+    .split-callout-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g2); margin-bottom: 10px; }
+    .split-callout-body { font-size: 14px; color: var(--black); line-height: 1.7; font-weight: 400; }
+
+    /* KEY FEATURES */
+    .feature-list { display: flex; flex-direction: column; gap: 48px; margin-top: 40px; }
+    .feature-item { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .feature-item.flip { direction: rtl; }
+    .feature-item.flip > * { direction: ltr; }
+    .feature-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .feature-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; color: var(--black); margin-bottom: 12px; line-height: 1.3; }
+    .feature-body { font-size: 14px; color: var(--g2); line-height: 1.75; }
+    .feature-media { border-radius: 16px; overflow: hidden; background: var(--g6); }
+    .feature-media img, .feature-media video { width: 100%; display: block; }
+
+    /* FINAL SOLUTION SIDE BY SIDE */
+    .solution-layout { display: grid; grid-template-columns: 60fr 40fr; gap: 24px; align-items: center; margin-top: 28px; }
+    .annotation-cards { display: flex; flex-direction: column; gap: 10px; }
+    .ann-card { background: var(--white); border: 1px solid var(--g5); border-radius: 12px; padding: 16px 18px; }
+    .ann-pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 20px; padding: 3px 9px; margin-bottom: 8px; }
+    .ann-body { font-size: 13px; color: var(--g2); line-height: 1.5; }
+
+    /* IMPACT STATS */
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+    .stat-card { background: var(--white); border: 1px solid var(--g5); border-radius: 20px; padding: 32px 28px; text-align: center; }
+    .stat-val { font-size: clamp(38px, 4.8vw, 60px); font-weight: 300; color: var(--black); line-height: 1; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--g3); margin-bottom: 0; }
+    .stat-delta { font-size: 12px; font-weight: 500; color: var(--g3); display: block; margin-top: 6px; }
+
+    /* APP STORE STRIP */
+    .appstore-frame { margin-top: 48px; overflow: hidden; }
+    .appstore-strip { display: flex; gap: 2px; align-items: flex-end; }
+    .appstore-strip img { flex: 1; min-width: 0; height: auto; display: block; border-radius: 10px; }
+    .appstore-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g3); margin-top: 14px; text-align: center; }
+
+    /* LEARNINGS */
+    .learning-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .learning-item { background: var(--g6); border-radius: 20px; padding: 40px 32px 36px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .learning-emoji { font-size: 32px; line-height: 1; margin-bottom: 20px; }
+    .learning-title { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 10px; line-height: 1.35; }
+    .learning-body { font-size: 14px; color: var(--g2); line-height: 1.7; max-width: 360px; }
+
+    /* FULL-WIDTH MEDIA */
+    .media-full { width: 100%; border-radius: 16px; overflow: hidden; margin: 28px 0; border: 1px solid var(--g5); }
+    .media-full img, .media-full video { width: 100%; display: block; }
+    .media-full.dark { background: #0D0D0D; border-color: #222; box-shadow: 0 24px 64px rgba(0,0,0,0.18); }
+    .media-caption { font-size: 12px; color: var(--g3); margin-top: 10px; text-align: center; }
+    .media-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
+    .media-2col img { width: 100%; border-radius: 12px; border: 1px solid var(--g5); display: block; }
+
+    /* NEXT PROJECT */
+    .next { padding: 80px 24px; text-align: center; border-top: 1px solid var(--g5); }
+    .next-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 16px; }
+    .next-title { font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em; color: var(--black); margin-bottom: 28px; }
+    .next-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--black); color: var(--white); font-size: 13px; font-weight: 500;
+      padding: 14px 28px; border-radius: 100px; transition: opacity 0.2s;
+    }
+    .next-btn:hover { opacity: 0.8; }
+
+    /* FOOTER */
+    footer { padding: 32px 48px; border-top: 1px solid var(--g5); display: flex; align-items: center; justify-content: space-between; }
+    .footer-name { font-size: 13px; font-weight: 600; }
+    .footer-copy { font-size: 12px; color: var(--g3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .meta-row { grid-template-columns: 1fr 1fr; }
+      .hero-media { padding: 0 16px; }
+      .problem-grid, .before-after, .feature-item, .solution-layout, .stat-grid, .split-row, .learning-list { grid-template-columns: 1fr !important; }
+      .split-row.flip { direction: ltr; }
+      .persona-grid { grid-template-columns: 1fr; }
+      .screens-row.col-4 { grid-template-columns: repeat(2, 1fr); }
+      .screens-row.col-3 { grid-template-columns: repeat(2, 1fr); }
+      .theme-item { grid-template-columns: 1fr; gap: 8px; }
+      .feature-item.flip { direction: ltr; }
+      .tradeoff-row { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">← Back to work</a>
+  <div class="nav-right">
+    <a href="index.html#about">About</a>
+    <a href="#">Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tags">
+    <span class="hero-tag-pill">AI Product Design</span>
+    <span class="hero-tag-pill">0 → 1</span>
+    <span class="hero-tag-pill">Web App</span>
+  </div>
+  <h1>Designing <em>the future of self-improvement</em> through conversational AI</h1>
+  <p class="hero-sub">Led end-to-end UX and UI as the first designer at Habit Coach AI, building the onboarding experience, habit tracker, design system, and chat and voice AI flows from zero.</p>
+  <div class="meta-row">
+    <div>
+      <div class="meta-item-label">Role</div>
+      <div class="meta-item-val">End-to-end UX & UI · Design System</div>
+    </div>
+    <div>
+      <div class="meta-item-label">Timeline</div>
+      <div class="meta-item-val">Q4 2024 –<br>Q1 2026</div>
+    </div>
+    <div>
+      <div class="meta-item-label">Tools</div>
+      <div class="meta-item-val">Figma · Amplitude · Cursor AI · Airtable</div>
+    </div>
+    <div>
+      <div class="meta-item-label">Team</div>
+      <div class="meta-item-val">CEO · CTO · PM · 4 engineers · UX writer</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO VIDEO -->
+<div class="hero-media">
+  <video autoplay muted loop playsinline>
+    <source src="assets/habit-coach/hero.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<!-- CONTENT -->
+<div style="padding: 0 24px;">
+
+  <!-- 01 OVERVIEW -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:24px;">
+        <div class="section-num reveal">01 — Overview</div>
+      </div>
+      <div class="split-row reveal">
+        <div class="split-media-card">
+          <video autoplay muted loop playsinline>
+            <source src="assets/habit-coach/Habit coach - mobile .mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="split-text">
+          <h2 class="split-heading">What is Habit Coach AI and why does it matter?</h2>
+          <p class="split-body">Habit Coach AI is a 24/7 AI-powered accountability companion that helps users build habits through proactive phone calls, conversational tracking, and personalized coaching. Think of it as a personal coach in your pocket: one that actually reaches out to you.</p>
+          <p class="split-body">When I joined as the first designer, the product had early functionality but no design foundation. The experience was inconsistent, the brand had no identity, and trust signals were missing entirely.</p>
+          <div class="split-callout">
+            <div class="split-callout-label">My role</div>
+            <div class="split-callout-body">First and only designer. I defined the interaction model, built the design system from zero, redesigned onboarding, created the habit tracker, chat UI, voice experience, and all marketing assets.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PROBLEM -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:32px;">
+        <div class="section-num reveal" style="margin-bottom:20px;">02 — Problem</div>
+        <h2 class="section-title reveal" style="margin-bottom:16px;">Users dropped off before they ever saw the product</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+          <p class="split-body reveal" style="margin:0;">The core onboarding asked users to enter a phone number and continue via SMS, with no context, no trust signals, and no explanation of what the product actually does. For a habit-building app, that's a fatal first impression.</p>
+          <p class="split-body reveal" style="margin:0;">Beyond onboarding, there was no visual habit tracker (data lived in Google Sheets), no design system, and inconsistent UI across every touchpoint. <strong style="color:var(--black);">95% of users dropped off before experiencing anything.</strong></p>
+        </div>
+      </div>
+      <div class="reveal" style="border-radius:20px; overflow:hidden; border:1px solid var(--g5);">
+        <img src="assets/habit-coach/Problem statement.png" alt="Before state: SMS onboarding with no context" style="width:100%; display:block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ROLE -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:8px;">
+        <div class="section-num reveal">03 — Role & Responsibilities</div>
+      </div>
+      <h2 class="section-title reveal">First and only designer. <em>End to end.</em></h2>
+      <p class="body reveal">I was brought in as the founding designer with no existing design system, no brand guidelines, and no design process. Everything was built from zero alongside a fast-moving engineering team.</p>
+
+      <div class="role-grid reveal">
+        <div class="role-card">
+          <div class="role-card-label">Onboarding & Activation</div>
+          <div class="role-card-val">Redesigned the signup flow from scratch. Reduced drop-off from 95% to 34.2% completion through 3 iterations.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Habit Tracker</div>
+          <div class="role-card-val">Designed the visual tracker, calendar view, streaks, light/dark modes, and emoji personalization.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Design System</div>
+          <div class="role-card-val">Built the full component library in Figma: tokens, typography, color, and interactive states.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Voice & Chat UI</div>
+          <div class="role-card-val">Designed the AI coach call experience and chat interface, the core daily touchpoint of the product.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Marketing & App Store</div>
+          <div class="role-card-val">Created ads, App Store screenshots, and landing pages that drove paid acquisition.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Process & Tools</div>
+          <div class="role-card-val">Set up Figma, Airtable, and Amplitude workflows. Introduced design review and critique processes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RESEARCH -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:8px;">
+        <div class="section-num reveal">04 — Research & Insights</div>
+      </div>
+      <h2 class="section-title reveal">Three patterns that shaped every decision</h2>
+      <p class="body reveal">I combined Amplitude drop-off data, user feedback sessions, and competitor analysis to identify what was failing and why. Three themes emerged consistently.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:28px; align-items:start;">
+
+        <!-- Left: insight cards -->
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="role-card reveal">
+            <div class="role-card-label" style="margin-bottom:10px;">Motivation</div>
+            <div class="role-card-val">Users needed visible progress and clear benefits to stay engaged. Apps like Duolingo use streaks and Headspace uses session counts. Both make effort feel rewarding before asking for commitment.</div>
+          </div>
+          <div class="role-card reveal">
+            <div class="role-card-label" style="margin-bottom:10px;">Trust</div>
+            <div class="role-card-val">Asking for a phone number with zero context is a trust killer. Calm and Notion AI delay personal data collection until after the user has experienced something meaningful.</div>
+          </div>
+          <div class="role-card reveal">
+            <div class="role-card-label" style="margin-bottom:10px;">Discoverability</div>
+            <div class="role-card-val">Entry points buried in menus kill participation. Amazon surfaces review prompts immediately after purchase. We had no surfacing strategy at all.</div>
+          </div>
+        </div>
+
+        <!-- Right: competitor screenshots -->
+        <div class="reveal">
+          <div class="role-card-label" style="margin-bottom:16px; text-align:center;">Competitor screenshots</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--g5); height:420px;">
+              <img src="assets/habit-coach/competitive analysis 1.png" alt="Competitive analysis 1" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" />
+            </div>
+            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--g5); height:420px;">
+              <img src="assets/habit-coach/competitive analysis 2.png" alt="Competitive analysis 2" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Personas -->
+      <div class="sub-label reveal">Who we designed for</div>
+      <div class="persona-grid">
+        <div class="persona-card reveal">
+          <div class="persona-head">
+            <div class="persona-avatar" style="background:#fef3c7;">⚡</div>
+            <div>
+              <div class="persona-name">Priya, 31</div>
+              <div class="persona-role">Product Manager · New York</div>
+            </div>
+          </div>
+          <span class="persona-pill" style="color:#b45309; background:#fef3c7;">Busy professional</span>
+          <p class="persona-quote">"I want to build habits but my calendar is already full."</p>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Wants 5-minute check-ins, not lengthy journaling</div>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Motivated by streaks and measurable progress</div>
+          <div class="persona-item"><span style="color:#ef4444;">✗</span> Drops apps that feel like more work to manage</div>
+        </div>
+        <div class="persona-card reveal">
+          <div class="persona-head">
+            <div class="persona-avatar" style="background:#dcfce7;">🏃</div>
+            <div>
+              <div class="persona-name">Marcus, 26</div>
+              <div class="persona-role">Personal Trainer · Austin</div>
+            </div>
+          </div>
+          <span class="persona-pill" style="color:#065f46; background:#dcfce7;">Fitness enthusiast</span>
+          <p class="persona-quote">"I train every day but sleep and recovery habits fall apart."</p>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Values data and wants to see patterns over time</div>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Likes a coach that pushes, not just nudges</div>
+          <div class="persona-item"><span style="color:#ef4444;">✗</span> Loses interest in apps that feel generic or soft</div>
+        </div>
+        <div class="persona-card reveal">
+          <div class="persona-head">
+            <div class="persona-avatar" style="background:#ede9fe;">🔄</div>
+            <div>
+              <div class="persona-name">Leila, 34</div>
+              <div class="persona-role">Freelance Designer · Seattle</div>
+            </div>
+          </div>
+          <span class="persona-pill" style="color:#7c3aed; background:#ede9fe;">Habit restarter</span>
+          <p class="persona-quote">"I've downloaded every habit app. I start strong, then ghost it."</p>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Responds well to a warm, non-judgmental tone</div>
+          <div class="persona-item"><span style="color:#16a34a;">✓</span> Needs re-entry to feel easy, not like starting over</div>
+          <div class="persona-item"><span style="color:#ef4444;">✗</span> Shame-based reminders make her uninstall the app</div>
+        </div>
+      </div>
+
+      <div class="hmw reveal">
+        <div class="hmw-label">How might we</div>
+        "How might we design an onboarding experience that builds trust, provides clarity, and drives users to complete setup with confidence?"
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 DESIGN PROCESS -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:8px;">
+        <div class="section-num reveal">05 — Design Process</div>
+        <h2 class="section-title reveal">Three rounds of iteration, tracked in Amplitude after every ship</h2>
+        <p class="body reveal">I didn't guess my way to the solution. I shipped, measured where users dropped off, identified the specific failure, fixed it, and shipped again. Here's what that looked like.</p>
+      </div>
+
+      <!-- v1 -->
+      <div class="iter-block reveal">
+        <span class="iter-badge v1">v1 — Early flow · Wk 1</span>
+        <div class="slideshow" id="ss1">
+          <div class="slideshow-track" id="ss1-track">
+            <div class="slideshow-slide"><img src="assets/habit-coach/early week 1.png" alt="Early flow screen 1" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/early week 2.png" alt="Early flow screen 2" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/early week 3.png" alt="Early flow screen 3" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/early week 4.png" alt="Early flow screen 4" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/early week 5.png" alt="Early flow screen 5" /></div>
+          </div>
+        </div>
+        <div class="slideshow-nav" id="ss1-nav">
+          <div class="slideshow-dot active" onclick="goSlide('ss1',0)">1</div>
+          <div class="slideshow-dot" onclick="goSlide('ss1',1)">2</div>
+          <div class="slideshow-dot" onclick="goSlide('ss1',2)">3</div>
+          <div class="slideshow-dot" onclick="goSlide('ss1',3)">4</div>
+          <div class="slideshow-dot" onclick="goSlide('ss1',4)">5</div>
+        </div>
+      </div>
+
+      <div class="tradeoff-row reveal">
+        <div class="tradeoff-card">
+          <div class="tradeoff-tag">Data from Wk 1</div>
+          <div class="tradeoff-title">53% dropped at step 1</div>
+          <div class="tradeoff-body">The phone number ask came cold. Users had no context for the product or why it needed their number. No trust had been built yet.</div>
+        </div>
+        <div class="tradeoff-card">
+          <div class="tradeoff-tag">The tradeoff</div>
+          <div class="tradeoff-title">Longer flow, higher trust</div>
+          <div class="tradeoff-body">Moving the number ask to the end meant more steps. But users who got there were already invested. Completion rate mattered more than funnel length.</div>
+        </div>
+        <div class="tradeoff-card">
+          <div class="tradeoff-tag">What changed</div>
+          <div class="tradeoff-title">Coach selection first</div>
+          <div class="tradeoff-body">Opening with coach selection made the experience feel personal from tap one. The number ask at the end felt earned, not intrusive.</div>
+        </div>
+      </div>
+
+      <!-- v2 -->
+      <div class="iter-block reveal">
+        <span class="iter-badge v2">v2 — Revised flow · Wk 2</span>
+        <div class="slideshow" id="ss2">
+          <div class="slideshow-track" id="ss2-track">
+            <div class="slideshow-slide"><img src="assets/habit-coach/revised flow 1.png" alt="Revised flow screen 1" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/revised flow 2.png" alt="Revised flow screen 2" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/revised flow 3.png" alt="Revised flow screen 3" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/revised flow 4.png" alt="Revised flow screen 4" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/revised flow 5.png" alt="Revised flow screen 5" /></div>
+          </div>
+        </div>
+        <div class="slideshow-nav" id="ss2-nav">
+          <div class="slideshow-dot active" onclick="goSlide('ss2',0)">1</div>
+          <div class="slideshow-dot" onclick="goSlide('ss2',1)">2</div>
+          <div class="slideshow-dot" onclick="goSlide('ss2',2)">3</div>
+          <div class="slideshow-dot" onclick="goSlide('ss2',3)">4</div>
+          <div class="slideshow-dot" onclick="goSlide('ss2',4)">5</div>
+        </div>
+      </div>
+
+      <!-- Wk 3-4 before/after -->
+      <div>
+        <p class="body-sm reveal" style="margin-top:28px;"><strong style="color:var(--black);">Wk 3</strong>: Drop-off data pointed to four specific problems. No step clarity in the progress bar. Habit selection felt like being bucketed into a list. Coach cards were text-heavy. No clear way to connect with the AI.</p>
+      </div>
+      <div class="compare-wrap reveal" id="compare1">
+        <img class="compare-after" src="assets/habit-coach/after.png" alt="After redesign" />
+        <div class="compare-before-layer" id="compare1-before">
+          <img src="assets/habit-coach/before.png" alt="Before redesign" id="compare1-before-img" />
+        </div>
+        <div class="compare-divider" id="compare1-divider"></div>
+        <div class="compare-handle" id="compare1-handle">⇔</div>
+        <span class="compare-label before">Before</span>
+        <span class="compare-label after">After</span>
+      </div>
+      <div style="margin-top:40px;">
+        <p class="body-sm reveal"><strong style="color:var(--black);">Wk 4</strong>: Shipped the redesign and tracked in Amplitude. Personality-first video coach cards replaced text. Visual icon grid replaced the list-style habit picker. Two connection options (call or text) removed a hard blocker. Drop-off at step 2 fell significantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 KEY FEATURES -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div style="margin-bottom:8px;">
+        <div class="section-num reveal">06 — Key Features</div>
+        <h2 class="section-title reveal">The four screens that changed everything</h2>
+        <p class="body reveal" style="margin-top:12px;">From a 95% drop-off to a product users return to daily. Each screen below represents a specific design decision that moved the metrics.</p>
+      </div>
+
+      <div class="screens-row col-2x2 reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <a href="#feature-chat" class="screen-col screen-col-link">
+          <div class="screen-col-label">AI Chat + Voice</div>
+          <div class="screen-col-media">
+            <img src="assets/habit-coach/Chat.png" alt="AI chat interface" />
+          </div>
+        </a>
+        <a href="#feature-tracker" class="screen-col screen-col-link">
+          <div class="screen-col-label">Habit Tracker</div>
+          <div class="screen-col-media">
+            <img src="assets/habit-coach/Habit Tracking Light mode.png" alt="Habit tracker light mode" />
+          </div>
+        </a>
+        <a href="#feature-dashboard" class="screen-col screen-col-link">
+          <div class="screen-col-label">Dashboard</div>
+          <div class="screen-col-media">
+            <img src="assets/habit-coach/Dashboard.png" alt="Dashboard view" />
+          </div>
+        </a>
+        <a href="#feature-onboarding" class="screen-col screen-col-link">
+          <div class="screen-col-label">Onboarding</div>
+          <div class="screen-col-media">
+            <img src="assets/habit-coach/Onboarding 1 final.png" alt="Onboarding — coach selection" />
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06b KEY FEATURES DETAIL -->
+  <section class="section" style="padding-top:56px;">
+    <div class="wrap-wide">
+      <div style="display:flex; flex-direction:column; gap:64px;">
+
+        <!-- AI Chat & Voice -->
+        <div class="reveal" id="feature-chat">
+          <div class="feature-label" style="margin-bottom:8px;">AI Chat & Voice</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:20px;">
+            <h3 class="feature-title" style="margin:0;">Conversational daily check-in that feels human</h3>
+            <p class="feature-body" style="margin:0;">Designed the chat UI and voice call experience. The AI coach calls users proactively, tracks progress through conversation, and adapts tone to their coaching style.</p>
+          </div>
+          <div style="border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.12); background:#000;">
+            <video autoplay muted loop playsinline style="width:100%; display:block;">
+              <source src="assets/habit-coach/Chat + voice UI.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--g5);">
+            <img src="assets/habit-coach/Chat.png" alt="AI chat interface" style="width:100%; display:block;" />
+          </div>
+        </div>
+
+        <!-- Habit Tracker -->
+        <div class="reveal" id="feature-tracker">
+          <div class="feature-label" style="margin-bottom:8px;">Habit Tracker</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:20px;">
+            <h3 class="feature-title" style="margin:0;">Calendar view, streaks, and emoji personalization</h3>
+            <p class="feature-body" style="margin:0;">Replaced a Google Sheet backend with a proper visual tracker. Calendar view beat list view in testing. Light and dark modes built from day one because users check in at night.</p>
+          </div>
+          <div class="compare-wrap" id="compare2">
+            <img class="compare-after" src="assets/habit-coach/Habit tracking dark mode.png" alt="Dark mode" />
+            <div class="compare-before-layer" id="compare2-before">
+              <img src="assets/habit-coach/Habit Tracking Light mode.png" alt="Light mode" id="compare2-before-img" />
+            </div>
+            <div class="compare-divider" id="compare2-divider"></div>
+            <div class="compare-handle" id="compare2-handle">⇔</div>
+            <span class="compare-label before">Light mode</span>
+            <span class="compare-label after">Dark mode</span>
+          </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="reveal" id="feature-dashboard">
+          <div class="feature-label" style="margin-bottom:8px;">Dashboard</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:20px;">
+            <h3 class="feature-title" style="margin:0;">A new user flow I pitched, ideated, and vibe coded</h3>
+            <p class="feature-body" style="margin:0;">Identified a gap in progress tracking, pitched a consolidated dashboard to the founders, vibe coded a prototype, and presented it. They implemented it in the next sprint.</p>
+          </div>
+          <div style="border-radius:16px; overflow:hidden; border:1px solid var(--g5);">
+            <img src="assets/habit-coach/Dashboard.png" alt="Dashboard" style="width:100%; display:block;" />
+          </div>
+        </div>
+
+        <!-- Onboarding -->
+        <div class="reveal" id="feature-onboarding">
+          <div class="feature-label" style="margin-bottom:8px;">Onboarding — Final Solution</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:20px;">
+            <h3 class="feature-title" style="margin:0;">Personality-first coach cards, visual habit grid, step clarity</h3>
+            <p class="feature-body" style="margin:0;">The redesigned onboarding opened with coach personality selection, replaced text lists with icon grids, added two ways to connect, and labeled every step. Overall conversion climbed to 42.7%, up 18.6%.</p>
+          </div>
+          <div style="border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.2); background:#000;">
+            <video autoplay muted loop playsinline style="width:100%; display:block;">
+              <source src="assets/habit-coach/final solution video on laptop.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--g5);">
+            <video autoplay muted loop playsinline style="width:100%; display:block;">
+              <source src="assets/habit-coach/Onboarding 4  final.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <p class="media-caption" style="margin-top:12px; text-align:left; color:var(--g2); font-size:13px;">Most recent approach: vibe coded in Cursor and shipped as the product's primary light mode experience.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 VISUAL DESIGN -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div class="section-num reveal">07 — Design System</div>
+      <h2 class="section-title reveal">A design system built from zero, used in production from day one</h2>
+      <p class="body reveal">I built the full Habit Coach AI design system in Figma while the product was actively being developed. Tokens first, components second, patterns third. Engineers pulled directly from the library.</p>
+
+      <div class="role-grid reveal" style="margin-top:32px;">
+        <div class="role-card">
+          <div class="role-card-label">Dark mode as default</div>
+          <div class="role-card-val">Built simultaneously with light mode, treated as the primary experience for evening users.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Indigo as the brand anchor</div>
+          <div class="role-card-val">Used sparingly as the primary action color. Trustworthy and calm, not clinical or cold.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-card-label">Personality through emoji</div>
+          <div class="role-card-val">An emoji picker on habit cards: small call, high-satisfaction. Personalization builds ownership.</div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:40px;">
+        <div class="slideshow full-img" id="ss3">
+          <div class="slideshow-track" id="ss3-track">
+            <div class="slideshow-slide"><img src="assets/habit-coach/Design system 1.png" alt="Design system overview" /></div>
+            <div class="slideshow-slide"><img src="assets/habit-coach/Design system 2.png" alt="Design system components" /></div>
+          </div>
+        </div>
+        <div class="slideshow-nav" id="ss3-nav">
+          <div class="slideshow-dot active" onclick="goSlide('ss3',0)">1</div>
+          <div class="slideshow-dot" onclick="goSlide('ss3',1)">2</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 MARKETING ADS -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div class="section-num reveal">08 — Marketing Ads</div>
+      <h2 class="section-title reveal">Designed to convert, not just to impress</h2>
+      <p class="body reveal">Beyond the product, I designed the ad creatives that brought users in. These ran on Meta, Instagram, and Google to 100k+ people, with Instagram story placement delivering the best conversion.</p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:28px;" class="reveal">
+        <div class="ad-stat-chip">Google &amp; Meta</div>
+        <div class="ad-stat-chip">1000×1000px post format</div>
+        <div class="ad-stat-chip">100k+ audience reach</div>
+        <div class="ad-stat-chip">1,600 click-to-onboarding signups</div>
+      </div>
+
+      <!-- Main hero: phone + context -->
+      <div style="display:grid; grid-template-columns:380px 1fr; gap:48px; margin-top:60px; align-items:center;" class="reveal">
+        <div class="ad-phone-scene">
+          <div>
+            <div class="ads-phone-frame">
+              <div class="ads-phone-screen">
+                <!-- Dynamic Island floats inside screen -->
+                <div class="ads-phone-island"></div>
+                <!-- Images centered in screen -->
+                <div class="ads-phone-screen-inner">
+                  <div class="ads-phone-track" id="ss-ads-track">
+                    <div class="ads-phone-slide">
+                      <img src="assets/habit-coach/Ads 01 dark mode.jpg" alt="Become the CEO of your life in 30d" />
+                    </div>
+                    <div class="ads-phone-slide">
+                      <img src="assets/habit-coach/Ads 02 dark mode.jpg" alt="Where lasting habits are built" />
+                    </div>
+                  </div>
+                </div>
+                <!-- Instagram story chrome overlaid on top -->
+                <div class="ads-story-chrome">
+                  <div class="ads-story-bars">
+                    <div class="ads-story-bar-bg"><div class="ads-story-bar-fill active" id="ads-bar-0"></div></div>
+                    <div class="ads-story-bar-bg"><div class="ads-story-bar-fill" id="ads-bar-1"></div></div>
+                  </div>
+                  <div class="ads-story-header">
+                    <div class="ads-story-avatar">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#fff" opacity="0.9"/><path d="M5 7l2 2 3-4" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="ads-story-meta">
+                      <div class="ads-story-name">Habit Coach AI</div>
+                      <div class="ads-story-time">Sponsored</div>
+                    </div>
+                    <div class="ads-story-close">✕</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ads-phone-dots">
+              <div class="ads-phone-dot active" id="ss-ads-d0"></div>
+              <div class="ads-phone-dot" id="ss-ads-d1"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sub-label" style="margin-bottom:16px;">Habit Coach AI · First Ad Campaign: Testing the Waters</div>
+          <h3 style="font-size:clamp(20px,2.2vw,30px); font-weight:600; line-height:1.3; margin:0 0 16px; color:var(--black);">Make someone stop scrolling in under 2 seconds</h3>
+          <p class="body" style="margin:0 0 20px; color:var(--g2);">The campaign ran cold, no retargeting, no warm audience. The creative had to earn trust before anyone read a word of copy. We tested dark and light mode variants across placements. Instagram story was the clear standout, with the highest click-to-onboarding rate of any channel.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <div class="ad-platform-badge">Instagram Story</div>
+            <div class="ad-platform-badge">Meta Feed</div>
+            <div class="ad-platform-badge">Google Display</div>
+          </div>
+          <div class="split-callout" style="margin-top:20px;">Best conversion came from Instagram dark mode story placement. Users from this channel completed onboarding at the highest rate of any traffic source.</div>
+        </div>
+      </div>
+
+      <!-- 2 more ad variants -->
+    </div>
+  </section>
+
+  <!-- 09 IMPACT -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div class="section-num reveal">09 — Impact</div>
+      <h2 class="section-title reveal">Built from zero, shipped to real users, measured in Amplitude</h2>
+      <p class="body reveal">From the ad campaigns that drove discovery to the onboarding redesign that converted users, every decision was tracked. These numbers reflect the full product lifecycle.</p>
+
+      <div class="stat-grid reveal" id="impact-stats">
+        <div class="stat-card">
+          <div class="stat-val" data-count="1600" data-suffix="+">0</div>
+          <div class="stat-label">Users acquired</div>
+          <span class="stat-delta">From 0 in 90 days</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" data-count="100" data-suffix="K+">0</div>
+          <div class="stat-label">Audience reached</div>
+          <span class="stat-delta">Meta, Instagram & Google</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" data-count="42.7" data-suffix="%">0</div>
+          <div class="stat-label">Conversion rate</div>
+          <span class="stat-delta">Up 18.6% after redesign</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" data-count="34.2" data-suffix="%">0</div>
+          <div class="stat-label">Onboarding completion</div>
+          <span class="stat-delta">Up from near-total drop-off</span>
+        </div>
+      </div>
+
+      <div class="appstore-frame reveal">
+        <div class="appstore-strip">
+          <img src="assets/habit-coach/APP STORE 1.png" alt="App Store screenshot 1" />
+          <img src="assets/habit-coach/APP STORE 2.png" alt="App Store screenshot 2" />
+          <img src="assets/habit-coach/APP STORE 3.png" alt="App Store screenshot 3" />
+          <img src="assets/habit-coach/APP STORE 4.png" alt="App Store screenshot 4" />
+          <img src="assets/habit-coach/APP STORE 5.png" alt="App Store screenshot 5" />
+        </div>
+        <div class="appstore-label">Google Play Store images designed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 LEARNINGS -->
+  <section class="section">
+    <div class="wrap-wide">
+      <div class="section-num reveal">10 — Learnings</div>
+      <h2 class="section-title reveal">What I'd tell the designer who walked into that first day</h2>
+
+      <div class="learning-list">
+        <div class="learning-item reveal">
+          <div class="learning-emoji">⚡</div>
+          <div class="learning-title">Ship smaller, measure faster</div>
+          <div class="learning-body">Tight 1-week cycles beat big redesigns every time. Data from week 1 told me exactly what week 2 needed to fix.</div>
+        </div>
+        <div class="learning-item reveal">
+          <div class="learning-emoji">🤝</div>
+          <div class="learning-title">Trust is a design problem, not a copy problem</div>
+          <div class="learning-body">The real fix was structural: delay the risky ask, show value first. That's a layout decision, not a word decision.</div>
+        </div>
+        <div class="learning-item reveal">
+          <div class="learning-emoji">🧱</div>
+          <div class="learning-title">A design system is worth the upfront investment</div>
+          <div class="learning-body">By month 3, engineers were shipping new screens with zero back-and-forth. The time saved in reviews was worth 3x the build time.</div>
+        </div>
+        <div class="learning-item reveal">
+          <div class="learning-emoji">🧭</div>
+          <div class="learning-title">Being first means deciding what "done" looks like</div>
+          <div class="learning-body">No design org, no review process, no historical reference. I had to build the judgment calls and the process to evaluate them at the same time.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- NEXT PROJECT -->
+<div class="next">
+  <div class="next-label">Next project</div>
+  <div class="next-title">Driving data-informed decisions with ZS Associates</div>
+  <a href="zs-dashboard.html" class="next-btn">View case study →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Vyomika Parikh</div>
+  <div class="footer-copy">Designed by Vyomika Parikh · July 2026</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* Before/After comparison slider */
+  function initCompare(id) {
+    const wrap = document.getElementById(id);
+    if (!wrap) return;
+    const beforeLayer = document.getElementById(id + '-before');
+    const beforeImg = document.getElementById(id + '-before-img');
+    const divider = document.getElementById(id + '-divider');
+    const handle = document.getElementById(id + '-handle');
+    let dragging = false;
+
+    function setPos(x) {
+      const rect = wrap.getBoundingClientRect();
+      let pct = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
+      const pctPx = (pct * 100) + '%';
+      beforeLayer.style.width = pctPx;
+      beforeImg.style.width = wrap.offsetWidth + 'px';
+      divider.style.left = pctPx;
+      handle.style.left = pctPx;
+    }
+
+    wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
+    window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+    wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+
+    // init before-img width
+    wrap.addEventListener('load', () => { beforeImg.style.width = wrap.offsetWidth + 'px'; }, true);
+    setTimeout(() => { beforeImg.style.width = wrap.offsetWidth + 'px'; }, 100);
+  }
+  initCompare('compare1');
+  initCompare('compare2');
+
+  function goSlide(id, index) {
+    const track = document.getElementById(id + '-track');
+    const dots = document.querySelectorAll('#' + id + '-nav .slideshow-dot');
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  // Impact stat counting animation
+  (function() {
+    var counted = false;
+    var countObserver = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting || counted) return;
+      counted = true;
+      document.querySelectorAll('#impact-stats .stat-val[data-count]').forEach(function(el) {
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var isDecimal = (target % 1 !== 0);
+        var start = null;
+        var duration = 1600;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var cur = eased * target;
+          el.textContent = (isDecimal ? cur.toFixed(1) : Math.floor(cur)) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    var grid = document.getElementById('impact-stats');
+    if (grid) countObserver.observe(grid);
+  })();
+
+  // Ads story slideshow — 3 second interval, progress bar fills with each story
+  (function() {
+    let idx = 0;
+    const total = 2;
+    const dots = [document.getElementById('ss-ads-d0'), document.getElementById('ss-ads-d1')];
+
+    function updateBars(current) {
+      for (var i = 0; i < total; i++) {
+        var bar = document.getElementById('ads-bar-' + i);
+        if (!bar) continue;
+        bar.classList.remove('active', 'done');
+        if (i < current) {
+          bar.classList.add('done');
+        } else if (i === current) {
+          void bar.offsetWidth; // force reflow to restart animation
+          bar.classList.add('active');
+        }
+      }
+    }
+
+    setInterval(function() {
+      idx = (idx + 1) % total;
+      var track = document.getElementById('ss-ads-track');
+      if (track) track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      dots.forEach(function(d, i) {
+        if (!d) return;
+        d.classList.toggle('active', i === idx);
+      });
+      updateBars(idx);
+    }, 3000);
+  })();
+</script>
+</body>
+</html>
