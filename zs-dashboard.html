@@ -49,35 +49,15 @@
     .cs-wrap { max-width: 1440px; margin: 0 auto; padding: 0 80px; }
 
     /* ─── HERO ─── */
-    .cs-hero { padding-top: 96px; padding-bottom: 64px; }
-    .cs-eyebrow {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; font-weight: 400; color: var(--g2); margin-bottom: 28px;
-      opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards;
-    }
-    .cs-eyebrow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--g3); }
-    .cs-title {
-      font-size: clamp(31px, 3.5vw, 51px);
-      font-weight: 400; letter-spacing: -0.04em; line-height: 1.1;
-      margin-bottom: 20px;
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
-    }
-    .cs-title em { font-style: italic; font-weight: 300; color: var(--g2); }
-    .cs-subtitle {
-      font-size: 17px; color: var(--g2); line-height: 1.7; max-width: 640px;
-      margin-bottom: 44px;
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
-    }
-    .cs-meta {
-      display: grid; grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--g5); border-bottom: 1px solid var(--g5);
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards;
-    }
-    .cs-meta-item { padding: 16px 24px 16px 0; }
-    .cs-meta-item:nth-child(-n+2) { border-bottom: 1px solid var(--g5); }
-    .cs-meta-item:nth-child(n+3) { padding-top: 20px; }
-    .cs-meta-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g3); margin-bottom: 4px; }
-    .cs-meta-val { font-size: 14px; font-weight: 500; color: var(--black); }
+    .hero { padding: 120px 24px 80px; max-width: 1000px; margin: 0 auto; }
+    .hero-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .hero-tag-pill { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; padding: 5px 12px; border-radius: 100px; background: var(--g6); color: var(--g1); border: 1px solid var(--g5); }
+    .hero h1 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.18; color: var(--black); margin-bottom: 20px; }
+    .hero h1 em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .hero-sub { font-size: 17px; color: var(--g2); line-height: 1.75; margin-bottom: 48px; max-width: 580px; }
+    .meta-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--g5); padding-top: 28px; gap: 24px; }
+    .meta-item-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
+    .meta-item-val { font-size: 13px; color: var(--black); line-height: 1.5; }
 
     /* ─── HERO SHOWCASE ─── */
     .cs-hero-showcase {
@@ -101,7 +81,7 @@
     .cs-h2 { font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 18px; color: var(--black); }
     .cs-h2 em { font-style: italic; font-weight: 300; color: var(--g2); }
     .cs-h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 20px; color: var(--black); }
-    .cs-p { font-size: 15px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
+    .cs-p { font-size: 16px; color: var(--g2); line-height: 1.8; margin-bottom: 14px; }
     .cs-p:last-child { margin-bottom: 0; }
 
     /* ─── PRODUCT DESC BOX ─── */
@@ -279,34 +259,30 @@
 </nav>
 
 <!-- HERO -->
-<div class="cs-wrap">
-  <div class="cs-hero">
-    <div class="cs-eyebrow">
-      <span>Health Tech</span>
-      <span class="cs-eyebrow-dot"></span>
-      <span>Dashboard Design</span>
-      <span class="cs-eyebrow-dot"></span>
-      <span>Enterprise Web</span>
+<div class="hero">
+  <div class="hero-tags">
+    <span class="hero-tag-pill">Health Tech</span>
+    <span class="hero-tag-pill">Dashboard Design</span>
+    <span class="hero-tag-pill">Enterprise Web</span>
+  </div>
+  <h1>Designing intuitive dashboards for <em>pharma sales teams</em></h1>
+  <p class="hero-sub">Senior Visual Product Designer at ZS Associates, where I led the design of ZAIDYN's Multi-Platform Incentives Dashboard, used daily by 45,000+ field reps across 70+ countries.</p>
+  <div class="meta-row">
+    <div>
+      <div class="meta-item-label">Role</div>
+      <div class="meta-item-val">Senior Visual Product Designer</div>
     </div>
-    <h1 class="cs-title">Designing intuitive dashboards for <em>pharma sales teams</em></h1>
-    <p class="cs-subtitle">Senior Visual Product Designer at ZS Associates, where I led the design of ZAIDYN's Multi-Platform Incentives Dashboard, used daily by 45,000+ field reps across 70+ countries.</p>
-    <div class="cs-meta">
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">My Role</div>
-        <div class="cs-meta-val">Senior Visual Product Designer</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Duration</div>
-        <div class="cs-meta-val">Feb 2021 – Jul 2023</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Team</div>
-        <div class="cs-meta-val">1 PM · 1 Design Head · 2 UX Designers · 15 Engineers</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Platform</div>
-        <div class="cs-meta-val">Web · Enterprise SaaS</div>
-      </div>
+    <div>
+      <div class="meta-item-label">Duration</div>
+      <div class="meta-item-val">Feb 2021 – Jul 2023</div>
+    </div>
+    <div>
+      <div class="meta-item-label">Team</div>
+      <div class="meta-item-val">1 PM · 1 Design Head · 2 UX Designers · 15 Engineers</div>
+    </div>
+    <div>
+      <div class="meta-item-label">Platform</div>
+      <div class="meta-item-val">Web · Enterprise SaaS</div>
     </div>
   </div>
 </div>
