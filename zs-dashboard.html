@@ -71,8 +71,8 @@
 
     /* ─── OVERVIEW ─── */
     .cs-overview { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
-    .cs-overview-visual { border-radius: 16px; overflow: hidden; border: 1px solid var(--g5); background: var(--g6); }
-    .cs-overview-visual img { width: 100%; display: block; }
+    .cs-overview-visual { border-radius: 16px; overflow: hidden; border: 1px solid var(--g5); background: #000; position: relative; padding-bottom: 56.25%; height: 0; }
+    .cs-overview-visual iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .cs-overview-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--zs); margin-bottom: 14px; }
     .cs-overview-heading { font-size: clamp(18px, 2vw, 22px); font-weight: 400; letter-spacing: -0.025em; line-height: 1.3; color: var(--black); margin-bottom: 16px; }
 
@@ -302,10 +302,12 @@
   <!-- OVERVIEW -->
   <div class="cs-overview reveal">
     <div class="cs-overview-visual">
-      <img
-        src="https://static.wixstatic.com/media/52ea71_2a2dac718b2843759e6b93750018228b~mv2.png/v1/fill/w_900,h_612,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_2a2dac718b2843759e6b93750018228b~mv2.png"
-        alt="ZAIDYN Incentives Dashboard"
-      />
+      <iframe
+        src="https://www.youtube.com/embed/4aBL_pSRsnM?start=18"
+        title="ZAIDYN by ZS"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     </div>
     <div>
       <div class="cs-overview-label">About ZAIDYN</div>
