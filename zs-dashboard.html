@@ -140,11 +140,11 @@
     .cs-hmw-text { font-size: clamp(16px, 2vw, 20px); font-weight: 300; font-style: italic; line-height: 1.5; }
 
     /* ─── PROCESS FLOW ─── */
-    .cs-flow { display: flex; align-items: flex-start; gap: 0; margin: 28px 0 36px; }
+    .cs-flow { display: flex; align-items: flex-start; gap: 0; margin: 28px 0 0; }
     .cs-flow-node { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
     .cs-flow-node::after {
       content: ''; position: absolute; top: 20px; left: calc(50% + 28px);
-      right: calc(-50% + 28px); height: 1px; background: var(--zs); opacity: 0.4;
+      right: calc(-50% + 28px); height: 1px; background: var(--zs); opacity: 0.3;
     }
     .cs-flow-node:last-child::after { display: none; }
     .cs-flow-circle {
@@ -152,10 +152,11 @@
       background: var(--zs); color: var(--white);
       font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 12px; position: relative; z-index: 1;
+      position: relative; z-index: 1; flex-shrink: 0;
     }
-    .cs-flow-name { font-size: 12px; font-weight: 600; color: var(--black); line-height: 1.35; max-width: 100px; }
-    .cs-flow-sub { font-size: 11px; color: var(--g3); margin-top: 4px; line-height: 1.4; max-width: 110px; }
+    .cs-flow-name { font-size: 12px; font-weight: 600; color: var(--black); line-height: 1.35; margin-top: 10px; }
+    .cs-flow-vert { width: 1px; height: 20px; background: var(--zs); opacity: 0.3; margin: 8px auto; }
+    .cs-flow-box { background: var(--g6); border: 1px solid var(--g5); border-radius: 12px; padding: 16px; text-align: left; font-size: 13px; color: var(--g2); line-height: 1.65; width: calc(100% - 16px); }
 
     /* ─── STEPS ─── */
     .cs-steps { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
@@ -459,23 +460,22 @@
         <div class="cs-flow-node">
           <div class="cs-flow-circle">01</div>
           <div class="cs-flow-name">Discovery</div>
-          <div class="cs-flow-sub">Requirements & stakeholder mapping</div>
+          <div class="cs-flow-vert"></div>
+          <div class="cs-flow-box">Collaborated with PMs and the Head of UX to define requirements, gather design constraints, and map existing user workflows and stakeholder expectations.</div>
         </div>
         <div class="cs-flow-node">
           <div class="cs-flow-circle">02</div>
           <div class="cs-flow-name">Analysis</div>
-          <div class="cs-flow-sub">Audit of existing screens & gaps</div>
+          <div class="cs-flow-vert"></div>
+          <div class="cs-flow-box">Walked through pre-developed screens to audit the current dashboard, identifying gaps between what reps expected from the tool and what it actually surfaced.</div>
         </div>
         <div class="cs-flow-node">
           <div class="cs-flow-circle">03</div>
           <div class="cs-flow-name">Friction Mapping</div>
-          <div class="cs-flow-sub">4 critical usability gaps identified</div>
+          <div class="cs-flow-vert"></div>
+          <div class="cs-flow-box">Identified 4 critical usability gaps in the existing experience that were creating daily barriers for field reps. These became the brief for the redesign.</div>
         </div>
       </div>
-
-      <p class="cs-p">Collaborated with PMs and the Head of UX to define requirements, gather design constraints, and map existing user workflows and stakeholder expectations.</p>
-      <p class="cs-p">Walked through pre-developed screens to audit the current dashboard, identifying gaps between what reps expected from the tool and what it actually surfaced.</p>
-      <p class="cs-p">Identified 4 critical usability gaps in the existing experience that were creating daily barriers for field reps. These became the brief for the redesign.</p>
     </div>
 
     <!-- Friction Points -->
