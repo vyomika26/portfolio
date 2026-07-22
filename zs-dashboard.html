@@ -455,44 +455,50 @@
     <div class="cs-section reveal" style="margin-bottom: 40px;">
       <div class="cs-section-label">Design process</div>
 
-      <div class="cs-flow">
-        <div class="cs-flow-node">
-          <div class="cs-flow-circle">01</div>
-          <div class="cs-flow-name">Discovery</div>
-          <div class="cs-flow-sub">Requirements & stakeholder mapping</div>
+      <div class="cs-mapping">
+        <div class="cs-mapping-diagram">
+          <div class="cs-diag-root">
+            <div class="cs-diag-root-box">Design Process</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0; margin-top:16px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:32px; height:32px; border-radius:50%; background:var(--zs); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;">01</div>
+              <div class="cs-diag-node accent" style="flex:1;">Discovery</div>
+            </div>
+            <div style="width:1px; height:16px; background:var(--g4); margin-left:15px;"></div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:32px; height:32px; border-radius:50%; background:var(--zs); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;">02</div>
+              <div class="cs-diag-node accent" style="flex:1;">Analysis</div>
+            </div>
+            <div style="width:1px; height:16px; background:var(--g4); margin-left:15px;"></div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:32px; height:32px; border-radius:50%; background:var(--zs); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;">03</div>
+              <div class="cs-diag-node accent" style="flex:1;">Friction Mapping</div>
+            </div>
+          </div>
+          <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--g5);">
+            <div class="cs-diag-col-title" style="margin-bottom:8px;">Output</div>
+            <div class="cs-diag-node" style="margin-bottom:6px;">4 critical usability gaps</div>
+            <div class="cs-diag-node">Brief for redesign</div>
+          </div>
         </div>
-        <div class="cs-flow-node">
-          <div class="cs-flow-circle">02</div>
-          <div class="cs-flow-name">Analysis</div>
-          <div class="cs-flow-sub">Audit of existing screens & gaps</div>
-        </div>
-        <div class="cs-flow-node">
-          <div class="cs-flow-circle">03</div>
-          <div class="cs-flow-name">Friction Mapping</div>
-          <div class="cs-flow-sub">4 critical usability gaps identified</div>
-        </div>
-      </div>
 
-      <div class="cs-steps">
-        <div class="cs-step">
-          <div class="cs-step-num">01</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Discovery</div>
-            <div class="cs-step-desc">Collaborated with PMs and the Head of UX to define requirements, gather design constraints, and map existing user workflows and stakeholder expectations.</div>
-          </div>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step-num">02</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Analysis</div>
-            <div class="cs-step-desc">Walked through pre-developed screens to audit the current dashboard, identifying gaps between what reps expected from the tool and what it actually surfaced.</div>
-          </div>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step-num">03</div>
-          <div class="cs-step-body">
-            <div class="cs-step-title">Mapping Friction Points</div>
-            <div class="cs-step-desc">Identified 4 critical usability gaps in the existing experience that were creating daily barriers for field reps. These became the brief for the redesign.</div>
+        <div class="cs-mapping-text">
+          <h3>How we approached the problem</h3>
+          <p class="cs-p">Before sketching any solutions, we needed to understand why field reps had abandoned the dashboard. The process ran in three phases.</p>
+          <div class="cs-mapping-list">
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">1.</div>
+              <div class="cs-mapping-item-text"><strong>Discovery:</strong> worked with PMs and the Head of UX to gather requirements, map workflows, and define design constraints from stakeholder input.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">2.</div>
+              <div class="cs-mapping-item-text"><strong>Analysis:</strong> audited pre-built screens to identify the gap between what reps expected and what the tool actually surfaced.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">3.</div>
+              <div class="cs-mapping-item-text"><strong>Friction mapping:</strong> distilled 4 critical usability gaps from the audit. These became the brief every design decision had to answer to.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -501,22 +507,56 @@
     <!-- Friction Points -->
     <div class="cs-section reveal" style="margin-bottom: 40px;">
       <div class="cs-section-label">Friction points in the existing experience</div>
-      <div class="cs-themes">
-        <div class="cs-theme">
-          <div class="cs-theme-title">Missing visual hierarchy</div>
-          <div class="cs-theme-body">Key elements like the "Welcome Report" occupied prime real estate but didn't stand out. Critical performance data was buried alongside secondary content with equal visual weight.</div>
+
+      <div class="cs-mapping">
+        <div class="cs-mapping-diagram">
+          <div class="cs-diag-root">
+            <div class="cs-diag-root-box">Existing Dashboard</div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:16px;">
+            <div style="background:var(--white); border:1px solid var(--g5); border-radius:8px; padding:12px;">
+              <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--zs); margin-bottom:6px;">01</div>
+              <div style="font-size:11px; font-weight:600; color:var(--black); line-height:1.35;">Missing visual hierarchy</div>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--g5); border-radius:8px; padding:12px;">
+              <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--zs); margin-bottom:6px;">02</div>
+              <div style="font-size:11px; font-weight:600; color:var(--black); line-height:1.35;">Overcrowded sections</div>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--g5); border-radius:8px; padding:12px;">
+              <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--zs); margin-bottom:6px;">03</div>
+              <div style="font-size:11px; font-weight:600; color:var(--black); line-height:1.35;">No clear focal point</div>
+            </div>
+            <div style="background:var(--white); border:1px solid var(--g5); border-radius:8px; padding:12px;">
+              <div style="font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--zs); margin-bottom:6px;">04</div>
+              <div style="font-size:11px; font-weight:600; color:var(--black); line-height:1.35;">No personalization</div>
+            </div>
+          </div>
+          <div style="margin-top:12px; background:rgba(232,130,12,0.08); border:1px solid rgba(232,130,12,0.2); border-radius:8px; padding:10px 14px;">
+            <div style="font-size:11px; color:var(--zs); font-weight:500; line-height:1.5;">Result: &lt; 30% weekly active usage. Reps stopped trusting the data.</div>
+          </div>
         </div>
-        <div class="cs-theme">
-          <div class="cs-theme-title">Overcrowded sections</div>
-          <div class="cs-theme-body">Resources and Report Links were dense with links and labels, making navigation overwhelming. Reps rarely explored beyond the default view because everything looked the same.</div>
-        </div>
-        <div class="cs-theme">
-          <div class="cs-theme-title">No clear focal point</div>
-          <div class="cs-theme-body">Too many elements competed for attention at once. Reps had no obvious entry point and had to scan the full page just to locate their quota or payout progress.</div>
-        </div>
-        <div class="cs-theme">
-          <div class="cs-theme-title">No personalization</div>
-          <div class="cs-theme-body">Notification widgets showed generic, one-size-fits-all content. Reps tuned them out entirely. Nothing surfaced was relevant to their current goals or performance period.</div>
+
+        <div class="cs-mapping-text">
+          <h3>What we found in the audit</h3>
+          <p class="cs-p">Four recurring patterns explained why field reps had abandoned the dashboard before the redesign.</p>
+          <div class="cs-mapping-list">
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">1.</div>
+              <div class="cs-mapping-item-text"><strong>Missing hierarchy:</strong> critical data shared equal visual weight with secondary content — nothing told reps where to look first.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">2.</div>
+              <div class="cs-mapping-item-text"><strong>Overcrowded sections:</strong> dense links and labels made navigation overwhelming. Reps rarely explored past the default view.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">3.</div>
+              <div class="cs-mapping-item-text"><strong>No focal point:</strong> too many elements competed at once. Locating quota or payout meant scanning the entire page.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">4.</div>
+              <div class="cs-mapping-item-text"><strong>No personalization:</strong> generic widgets showed irrelevant content. Reps tuned them out entirely.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
