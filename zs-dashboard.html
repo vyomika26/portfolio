@@ -52,8 +52,8 @@
     .hero { padding: 120px 24px 80px; max-width: 1000px; margin: 0 auto; }
     .hero-tags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
     .hero-tag-pill { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; padding: 5px 12px; border-radius: 100px; background: var(--g6); color: var(--g1); border: 1px solid var(--g5); }
-    .hero h1 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.18; color: var(--black); margin-bottom: 20px; }
-    .hero h1 em { font-style: italic; font-weight: 300; color: var(--g2); }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 56px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.12; color: var(--black); margin-bottom: 20px; }
+    .hero h1 em { font-style: italic; font-weight: 300; color: var(--zs); }
     .hero-sub { font-size: 17px; color: var(--g2); line-height: 1.75; margin-bottom: 48px; max-width: 580px; }
     .meta-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--g5); padding-top: 28px; gap: 24px; }
     .meta-item-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3); margin-bottom: 6px; }
@@ -61,19 +61,20 @@
 
     /* ─── HERO SHOWCASE ─── */
     .cs-hero-showcase {
-      width: 100vw; position: relative; left: 50%;
-      margin-left: -50vw; margin-right: -50vw;
-      margin-bottom: 80px;
-      background: var(--zs);
-      padding: 28px 56px;
+      max-width: 1000px; margin: 0 auto 80px; padding: 0 24px;
       opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards;
     }
-    .cs-hero-showcase img,
     .cs-hero-showcase video {
       width: 100%; display: block;
-      border-radius: 12px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+      border-radius: 20px;
     }
+
+    /* ─── OVERVIEW ─── */
+    .cs-overview { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
+    .cs-overview-visual { border-radius: 16px; overflow: hidden; border: 1px solid var(--g5); background: var(--g6); }
+    .cs-overview-visual img { width: 100%; display: block; }
+    .cs-overview-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--zs); margin-bottom: 14px; }
+    .cs-overview-heading { font-size: clamp(18px, 2vw, 22px); font-weight: 400; letter-spacing: -0.025em; line-height: 1.3; color: var(--black); margin-bottom: 16px; }
 
     /* ─── SECTIONS ─── */
     .cs-section { margin-bottom: 80px; }
@@ -237,6 +238,7 @@
       .cs-meta { grid-template-columns: 1fr; }
       .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5) !important; }
       .cs-meta-item:last-child { border-bottom: none !important; }
+      .cs-overview { grid-template-columns: 1fr; }
       .cs-impact-grid { grid-template-columns: 1fr; }
       .cs-cards { grid-template-columns: 1fr; }
       .cs-exp-grid { grid-template-columns: 1fr; }
@@ -265,7 +267,7 @@
     <span class="hero-tag-pill">Dashboard Design</span>
     <span class="hero-tag-pill">Enterprise Web</span>
   </div>
-  <h1>Designing intuitive dashboards for <em>pharma sales teams</em></h1>
+  <h1>Designing intuitive dashboards for<br><em>pharma sales teams</em></h1>
   <p class="hero-sub">Senior Visual Product Designer at ZS Associates, where I led the design of ZAIDYN's Multi-Platform Incentives Dashboard, used daily by 45,000+ field reps across 70+ countries.</p>
   <div class="meta-row">
     <div>
@@ -297,13 +299,20 @@
 <!-- CONTENT -->
 <div class="cs-wrap">
 
-  <!-- PRODUCT CONTEXT -->
-  <div class="cs-section reveal">
-    <div class="cs-product-desc">
-      <p>"ZAIDYN by ZS is an AI-powered enterprise platform for pharmaceutical and life sciences companies. It streamlines CRM, sales performance tracking, and data analysis for field teams worldwide."</p>
+  <!-- OVERVIEW -->
+  <div class="cs-overview reveal">
+    <div class="cs-overview-visual">
+      <img
+        src="https://static.wixstatic.com/media/52ea71_2a2dac718b2843759e6b93750018228b~mv2.png/v1/fill/w_900,h_612,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/52ea71_2a2dac718b2843759e6b93750018228b~mv2.png"
+        alt="ZAIDYN Incentives Dashboard"
+      />
     </div>
-    <p class="cs-p">I joined as a Senior Visual Designer embedded in the ZAIDYN product team. The platform was growing rapidly, and the incentives dashboard that field reps used every day needed a significant redesign. The existing experience was fragmented, visually noisy, and failing to surface the information reps actually needed.</p>
-    <p class="cs-p">My work focused on redesigning this dashboard end-to-end while contributing to several other platform features running in parallel under NDA.</p>
+    <div>
+      <div class="cs-overview-label">About ZAIDYN</div>
+      <h2 class="cs-overview-heading">An AI-powered enterprise platform built for pharma field teams</h2>
+      <p class="cs-p">ZAIDYN by ZS is a global enterprise platform used by pharmaceutical and life sciences companies to manage CRM, sales performance, and incentive data for field teams across 70+ countries.</p>
+      <p class="cs-p">I joined as a Senior Visual Designer embedded in the product team. The incentives dashboard that 45,000+ field reps used every day was fragmented and failing to surface the data that mattered. My work was to redesign it from the ground up.</p>
+    </div>
   </div>
 
   <!-- FOCUS AREAS -->
