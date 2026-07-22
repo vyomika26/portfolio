@@ -165,6 +165,36 @@
     .cs-step-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
     .cs-step-desc { font-size: 14px; color: var(--g2); line-height: 1.65; }
 
+    /* ─── DESIGN APPROACH ─── */
+    .cs-approach { text-align: center; margin-bottom: 56px; }
+    .cs-approach-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g2); background: var(--g6); border: 1px solid var(--g5); border-radius: 100px; padding: 6px 14px; margin-bottom: 20px; }
+    .cs-approach-heading { font-size: clamp(22px, 2.8vw, 34px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.2; color: var(--black); margin-bottom: 14px; }
+    .cs-approach-sub { font-size: 15px; color: var(--g2); line-height: 1.7; max-width: 520px; margin: 0 auto; }
+    .cs-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+    .cs-principle { background: var(--g6); border-radius: 16px; padding: 32px 24px; text-align: center; }
+    .cs-principle-icon { width: 44px; height: 44px; margin: 0 auto 16px; color: var(--g2); }
+    .cs-principle-icon svg { width: 100%; height: 100%; }
+    .cs-principle-title { font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+    .cs-principle-desc { font-size: 13px; color: var(--g2); line-height: 1.65; }
+    .cs-mapping { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: start; }
+    .cs-mapping-diagram { background: var(--g6); border: 1px solid var(--g5); border-radius: 16px; padding: 32px 24px; }
+    .cs-diag-root { text-align: center; margin-bottom: 24px; }
+    .cs-diag-root-box { display: inline-block; background: var(--zs); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 20px; border-radius: 8px; }
+    .cs-diag-line-down { width: 1px; height: 24px; background: var(--g4); margin: 0 auto; }
+    .cs-diag-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .cs-diag-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .cs-diag-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g3); text-align: center; margin-bottom: 8px; }
+    .cs-diag-node { background: var(--white); border: 1px solid var(--g5); border-radius: 6px; padding: 6px 10px; font-size: 10px; color: var(--g1); text-align: center; line-height: 1.4; width: 100%; }
+    .cs-diag-node.accent { border-color: var(--zs); color: var(--zs); font-weight: 600; }
+    .cs-diag-node-gap { width: 1px; height: 8px; background: var(--g4); margin: 0 auto; }
+    .cs-mapping-text h3 { font-size: clamp(18px, 2.2vw, 24px); font-weight: 400; letter-spacing: -0.025em; color: var(--black); margin-bottom: 12px; line-height: 1.3; }
+    .cs-mapping-text .cs-p { font-size: 14px; margin-bottom: 20px; }
+    .cs-mapping-list { display: flex; flex-direction: column; gap: 12px; }
+    .cs-mapping-item { display: flex; gap: 12px; align-items: flex-start; }
+    .cs-mapping-num { font-size: 11px; font-weight: 700; color: var(--zs); flex-shrink: 0; padding-top: 1px; min-width: 18px; }
+    .cs-mapping-item-text { font-size: 13px; color: var(--g1); line-height: 1.6; }
+    .cs-mapping-item-text strong { color: var(--black); font-weight: 600; }
+
     /* ─── FRICTION THEMES ─── */
     .cs-themes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
     .cs-theme { background: var(--white); border: 1px solid var(--g5); border-radius: 12px; padding: 24px; }
@@ -487,6 +517,100 @@
         <div class="cs-theme">
           <div class="cs-theme-title">No personalization</div>
           <div class="cs-theme-body">Notification widgets showed generic, one-size-fits-all content. Reps tuned them out entirely. Nothing surfaced was relevant to their current goals or performance period.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN APPROACH -->
+    <div class="cs-section reveal" style="margin-bottom: 40px;">
+      <div class="cs-approach">
+        <div class="cs-approach-tag">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r="2" fill="currentColor"/></svg>
+          Design Approach
+        </div>
+        <h2 class="cs-approach-heading">Redesigning around how reps actually work</h2>
+        <p class="cs-approach-sub">Three principles shaped every decision, from information hierarchy to component-level interactions.</p>
+      </div>
+
+      <div class="cs-principles">
+        <div class="cs-principle">
+          <div class="cs-principle-icon">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="22" cy="22" r="8"/><circle cx="22" cy="22" r="15"/><line x1="22" y1="2" x2="22" y2="7"/><line x1="22" y1="37" x2="22" y2="42"/><line x1="2" y1="22" x2="7" y2="22"/><line x1="37" y1="22" x2="42" y2="22"/></svg>
+          </div>
+          <div class="cs-principle-title">Surface what matters</div>
+          <div class="cs-principle-desc">Quota progress, payout status, and rankings move above the fold. Everything else steps back.</div>
+        </div>
+        <div class="cs-principle">
+          <div class="cs-principle-icon">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="24" y="4" width="16" height="16" rx="3"/><rect x="4" y="24" width="16" height="16" rx="3"/><rect x="24" y="24" width="16" height="16" rx="3"/></svg>
+          </div>
+          <div class="cs-principle-title">Reduce cognitive load</div>
+          <div class="cs-principle-desc">Organize data by rep workflow, not system structure, so the next action is always obvious.</div>
+        </div>
+        <div class="cs-principle">
+          <div class="cs-principle-icon">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="32" height="32" rx="4"/><polyline points="14,22 20,28 30,16"/></svg>
+          </div>
+          <div class="cs-principle-title">Build for trust</div>
+          <div class="cs-principle-desc">Real-time, consistent data reps rely on, reducing escalations and manual cross-checks.</div>
+        </div>
+      </div>
+
+      <div class="cs-mapping">
+        <div class="cs-mapping-diagram">
+          <div class="cs-diag-root">
+            <div class="cs-diag-root-box">ZAIDYN Dashboard</div>
+          </div>
+          <div class="cs-diag-line-down"></div>
+          <div class="cs-diag-cols">
+            <div class="cs-diag-col">
+              <div class="cs-diag-col-title">Performance</div>
+              <div class="cs-diag-node accent">Awards &amp; Rankings</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node accent">QTD Payout</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node">Quota Progress</div>
+            </div>
+            <div class="cs-diag-col">
+              <div class="cs-diag-col-title">Content</div>
+              <div class="cs-diag-node accent">Slider Banner</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node accent">Insights Feed</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node">Announcements</div>
+            </div>
+            <div class="cs-diag-col">
+              <div class="cs-diag-col-title">Navigation</div>
+              <div class="cs-diag-node accent">Quick Links</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node accent">Upcoming Events</div>
+              <div class="cs-diag-node-gap"></div>
+              <div class="cs-diag-node">Report Links</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-mapping-text">
+          <h3>Mapping the dashboard</h3>
+          <p class="cs-p">Guided by the three principles, I restructured the dashboard into three clear zones, each with a defined job for the rep.</p>
+          <div class="cs-mapping-list">
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">1.</div>
+              <div class="cs-mapping-item-text"><strong>Performance zone:</strong> quota progress, rankings, and payout figures surface immediately on load.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">2.</div>
+              <div class="cs-mapping-item-text"><strong>Content zone:</strong> slider banner and insights feed replace the cluttered notification widget with a scannable feed.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">3.</div>
+              <div class="cs-mapping-item-text"><strong>Navigation zone:</strong> quick links and upcoming events give reps one-tap access to their most-used tools and commitments.</div>
+            </div>
+            <div class="cs-mapping-item">
+              <div class="cs-mapping-num">4.</div>
+              <div class="cs-mapping-item-text"><strong>Orange nodes</strong> are the 5 redesigned components. Each resolves a specific friction point identified in the audit.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
