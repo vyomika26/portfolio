@@ -279,21 +279,37 @@
 
     /* ─── MOBILE ─── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 16px; }
+      .nav-right { gap: 20px; }
       .cs-wrap { padding: 0 20px; }
-      .cs-hero { padding-top: 80px; padding-bottom: 40px; }
-      .cs-hero-showcase { padding: 32px 20px; }
-      .cs-meta { grid-template-columns: 1fr; }
-      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5) !important; }
-      .cs-meta-item:last-child { border-bottom: none !important; }
+      .hero { padding: 80px 20px 40px; }
+      .hero-sub { font-size: 15px; }
+      .cs-hero-showcase { padding: 0 20px 40px; }
+      .meta-row { grid-template-columns: 1fr 1fr; gap: 16px; }
       .cs-overview { grid-template-columns: 1fr; }
-      .cs-impact-grid { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr 1fr; }
       .cs-cards { grid-template-columns: 1fr; }
       .cs-exp-grid { grid-template-columns: 1fr; }
       .cs-themes { grid-template-columns: 1fr; }
       .cs-iter-tradeoffs { grid-template-columns: 1fr; }
+      .cs-principles { grid-template-columns: 1fr; }
+      .cs-mapping { grid-template-columns: 1fr; }
+      /* Flow diagram: stack vertically on mobile */
+      .cs-flow { flex-direction: column; }
+      .cs-flow-node { flex-direction: row; align-items: flex-start; text-align: left; gap: 16px; margin-bottom: 20px; }
+      .cs-flow-node:last-child { margin-bottom: 0; }
+      .cs-flow-node::after { display: none; }
+      .cs-flow-circle { flex-shrink: 0; }
+      .cs-flow-name { margin-top: 0; font-size: 13px; }
+      .cs-flow-vert { display: none; }
+      .cs-flow-box { width: 100%; }
       footer { padding: 36px 20px; flex-direction: column; }
       .footer-right { align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .meta-row { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>

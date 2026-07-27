@@ -193,19 +193,24 @@
 
     /* ─── MOBILE ─── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 16px; }
+      .nav-right { gap: 20px; }
       .cs-wrap { padding: 0 20px; }
-      .cs-hero { padding-top: 80px; padding-bottom: 40px; }
-      .cs-hero-showcase { padding: 20px; }
-      .cs-meta { grid-template-columns: 1fr; }
-      .cs-meta-item { padding: 12px 0; border-bottom: 1px solid var(--g5) !important; }
-      .cs-meta-item:last-child { border-bottom: none !important; }
-      .cs-impact-grid { grid-template-columns: 1fr 1fr !important; }
+      .hero { padding: 80px 20px 40px; }
+      .hero-sub { font-size: 15px; }
+      .cs-hero-showcase { padding: 0 20px 40px; }
+      .meta-row { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .cs-impact-grid { grid-template-columns: 1fr 1fr; }
       .cs-themes { grid-template-columns: 1fr; }
       .cs-field-notes { flex-direction: column; }
       .cs-persona-grid { grid-template-columns: 1fr; }
       footer { padding: 36px 20px; flex-direction: column; }
       .footer-right { align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .meta-row { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>

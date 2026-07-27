@@ -493,8 +493,10 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { padding: 100px 20px 60px; }
+      nav { padding: 0 16px; }
+      .nav-right { gap: 20px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero-sub { font-size: 15px; }
       .meta-row { grid-template-columns: 1fr 1fr; }
       .hero-media { padding: 0 16px; }
       .problem-grid, .before-after, .feature-item, .solution-layout, .stat-grid, .split-row, .learning-list { grid-template-columns: 1fr !important; }
@@ -506,6 +508,12 @@
       .feature-item.flip { direction: ltr; }
       .tradeoff-row { grid-template-columns: 1fr; }
       .role-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .meta-row { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
+      .screens-row.col-4, .screens-row.col-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>

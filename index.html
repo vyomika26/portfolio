@@ -303,23 +303,47 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 860px) {
-      nav { padding: 0 20px; }
-      .hero { padding: 72px 16px 16px; }
-      .hero-card { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 40px 28px; gap: 32px; }
-      .hero-right { height: 360px; }
-      .hero-right::before { display: none; }
-      .hero-float-card { bottom: 16px; right: 16px; left: 16px; max-width: none; }
+      /* Nav: un-center, shrink to screen width, hide links */
+      nav {
+        left: 16px; right: 16px;
+        transform: none;
+        min-width: 0; width: calc(100% - 32px);
+        padding: 0 8px 0 16px;
+      }
+      .nav-links { display: none; }
+
+      /* Hero */
+      .hero { padding: 100px 24px 100px; }
+
+      /* Work */
       .section { padding: 52px 20px; }
       .divider { margin: 0 20px; }
       .work-grid { grid-template-columns: 1fr; gap: 16px; }
-      .proj-card { aspect-ratio: 3 / 2; }
-      .proj-info { padding: 20px 24px 24px; }
-      .about-stats-grid { grid-template-columns: 1fr; }
+      .proj-info { padding: 0 4px; }
+
+      /* About: stack photo above content */
+      .about-inner { grid-template-columns: 1fr; gap: 24px; }
+      .about-photo-wrap { max-height: 320px; flex: none; }
+      .about-stats-grid { grid-template-columns: 1fr 1fr; }
       .about-stat { border-right: none; }
+      .about-stat:nth-child(2n) { border-right: none; }
       .about-stat:nth-child(3) { border-bottom: 1px solid var(--g5); }
+
+      /* Footer */
+      footer { padding: 36px 20px; flex-direction: column; gap: 20px; }
       .footer-right { align-items: flex-start; }
-      footer { padding: 36px 20px; }
+    }
+
+    /* Extra-small phones */
+    @media (max-width: 480px) {
+      .hero-pic { width: 56px !important; height: 56px !important; }
+      .hero-sub { font-size: 14px; }
+      .hero-btns { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      .about-stats-grid { grid-template-columns: 1fr; }
+      .about-stat:nth-child(3) { border-bottom: 1px solid var(--g5); }
+      .footer-links { flex-wrap: wrap; gap: 12px; }
+      .footer-social { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -354,7 +378,7 @@
 
     <!-- Heading with inline profile pic -->
     <h1 class="hero-h1" style="margin-bottom:0; line-height:1.15;">
-      Hello!&nbsp;<img src="assets/shared/profile-pic.png" alt="Vyomika" style="display:inline-block; vertical-align:middle; width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:center top; margin: 0 4px -4px;" />&nbsp;I'm Vyomika,<br>
+      Hello!&nbsp;<img src="assets/shared/profile-pic.png" alt="Vyomika" class="hero-pic" style="display:inline-block; vertical-align:middle; width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:center top; margin: 0 4px -4px;" />&nbsp;I'm Vyomika,<br>
       <em>AI product designer</em> who codes, draws and ships.
     </h1>
 
