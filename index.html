@@ -582,20 +582,12 @@
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
 
-  /* Video — autoplay on scroll into view, pause when out */
+  /* Video hover only */
   document.querySelectorAll('.proj-card').forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
-
-    const videoObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { video.play().catch(() => {}); }
-        else { video.pause(); }
-      });
-    }, { threshold: 0.3 });
-    videoObs.observe(card);
-
-    card.addEventListener('mouseleave', () => { video.currentTime = 0; video.play().catch(() => {}); });
+    card.addEventListener('mouseenter', () => { video.play().catch(() => {}); });
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
   });
 
   /* Force consistent 16:10 media height */
