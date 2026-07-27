@@ -429,7 +429,7 @@
     <!-- 01 Habit Coach AI -->
     <a href="habit-coach-case-study.html" class="proj-card reveal d1">
       <div class="proj-media">
-        <video id="v1" muted loop playsinline preload="none">
+        <video id="v1" muted loop playsinline preload="auto">
           <source src="assets/habit-coach/preview.mp4" type="video/mp4" />
         </video>
       </div>
@@ -448,7 +448,7 @@
     <!-- 02 ZS Dashboard -->
     <a href="zs-dashboard.html" class="proj-card reveal d2">
       <div class="proj-media">
-        <video id="v2" muted loop playsinline preload="none">
+        <video id="v2" muted loop playsinline preload="auto">
           <source src="assets/zs-dashboard/video.mp4" type="video/mp4" />
         </video>
       </div>
@@ -467,7 +467,7 @@
     <!-- 03 Design System -->
     <a href="zs-design-system.html" class="proj-card reveal d3">
       <div class="proj-media">
-        <video id="v3" muted loop playsinline preload="none">
+        <video id="v3" muted loop playsinline preload="auto">
           <source src="assets/zs-design-system/video.mp4" type="video/mp4" />
         </video>
       </div>
@@ -486,7 +486,7 @@
     <!-- 04 TATA Motors -->
     <a href="tata-motors.html" class="proj-card reveal d4">
       <div class="proj-media">
-        <video id="v4" muted loop playsinline preload="none">
+        <video id="v4" muted loop playsinline preload="auto">
           <source src="assets/tata-motors/video.mp4" type="video/mp4" />
         </video>
       </div>
@@ -582,12 +582,20 @@
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
 
-  /* Video hover — regular cards */
+  /* Video — autoplay on scroll into view, pause when out */
   document.querySelectorAll('.proj-card').forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
-    card.addEventListener('mouseenter', () => { video.play().catch(()=>{}); });
-    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+
+    const videoObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { video.play().catch(() => {}); }
+        else { video.pause(); }
+      });
+    }, { threshold: 0.3 });
+    videoObs.observe(card);
+
+    card.addEventListener('mouseleave', () => { video.currentTime = 0; video.play().catch(() => {}); });
   });
 
   /* Force consistent 16:10 media height */
