@@ -218,6 +218,19 @@
     .cs-iter-tradeoff-title { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 8px; line-height: 1.4; }
     .cs-iter-tradeoff-body { font-size: 13px; color: var(--g2); line-height: 1.6; }
 
+    /* ─── SLIDESHOW ─── */
+    .cs-slideshow { position: relative; border-radius: 16px; overflow: hidden; background: var(--g6); border: 1px solid var(--g5); margin: 28px 0; }
+    .cs-slide { display: none; }
+    .cs-slide.active { display: block; animation: slideFade 0.55s ease; }
+    .cs-slide img { width: 100%; display: block; border-radius: 16px 16px 0 0; }
+    @keyframes slideFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .cs-slide-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+    .cs-slide-label { font-size: 12px; font-weight: 600; color: var(--g2); letter-spacing: 0.02em; }
+    .cs-slide-dots { display: flex; gap: 6px; }
+    .cs-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g4); cursor: pointer; transition: background 0.2s, transform 0.2s; border: none; padding: 0; }
+    .cs-dot.active { background: var(--zs); transform: scale(1.3); }
+    .cs-slide-progress { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--zs); opacity: 0.4; transition: width 0.1s linear; }
+
     /* ─── EXPANDABLE IMAGE ─── */
     .cs-expandable-img { position: relative; display: block; width: 100%; }
     .cs-expandable-img img { width: 100%; border-radius: 8px; display: block; }
@@ -768,21 +781,27 @@
     </div>
 
     <div class="cs-solution">
-      <div class="cs-solution-label">Business rules — table</div>
+      <div class="cs-solution-label">Business rules — interactive states</div>
       <div class="cs-solution-title">Designing complex data tables for enterprise workflows</div>
-      <div class="cs-media">
-        <img src="assets/zs-dashboard/business-rules-table.png" alt="Business rules table" />
-      </div>
-    </div>
-
-    <div class="cs-exp-grid" style="margin-bottom: 56px;">
-      <div class="cs-media" style="margin: 0;">
-        <img src="assets/zs-dashboard/business-rules-editable.png" alt="Business rules editable table state" />
-        <div class="cs-solution-resolves" style="margin-top: 10px;">Editable state</div>
-      </div>
-      <div class="cs-media" style="margin: 0;">
-        <img src="assets/zs-dashboard/business-rules-draggable.png" alt="Business rules draggable table state" />
-        <div class="cs-solution-resolves" style="margin-top: 10px;">Draggable state</div>
+      <div class="cs-slideshow" id="br-slideshow">
+        <div class="cs-slide active">
+          <img src="assets/zs-dashboard/business-rules-table.png" alt="Business rules default table" />
+        </div>
+        <div class="cs-slide">
+          <img src="assets/zs-dashboard/business-rules-editable.png" alt="Business rules editable state" />
+        </div>
+        <div class="cs-slide">
+          <img src="assets/zs-dashboard/business-rules-draggable.png" alt="Business rules draggable state" />
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-label" id="br-label">01 — Default table</span>
+          <div class="cs-slide-dots">
+            <button class="cs-dot active" data-idx="0" aria-label="Default table"></button>
+            <button class="cs-dot" data-idx="1" aria-label="Editable state"></button>
+            <button class="cs-dot" data-idx="2" aria-label="Draggable state"></button>
+          </div>
+        </div>
+        <div class="cs-slide-progress" id="br-progress"></div>
       </div>
     </div>
   </div>
@@ -917,6 +936,38 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
   });
+
+  /* Business rules slideshow */
+  (function() {
+    const slides = document.querySelectorAll('#br-slideshow .cs-slide');
+    const dots   = document.querySelectorAll('#br-slideshow .cs-dot');
+    const label  = document.getElementById('br-label');
+    const bar    = document.getElementById('br-progress');
+    const labels = ['01 — Default table', '02 — Editable state', '03 — Draggable state'];
+    const DURATION = 3000;
+    let current = 0, start = null, raf = null;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = idx;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      label.textContent = labels[current];
+      start = performance.now();
+    }
+
+    function tick(ts) {
+      if (!start) start = ts;
+      const pct = Math.min(((ts - start) / DURATION) * 100, 100);
+      bar.style.width = pct + '%';
+      if (pct >= 100) goTo((current + 1) % slides.length);
+      raf = requestAnimationFrame(tick);
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    raf = requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
