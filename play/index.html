@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vyomika Parikh — Play</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:  #0D0D0D;
+      --g1:     #3D3D3D;
+      --g2:     #6B6B6B;
+      --g3:     #9A9A9A;
+      --g4:     #D4D4D4;
+      --g5:     #EFEFEF;
+      --g6:     #F7F7F7;
+      --white:  #FFFFFF;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    ::selection { background: #0D0D0D; color: #fff; }
+    body {
+      background: var(--white); color: var(--black);
+      font-family: var(--font); -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 300;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 8px 0 20px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-radius: 100px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      white-space: nowrap;
+      min-width: 560px;
+      gap: 8px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 8px; }
+    .nav-name { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: var(--black); }
+    .nav-links { display: flex; gap: 0; }
+    .nav-link { font-size: 13px; color: var(--g2); padding: 6px 14px; border-radius: 100px; transition: background 0.15s, color 0.15s; }
+    .nav-link:hover { background: var(--g5); color: var(--black); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 72vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 80px 60px;
+      background: var(--white);
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s var(--ease-out) 0.1s forwards;
+    }
+    .hero-h1 {
+      font-size: clamp(34px, 4.4vw, 58px);
+      font-weight: 400; line-height: 1.15; letter-spacing: -0.04em;
+      color: var(--black); margin-bottom: 20px;
+      max-width: 780px;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+    }
+    .hero-h1 em { font-style: italic; font-weight: 300; color: var(--g3); }
+    .hero-sub {
+      font-size: 16px; color: var(--g2); line-height: 1.7; max-width: 540px; margin: 0 auto;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ─── SECTION SHELL ─── */
+    .section { padding: 64px 80px; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 20px;
+    }
+    .section-head { max-width: 640px; margin-bottom: 40px; }
+    .section-title {
+      font-size: clamp(22px, 2.4vw, 30px); font-weight: 400; letter-spacing: -0.03em;
+      line-height: 1.25; color: var(--black); margin-bottom: 14px;
+    }
+    .section-body { font-size: 15px; color: var(--g2); line-height: 1.8; }
+    .section-body p + p { margin-top: 10px; }
+
+    hr.rule { border: none; border-top: 1px solid var(--g5); margin: 0 80px; }
+
+    /* ─── TEACHING STATS ─── */
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--g5); border-radius: 14px; overflow: hidden; }
+    .stat-item { padding: 24px 26px; border-right: 1px solid var(--g5); }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon { font-size: 18px; margin-bottom: 8px; }
+    .stat-val { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--g3); line-height: 1.5; }
+
+    /* ─── HALLA GULLA ─── */
+    .hg-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--g6); border: 1px solid var(--g5);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 12px; font-weight: 500; color: var(--black);
+      margin-bottom: 18px;
+    }
+    /* Hero shot: full width, native aspect ratio, nothing cropped */
+    .hg-hero {
+      width: 100%; max-width: 640px; margin: 36px auto 0;
+      border-radius: 20px; overflow: hidden;
+      background: var(--g6); border: 1px solid var(--g5);
+    }
+    .hg-hero img { width: 100%; height: auto; display: block; }
+
+    /* Auto-scrolling strip for the rest — same continuous-marquee technique
+       as the homepage ticker: duplicate the items once, loop via transform,
+       pause on hover. Fixed height (not object-fit crop) so every photo
+       still shows in full, just scaled to match its neighbors. */
+    .hg-ticker-wrap { overflow: hidden; margin-top: 18px; padding: 6px 0; }
+    .hg-ticker-track { display: flex; gap: 14px; width: max-content; animation: hgTicker 26s linear infinite; }
+    .hg-ticker-track:hover { animation-play-state: paused; }
+    .hg-ticker-track > div {
+      flex: 0 0 auto; height: 300px; border-radius: 16px; overflow: hidden;
+      background: var(--g6); border: 1px solid var(--g5);
+    }
+    .hg-ticker-track img { height: 100%; width: auto; display: block; }
+    @keyframes hgTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .hg-cta { display: flex; align-items: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      position: relative; overflow: hidden;
+      background: var(--black); color: var(--white);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+      padding: 13px 26px; border-radius: 100px;
+      border: 1.5px solid var(--black); cursor: pointer; transition: color 0.35s;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0; background: var(--white);
+      border-radius: 100px; transform: scaleX(0); transform-origin: left;
+      transition: transform 0.45s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: scaleX(1); }
+    .btn-primary:hover { color: var(--black); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+      padding: 13px 26px; border-radius: 100px;
+      border: 1.5px solid var(--g4); color: var(--g1);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--black); color: var(--black); }
+
+    /* ─── SLOW PASTELS ─── */
+    .sp-card {
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+      background: var(--g6); border: 1px solid var(--g5); border-radius: 20px;
+      padding: 32px 36px; margin-top: 32px; flex-wrap: wrap;
+    }
+    .sp-card-left { display: flex; align-items: center; gap: 18px; }
+    .sp-mark {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #F5C97B 0%, #E88B6B 45%, #B86BA8 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .sp-handle { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .sp-desc { font-size: 13px; color: var(--g3); margin-top: 2px; }
+
+    /* ─── INSTAGRAM REEL EMBED ─── */
+    .ig-embed-wrap { display: flex; justify-content: center; margin-top: 28px; }
+    .ig-embed-wrap blockquote { margin: 0 auto !important; }
+    .ig-embed-row { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; justify-content: center; }
+    .ig-embed-row blockquote { margin: 0 !important; flex: 1 1 280px; max-width: 340px !important; }
+
+    /* ─── LOCAL VIDEO (Creative Explorer) ─── */
+    .video-wrap {
+      width: 100%; max-width: 360px; margin: 28px auto 0;
+      border-radius: 20px; overflow: hidden;
+      background: var(--g6); border: 1px solid var(--g5);
+      aspect-ratio: 9/16;
+    }
+    .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 44px 80px;
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 32px;
+    }
+    .footer-left .fn { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .footer-left .fr { font-size: 12px; color: var(--g3); margin-bottom: 16px; }
+    .footer-left .fc { font-size: 11px; color: var(--g4); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link { font-size: 13px; color: var(--g2); transition: color 0.15s; }
+    .footer-link:hover { color: var(--black); }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-soc-btn {
+      font-size: 12px; font-weight: 500; padding: 7px 15px;
+      border-radius: 100px; border: 1px solid var(--g4); color: var(--g2); transition: all 0.2s;
+    }
+    .footer-soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:.06s} .d2{transition-delay:.12s} .d3{transition-delay:.18s}
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      nav { left: 16px; right: 16px; transform: none; min-width: 0; width: calc(100% - 32px); padding: 0 8px 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 110px 24px 50px; }
+      .section { padding: 48px 20px; }
+      hr.rule { margin: 0 20px; }
+      .stat-row { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--g5); }
+      .stat-item:last-child { border-bottom: none; }
+      .hg-ticker-track > div { height: 220px; }
+      .sp-card { flex-direction: column; align-items: flex-start; }
+      footer { padding: 36px 20px; flex-direction: column; gap: 20px; }
+      .footer-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-brand">
+    <span class="nav-name">Vyomika</span>
+  </a>
+  <div class="nav-links">
+    <a href="#teaching" class="nav-link">Teaching</a>
+    <a href="#hallagulla" class="nav-link">Halla Gulla</a>
+    <a href="#pastels" class="nav-link">Slow Pastels</a>
+  </div>
+  <a href="/" style="display:inline-flex; align-items:center; font-size:13px; font-weight:500; color:var(--black); padding:10px 22px; border-radius:100px; border:1.5px solid var(--g4); transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--black)'" onmouseout="this.style.borderColor='var(--g4)'">← Portfolio</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Outside the deck</div>
+  <h1 class="hero-h1">I teach kids to make things,<br><em>paint every day,</em> and once shipped a card game.</h1>
+</section>
+
+<!-- TEACHING -->
+<section class="section" id="teaching">
+  <div class="section-head reveal">
+    <div class="section-label">Teaching</div>
+    <div class="section-title">Drawing, painting, and building things with kids</div>
+    <div class="section-body">
+      <p>I've taught creative drawing, painting, and hands-on craft and construction to kids ages 3 to 13 at a summer camp. Most of it is less about the finished piece and more about getting a 5-year-old to commit to a shape before they second-guess it.</p>
+      <p>I'm a trained designer, a B.Des in Visual Communication and an M.Des from California College of the Arts, and I'm currently studying Early Childhood Education. Teaching kids and designing products turned out to ask the same question: how do you make something approachable enough that someone just starts.</p>
+    </div>
+  </div>
+
+  <div class="stat-row reveal d1">
+    <div class="stat-item">
+      <div class="stat-icon">🧒</div>
+      <div class="stat-val">Ages 3–13</div>
+      <div class="stat-label">drawing, painting, craft & construction at summer camp</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🎓</div>
+      <div class="stat-val">B.Des + M.Des</div>
+      <div class="stat-label">Visual Communication, then Interaction Design at CCA</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">📚</div>
+      <div class="stat-val">Studying now</div>
+      <div class="stat-label">Early Childhood Education</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- HALLA GULLA -->
+<section class="section" id="hallagulla">
+  <div class="section-head reveal">
+    <div class="hg-badge">🎲 Sold out · now on Amazon</div>
+    <div class="section-title">Halla Gulla</div>
+    <div class="section-body">
+      <p>A kids' card game I designed and illustrated end to end, rules, characters, and every card. It sold out its first run and is now back on Amazon.</p>
+    </div>
+  </div>
+
+  <div class="hg-hero reveal d1">
+    <img src="../assets/play/hallagulla/halla-gulla-flatlay.jpg" alt="Halla Gulla box, cards and bell laid out" />
+  </div>
+
+  <div class="hg-ticker-wrap reveal d2">
+    <div class="hg-ticker-track">
+      <div><img src="../assets/play/hallagulla/halla-gulla-cards-detail.jpg" alt="Halla Gulla fruit cards close-up with the bell" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-back.jpg" alt="Back of the Halla Gulla box, how-to-play steps, credited to Vyomika Parikh" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-front.jpg" alt="Halla Gulla box, front" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-set.jpg" alt="Full Halla Gulla set with rule card" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-side-1.jpg" alt="Halla Gulla box, side panel with fruit icons" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-side-2.jpg" alt="Halla Gulla box, side panel with player count and time" /></div>
+      <!-- duplicated for a seamless loop -->
+      <div><img src="../assets/play/hallagulla/halla-gulla-cards-detail.jpg" alt="Halla Gulla fruit cards close-up with the bell" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-back.jpg" alt="Back of the Halla Gulla box, how-to-play steps, credited to Vyomika Parikh" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-front.jpg" alt="Halla Gulla box, front" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-set.jpg" alt="Full Halla Gulla set with rule card" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-side-1.jpg" alt="Halla Gulla box, side panel with fruit icons" /></div>
+      <div><img src="../assets/play/hallagulla/halla-gulla-box-side-2.jpg" alt="Halla Gulla box, side panel with player count and time" /></div>
+    </div>
+  </div>
+
+  <div class="hg-cta reveal d3">
+    <a href="https://www.amazon.in/dp/B07D5K1QSN" target="_blank" rel="noopener" class="btn-primary">
+      <span>View on Amazon</span>
+      <span>↗</span>
+    </a>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- SLOW PASTELS -->
+<section class="section" id="pastels">
+  <div class="section-head reveal">
+    <div class="section-label">Daily practice</div>
+    <div class="section-title">Slow Pastels</div>
+    <div class="section-body">
+      <p>I paint daily with oil pastels, mostly small, mostly quiet. It's the one creative habit with no deadline, no client, and no undo button.</p>
+    </div>
+  </div>
+
+  <a href="https://instagram.com/slowpastels" target="_blank" rel="noopener" class="sp-card reveal d1">
+    <div class="sp-card-left">
+      <div class="sp-mark">🎨</div>
+      <div>
+        <div class="sp-handle">@slowpastels</div>
+        <div class="sp-desc">Daily oil pastel paintings on Instagram</div>
+      </div>
+    </div>
+    <span class="btn-outline">Follow along <span>↗</span></span>
+  </a>
+
+  <div class="ig-embed-row reveal d2">
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYYY3JuM46t/" data-instgrm-version="14"
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+    </blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXdn19xDqXn/" data-instgrm-version="14"
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+    </blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXVRttoDylh/" data-instgrm-version="14"
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+    </blockquote>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- CREATIVE EXPLORER VIDEO -->
+<section class="section" id="video">
+  <div class="section-head reveal">
+    <div class="section-label">A closer look</div>
+    <div class="section-title">Creative Explorer</div>
+    <div class="section-body">
+      <p>A short look at how this side of my work actually plays out.</p>
+    </div>
+  </div>
+
+  <div class="video-wrap reveal d1">
+    <video controls playsinline preload="metadata">
+      <source src="../assets/play/video/creative-explorer.mp4" type="video/mp4" />
+    </video>
+  </div>
+</section>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="fn">Vyomika Parikh</div>
+    <div class="fr">Design, teaching, and daily painting</div>
+    <div class="fc">Designed by Vyomika Parikh</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="/" class="footer-link">Portfolio</a>
+      <a href="#hallagulla" class="footer-link">Halla Gulla</a>
+      <a href="#pastels" class="footer-link">Slow Pastels</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://instagram.com/slowpastels" class="footer-soc-btn" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="mailto:vyomika@gmail.com" class="footer-soc-btn">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
