@@ -100,7 +100,14 @@
     hr.rule { border: none; border-top: 1px solid var(--g5); margin: 0 80px; }
 
     /* ─── TEACHING STATS ─── */
-    .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--g5); border-radius: 14px; overflow: hidden; }
+    .teaching-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: start; margin-bottom: 40px; }
+    .teaching-inner .section-head { margin-bottom: 0; max-width: none; }
+    .teaching-photo {
+      border-radius: 20px; overflow: hidden; aspect-ratio: 4/5;
+      background: var(--g6); border: 1px solid var(--g5);
+    }
+    .teaching-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--g5); border-radius: 14px; overflow: hidden; margin-top: 40px; }
     .stat-item { padding: 24px 26px; border-right: 1px solid var(--g5); }
     .stat-item:last-child { border-right: none; }
     .stat-icon { font-size: 18px; margin-bottom: 8px; }
@@ -225,6 +232,8 @@
       .hero { padding: 110px 24px 50px; }
       .section { padding: 48px 20px; }
       hr.rule { margin: 0 20px; }
+      .teaching-inner { grid-template-columns: 1fr; gap: 24px; }
+      .teaching-photo { aspect-ratio: 16/10; }
       .stat-row { grid-template-columns: 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid var(--g5); }
       .stat-item:last-child { border-bottom: none; }
@@ -258,16 +267,22 @@
 
 <!-- TEACHING -->
 <section class="section" id="teaching">
-  <div class="section-head reveal">
-    <div class="section-label">Teaching</div>
-    <div class="section-title">Drawing, painting, and building things with kids</div>
-    <div class="section-body">
-      <p>I've taught creative drawing, painting, and hands-on craft and construction to kids ages 3 to 13 at a summer camp. Most of it is less about the finished piece and more about getting a 5-year-old to commit to a shape before they second-guess it.</p>
-      <p>I'm a trained designer, a B.Des in Visual Communication and an M.Des from California College of the Arts, and I'm currently studying Early Childhood Education. Teaching kids and designing products turned out to ask the same question: how do you make something approachable enough that someone just starts.</p>
+  <div class="teaching-inner">
+    <div class="section-head reveal">
+      <div class="section-label">Teaching</div>
+      <div class="section-title">Drawing, painting, and building things with kids</div>
+      <div class="section-body">
+        <p>I've taught creative drawing, painting, and hands-on craft and construction to kids ages 3 to 13 at a summer camp. Most of it is less about the finished piece and more about getting a 5-year-old to commit to a shape before they second-guess it.</p>
+        <p>I'm a trained designer, a B.Des in Visual Communication and an M.Des from California College of the Arts, and I'm currently studying Early Childhood Education. Teaching kids and designing products turned out to ask the same question: how do you make something approachable enough that someone just starts.</p>
+      </div>
+    </div>
+
+    <div class="teaching-photo reveal d1">
+      <img src="../assets/play/teaching-photo.jpg" alt="Vyomika holding two Halla Gulla card game boxes" />
     </div>
   </div>
 
-  <div class="stat-row reveal d1">
+  <div class="stat-row reveal d2">
     <div class="stat-item">
       <div class="stat-icon">🧒</div>
       <div class="stat-val">Ages 3–13</div>
