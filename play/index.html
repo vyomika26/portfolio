@@ -109,6 +109,28 @@
       background: var(--g6); border: 1px solid var(--g5);
     }
     .teaching-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+    /* ─── SUMMER CAMP: sticky video + auto-scrolling photo wall ──────
+       Video stays pinned on the left while the photo track scrolls past
+       on the right, both sized to the same height so they read as one
+       piece. Same continuous-marquee technique as the other tickers. */
+    .camp-wrap { display: flex; gap: 24px; margin-top: 48px; align-items: flex-start; }
+    .camp-video-sticky {
+      position: sticky; top: 88px; flex: 0 0 auto;
+      height: 480px; width: auto; aspect-ratio: 9/16;
+      border-radius: 20px; overflow: hidden;
+      background: var(--g6); border: 1px solid var(--g5);
+    }
+    .camp-video-sticky video { height: 100%; width: 100%; object-fit: cover; display: block; }
+    .camp-scroll-wrap { flex: 1; overflow: hidden; min-width: 0; padding: 6px 0; }
+    .camp-scroll-track { display: flex; gap: 14px; width: max-content; animation: campScroll 260s linear infinite; }
+    .camp-scroll-track:hover { animation-play-state: paused; }
+    .camp-scroll-track > div {
+      flex: 0 0 auto; height: 480px; border-radius: 16px; overflow: hidden;
+      background: var(--g6); border: 1px solid var(--g5);
+    }
+    .camp-scroll-track img { height: 100%; width: auto; display: block; }
+    @keyframes campScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--g5); border-radius: 14px; overflow: hidden; }
     .stat-item { padding: 24px 26px; border-right: 1px solid var(--g5); }
     .stat-item:last-child { border-right: none; }
@@ -235,6 +257,9 @@
       .mobile-break { display: inline; }
       .teaching-inner { grid-template-columns: 1fr; gap: 24px; }
       .teaching-photo { aspect-ratio: 16/10; }
+      .camp-wrap { flex-direction: column; }
+      .camp-video-sticky { position: static; height: 320px; width: 100%; max-width: 280px; }
+      .camp-scroll-track > div { height: 300px; }
       .stat-row { grid-template-columns: 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid var(--g5); }
       .stat-item:last-child { border-bottom: none; }
@@ -300,6 +325,127 @@
 
     <div class="teaching-photo reveal d2">
       <img src="../assets/play/teaching-photo.jpg" alt="Vyomika holding two Halla Gulla card game boxes" />
+    </div>
+  </div>
+
+  <div class="camp-wrap reveal d3">
+    <div class="camp-video-sticky">
+      <video controls playsinline preload="metadata">
+        <source src="../assets/play/video/summer-camp.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="camp-scroll-wrap">
+      <div class="camp-scroll-track">
+      <div><img src="../assets/play/camp-photos/camp-01.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-02.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-03.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-04.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-05.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-06.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-07.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-08.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-09.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-10.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-11.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-12.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-13.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-14.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-15.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-16.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-17.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-18.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-19.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-20.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-21.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-22.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-23.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-24.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-25.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-26.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-27.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-28.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-29.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-30.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-31.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-32.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-33.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-34.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-35.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-36.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-37.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-38.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-39.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-40.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-41.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-42.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-43.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-44.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-45.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-46.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-47.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-48.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-49.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-50.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-51.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-52.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-53.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-54.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-01.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-02.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-03.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-04.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-05.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-06.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-07.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-08.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-09.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-10.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-11.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-12.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-13.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-14.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-15.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-16.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-17.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-18.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-19.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-20.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-21.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-22.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-23.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-24.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-25.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-26.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-27.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-28.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-29.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-30.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-31.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-32.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-33.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-34.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-35.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-36.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-37.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-38.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-39.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-40.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-41.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-42.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-43.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-44.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-45.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-46.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-47.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-48.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-49.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-50.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-51.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-52.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-53.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      <div><img src="../assets/play/camp-photos/camp-54.jpg" alt="Camp artwork or activity" loading="lazy" /></div>
+      </div>
     </div>
   </div>
 </section>
