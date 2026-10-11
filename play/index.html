@@ -124,23 +124,17 @@
       font-size: 12px; font-weight: 500; color: var(--black);
       margin-bottom: 18px;
     }
-    /* Hero shot: full width, native aspect ratio, nothing cropped */
-    .hg-hero {
-      width: 100%; max-width: 640px; margin: 36px auto 0;
-      border-radius: 20px; overflow: hidden;
-      background: var(--g6); border: 1px solid var(--g5);
-    }
-    .hg-hero img { width: 100%; height: auto; display: block; }
-
-    /* Auto-scrolling strip for the rest — same continuous-marquee technique
-       as the homepage ticker: duplicate the items once, loop via transform,
-       pause on hover. Fixed height (not object-fit crop) so every photo
-       still shows in full, just scaled to match its neighbors. */
-    .hg-ticker-wrap { overflow: hidden; margin-top: 18px; padding: 6px 0; }
-    .hg-ticker-track { display: flex; gap: 14px; width: max-content; animation: hgTicker 26s linear infinite; }
+    /* One unified auto-scrolling strip for every photo — same continuous-
+       marquee technique as the homepage ticker: duplicate the items once,
+       loop via transform, pause on hover. Fixed height (not object-fit
+       crop) so every photo still shows in full, just scaled to match its
+       neighbors. Sized between the old static hero and the old small
+       strip: substantial, but not full-bleed. */
+    .hg-ticker-wrap { overflow: hidden; margin-top: 36px; padding: 6px 0; }
+    .hg-ticker-track { display: flex; gap: 16px; width: max-content; animation: hgTicker 32s linear infinite; }
     .hg-ticker-track:hover { animation-play-state: paused; }
     .hg-ticker-track > div {
-      flex: 0 0 auto; height: 300px; border-radius: 16px; overflow: hidden;
+      flex: 0 0 auto; height: 440px; border-radius: 20px; overflow: hidden;
       background: var(--g6); border: 1px solid var(--g5);
     }
     .hg-ticker-track img { height: 100%; width: auto; display: block; }
@@ -312,12 +306,9 @@
     </div>
   </div>
 
-  <div class="hg-hero reveal d1">
-    <img src="../assets/play/hallagulla/halla-gulla-flatlay.jpg" alt="Halla Gulla box, cards and bell laid out" />
-  </div>
-
-  <div class="hg-ticker-wrap reveal d2">
+  <div class="hg-ticker-wrap reveal d1">
     <div class="hg-ticker-track">
+      <div><img src="../assets/play/hallagulla/halla-gulla-flatlay.jpg" alt="Halla Gulla box, cards and bell laid out" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-cards-detail.jpg" alt="Halla Gulla fruit cards close-up with the bell" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-box-back.jpg" alt="Back of the Halla Gulla box, how-to-play steps, credited to Vyomika Parikh" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-box-front.jpg" alt="Halla Gulla box, front" /></div>
@@ -325,6 +316,7 @@
       <div><img src="../assets/play/hallagulla/halla-gulla-box-side-1.jpg" alt="Halla Gulla box, side panel with fruit icons" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-box-side-2.jpg" alt="Halla Gulla box, side panel with player count and time" /></div>
       <!-- duplicated for a seamless loop -->
+      <div><img src="../assets/play/hallagulla/halla-gulla-flatlay.jpg" alt="Halla Gulla box, cards and bell laid out" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-cards-detail.jpg" alt="Halla Gulla fruit cards close-up with the bell" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-box-back.jpg" alt="Back of the Halla Gulla box, how-to-play steps, credited to Vyomika Parikh" /></div>
       <div><img src="../assets/play/hallagulla/halla-gulla-box-front.jpg" alt="Halla Gulla box, front" /></div>
