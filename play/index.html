@@ -185,8 +185,12 @@
     /* ─── INSTAGRAM REEL EMBED ─── */
     .ig-embed-wrap { display: flex; justify-content: center; margin-top: 28px; }
     .ig-embed-wrap blockquote { margin: 0 auto !important; }
-    .ig-embed-row { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; justify-content: center; }
-    .ig-embed-row blockquote { margin: 0 !important; flex: 1 1 280px; max-width: 340px !important; }
+    /* Instagram's embed script enforces its own 326px floor regardless of
+       the max-width hint below it, so 4 reels can't be squeezed to fit a
+       normal content width without cropping them — scroll horizontally
+       instead of wrapping, so all 4 genuinely stay in one row. */
+    .ig-embed-row { display: flex; gap: 14px; margin-top: 28px; overflow-x: auto; padding-bottom: 6px; }
+    .ig-embed-row blockquote { margin: 0 !important; flex: 0 0 auto; max-width: 262px !important; }
 
     /* ─── LOCAL VIDEO (Creative Explorer) ─── */
     .video-wrap {
@@ -365,13 +369,16 @@
 
   <div class="ig-embed-row reveal d2">
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYYY3JuM46t/" data-instgrm-version="14"
-      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:260px; min-width:240px; padding:0; width:calc(100% - 2px);">
     </blockquote>
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXdn19xDqXn/" data-instgrm-version="14"
-      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:260px; min-width:240px; padding:0; width:calc(100% - 2px);">
     </blockquote>
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXVRttoDylh/" data-instgrm-version="14"
-      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:328px; min-width:280px; padding:0; width:calc(100% - 2px);">
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:260px; min-width:240px; padding:0; width:calc(100% - 2px);">
+    </blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXQTCcpDiV2/" data-instgrm-version="14"
+      style="background:#FFF; border:0; border-radius:16px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:260px; min-width:240px; padding:0; width:calc(100% - 2px);">
     </blockquote>
   </div>
 </section>
